@@ -16,30 +16,42 @@ struct GameContentView: View {
     let columns: [GridItem] = [GridItem(.flexible()),
         GridItem(.flexible()),
         GridItem(.flexible())]
-    let totalCountItems = 9
+    @State var offsetX: CGFloat = 0
+    @State var offsetY: CGFloat = 0
+
     @State var itemPositions = [CGPoint]()
     @State var path = Path()
     @State var dragDirection: DragDirection = DragDirection.none
     @State var currentIndex = 0
+
+    let totalCountItems = 9
+    let totalColumns = 3
+    let spacingGrid: CGFloat = 30
+    let circleSize: CGFloat = 20
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                LazyVGrid(columns: columns, spacing: 30) {
+                LazyVGrid(columns: columns, spacing: spacingGrid) {
+                    var currentColumnIndex = 0, currentRowIndex = 0
                     ForEach(0..<9) { index in
                         Circle()
-                            .frame(width: 30)
+                            .frame(width: circleSize, height: circleSize)
+                            .opacity(0.3)
                             .onAppear(perform: {
+
                             if itemPositions.count != totalCountItems {
-                                itemPositions.append(CGPoint(x: geo.frame(in: .local).maxX, y: geo.frame(in: .local).maxY))
+                                itemPositions.append(CGPoint(
+                                    x: offsetX + CGFloat(currentColumnIndex) * (geo.size.width / 3),
+                                    y: offsetY + CGFloat(currentRowIndex) * (spacingGrid + circleSize)))
+                            }
+                            currentColumnIndex += 1
+                            if currentColumnIndex == totalColumns {
+                                currentColumnIndex = 0
+                                currentRowIndex += 1
                             }
                         })
-                        //                        .gesture(
-                        //                        DragGesture(minimumDistance: 0, coordinateSpace: .local)
-                        //                            .onEnded { state in
 
-                        //                        }
-                        //                    )
-                        .gesture(
+                            .gesture(
                             DragGesture(minimumDistance: 0, coordinateSpace: .global)
                                 .onEnded { value in
                                 var horizontalDirection = "", verticalDirection = ""
@@ -56,32 +68,59 @@ struct GameContentView: View {
 
                                 if value.startLocation.y > value.location.y {
                                     // left
-                                    verticalDirection = "up"
+                                    verticalDirection = "top"
                                 } else if value.startLocation.y == value.location.y {
                                     verticalDirection = "none"
                                 } else {
-                                    verticalDirection = "down"
+                                    verticalDirection = "bottom"
+                                }
+                                if path.isEmpty {
+                                    path.move(to: itemPositions[currentIndex])
                                 }
                                 dragDirection = DragDirection(rawValue: "\(verticalDirection) \(horizontalDirection)") ?? .none
-//                                if path.isEmpty {
-//                                    path.move(to: value.startLocation)
-//                                } else {
-//                                    path.addLine(to: value.startLocation)
-//                                }
-                                let currentLocation = CGPoint(x: value.startLocation.x, y: value.startLocation.y - 47)
-                                if path.isEmpty {
-//                                        path.move(to: itemPositions[index + 1])
-                                    path.move(to: currentLocation)
-                                }
-//                                    path.addLine(to: <#T##CGPoint#>)
-                                path.addLine(to: itemPositions[index + 1])
-                                    path.addLine(to: itemPositions[index + 1+1])
+                                    var newIndex = currentIndex
+                                    switch dragDirection {
+                                    case .north:
+                                        newIndex -= totalColumns
+                                    case .east:
+                                        newIndex += 1
+                                    case .west:
+                                        newIndex -= 1
+                                    case .south:
+                                        newIndex += totalColumns
+                                    case .northeast:
+                                        newIndex -= (totalColumns - 1)
+                                    case .northwest:
+                                        newIndex -= (totalColumns + 1)
+                                    case .southeast:
+                                        newIndex += (totalColumns + 1)
+                                    case .southwest:
+                                        newIndex += (totalColumns - 1)
+                                    case .none:
+                                        newIndex = currentIndex
+                                    }
+                                    if newIndex < 0 || newIndex >= totalCountItems {
+                                        currentIndex = currentIndex
+                                    }
+                                    else {
+                                        currentIndex = newIndex
+                                    }
+                                    print("\(verticalDirection) \(horizontalDirection)")
+                                    print(dragDirection, currentIndex)
+                                    path.addLine(to: itemPositions[currentIndex])
                             }
                         )
 
                     }
                 }
                 path.stroke(Color.black, lineWidth: 2)
+            }
+                .onAppear {
+                offsetX = geo.frame(in: .local).minX + geo.size.width / 6
+                offsetY = geo.frame(in: .local).minY + (geo.size.height / 2) - (spacingGrid + circleSize)
+                currentIndex = (totalCountItems / totalColumns) + 1
+
+
             }
         }
     }
