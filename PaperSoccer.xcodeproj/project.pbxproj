@@ -13,10 +13,60 @@
 		3D0C401428AF707200406125 /* Tests_macOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C401328AF707200406125 /* Tests_macOSLaunchTests.swift */; };
 		3D0C401528AF707200406125 /* PaperSoccerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C3FED28AF707200406125 /* PaperSoccerApp.swift */; };
 		3D0C401628AF707200406125 /* PaperSoccerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C3FED28AF707200406125 /* PaperSoccerApp.swift */; };
-		3D0C401728AF707200406125 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C3FEE28AF707200406125 /* ContentView.swift */; };
-		3D0C401828AF707200406125 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C3FEE28AF707200406125 /* ContentView.swift */; };
 		3D0C401928AF707200406125 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C3FEF28AF707200406125 /* Assets.xcassets */; };
 		3D0C401A28AF707200406125 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C3FEF28AF707200406125 /* Assets.xcassets */; };
+		3D0C405C28AF757900406125 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C404F28AF757800406125 /* Roboto-Black.ttf */; };
+		3D0C405D28AF757900406125 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C404F28AF757800406125 /* Roboto-Black.ttf */; };
+		3D0C405E28AF757900406125 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405028AF757800406125 /* Roboto-BoldItalic.ttf */; };
+		3D0C405F28AF757900406125 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405028AF757800406125 /* Roboto-BoldItalic.ttf */; };
+		3D0C406028AF757900406125 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405128AF757800406125 /* Roboto-MediumItalic.ttf */; };
+		3D0C406128AF757900406125 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405128AF757800406125 /* Roboto-MediumItalic.ttf */; };
+		3D0C406228AF757900406125 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405228AF757800406125 /* Roboto-Italic.ttf */; };
+		3D0C406328AF757900406125 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405228AF757800406125 /* Roboto-Italic.ttf */; };
+		3D0C406428AF757900406125 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405328AF757800406125 /* Roboto-BlackItalic.ttf */; };
+		3D0C406528AF757900406125 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405328AF757800406125 /* Roboto-BlackItalic.ttf */; };
+		3D0C406628AF757900406125 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405428AF757800406125 /* Roboto-LightItalic.ttf */; };
+		3D0C406728AF757900406125 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405428AF757800406125 /* Roboto-LightItalic.ttf */; };
+		3D0C406828AF757900406125 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405528AF757900406125 /* LICENSE.txt */; };
+		3D0C406928AF757900406125 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405528AF757900406125 /* LICENSE.txt */; };
+		3D0C406A28AF757900406125 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405628AF757900406125 /* Roboto-ThinItalic.ttf */; };
+		3D0C406B28AF757900406125 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405628AF757900406125 /* Roboto-ThinItalic.ttf */; };
+		3D0C406C28AF757900406125 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405728AF757900406125 /* Roboto-Light.ttf */; };
+		3D0C406D28AF757900406125 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405728AF757900406125 /* Roboto-Light.ttf */; };
+		3D0C406E28AF757900406125 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405828AF757900406125 /* Roboto-Medium.ttf */; };
+		3D0C406F28AF757900406125 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405828AF757900406125 /* Roboto-Medium.ttf */; };
+		3D0C407028AF757900406125 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405928AF757900406125 /* Roboto-Regular.ttf */; };
+		3D0C407128AF757900406125 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405928AF757900406125 /* Roboto-Regular.ttf */; };
+		3D0C407228AF757900406125 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405A28AF757900406125 /* Roboto-Thin.ttf */; };
+		3D0C407328AF757900406125 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405A28AF757900406125 /* Roboto-Thin.ttf */; };
+		3D0C407428AF757900406125 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405B28AF757900406125 /* Roboto-Bold.ttf */; };
+		3D0C407528AF757900406125 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C405B28AF757900406125 /* Roboto-Bold.ttf */; };
+		3D0C407928AF759C00406125 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C407728AF759C00406125 /* Constants.swift */; };
+		3D0C407A28AF759C00406125 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C407728AF759C00406125 /* Constants.swift */; };
+		3D0C407B28AF759C00406125 /* ModelUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C407828AF759C00406125 /* ModelUtility.swift */; };
+		3D0C407C28AF759C00406125 /* ModelUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C407828AF759C00406125 /* ModelUtility.swift */; };
+		3D0C407F28AF75B100406125 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C407E28AF75B100406125 /* GameModel.swift */; };
+		3D0C408028AF75B100406125 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C407E28AF75B100406125 /* GameModel.swift */; };
+		3D0C408328AF75BF00406125 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C408228AF75BF00406125 /* Player.swift */; };
+		3D0C408428AF75BF00406125 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C408228AF75BF00406125 /* Player.swift */; };
+		3D0C408928AF75D200406125 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C408628AF75D200406125 /* GameView.swift */; };
+		3D0C408A28AF75D200406125 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C408628AF75D200406125 /* GameView.swift */; };
+		3D0C408B28AF75D200406125 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C408728AF75D200406125 /* MenuView.swift */; };
+		3D0C408C28AF75D200406125 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C408728AF75D200406125 /* MenuView.swift */; };
+		3D0C408D28AF75D200406125 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C408828AF75D200406125 /* LeaderboardView.swift */; };
+		3D0C408E28AF75D200406125 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C408828AF75D200406125 /* LeaderboardView.swift */; };
+		3D0C409328AF75E400406125 /* PlayerIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C409028AF75E400406125 /* PlayerIconView.swift */; };
+		3D0C409428AF75E400406125 /* PlayerIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C409028AF75E400406125 /* PlayerIconView.swift */; };
+		3D0C409528AF75E400406125 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C409128AF75E400406125 /* ModalView.swift */; };
+		3D0C409628AF75E400406125 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C409128AF75E400406125 /* ModalView.swift */; };
+		3D0C409728AF75E400406125 /* PlayerNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C409228AF75E400406125 /* PlayerNameView.swift */; };
+		3D0C409828AF75E400406125 /* PlayerNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C409228AF75E400406125 /* PlayerNameView.swift */; };
+		3D0C409B28AF75FA00406125 /* RectangleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C409A28AF75FA00406125 /* RectangleButtonView.swift */; };
+		3D0C409C28AF75FA00406125 /* RectangleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C409A28AF75FA00406125 /* RectangleButtonView.swift */; };
+		3D0C409F28AF761000406125 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C409E28AF761000406125 /* Preview Assets.xcassets */; };
+		3D0C40A028AF761000406125 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C409E28AF761000406125 /* Preview Assets.xcassets */; };
+		3D0C40A228AF8F9500406125 /* GameContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40A128AF8F9500406125 /* GameContentView.swift */; };
+		3D0C40A328AF8F9500406125 /* GameContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40A128AF8F9500406125 /* GameContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +88,6 @@
 
 /* Begin PBXFileReference section */
 		3D0C3FED28AF707200406125 /* PaperSoccerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperSoccerApp.swift; sourceTree = "<group>"; };
-		3D0C3FEE28AF707200406125 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3D0C3FEF28AF707200406125 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D0C3FF428AF707200406125 /* PaperSoccer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperSoccer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D0C3FFA28AF707200406125 /* PaperSoccer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperSoccer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +98,32 @@
 		3D0C400D28AF707200406125 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D0C401128AF707200406125 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		3D0C401328AF707200406125 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		3D0C404F28AF757800406125 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		3D0C405028AF757800406125 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		3D0C405128AF757800406125 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		3D0C405228AF757800406125 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		3D0C405328AF757800406125 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		3D0C405428AF757800406125 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
+		3D0C405528AF757900406125 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		3D0C405628AF757900406125 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		3D0C405728AF757900406125 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		3D0C405828AF757900406125 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		3D0C405928AF757900406125 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		3D0C405A28AF757900406125 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		3D0C405B28AF757900406125 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		3D0C407728AF759C00406125 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3D0C407828AF759C00406125 /* ModelUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelUtility.swift; sourceTree = "<group>"; };
+		3D0C407E28AF75B100406125 /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		3D0C408228AF75BF00406125 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		3D0C408628AF75D200406125 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		3D0C408728AF75D200406125 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		3D0C408828AF75D200406125 /* LeaderboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
+		3D0C409028AF75E400406125 /* PlayerIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerIconView.swift; sourceTree = "<group>"; };
+		3D0C409128AF75E400406125 /* ModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
+		3D0C409228AF75E400406125 /* PlayerNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerNameView.swift; sourceTree = "<group>"; };
+		3D0C409A28AF75FA00406125 /* RectangleButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleButtonView.swift; sourceTree = "<group>"; };
+		3D0C409E28AF761000406125 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3D0C40A128AF8F9500406125 /* GameContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +172,14 @@
 		3D0C3FEC28AF707200406125 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				3D0C408528AF75C400406125 /* Views */,
+				3D0C408128AF75B700406125 /* Models */,
+				3D0C407D28AF75A600406125 /* ViewModels */,
+				3D0C407628AF758600406125 /* Utilities */,
+				3D0C404C28AF751200406125 /* Resources */,
 				3D0C3FED28AF707200406125 /* PaperSoccerApp.swift */,
-				3D0C3FEE28AF707200406125 /* ContentView.swift */,
 				3D0C3FEF28AF707200406125 /* Assets.xcassets */,
+				3D0C409D28AF760700406125 /* Preview Content */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -139,6 +219,106 @@
 				3D0C401328AF707200406125 /* Tests_macOSLaunchTests.swift */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		3D0C404C28AF751200406125 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3D0C404D28AF751800406125 /* Fonts */,
+				3D0C40A128AF8F9500406125 /* GameContentView.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3D0C404D28AF751800406125 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3D0C404E28AF751F00406125 /* Roboto */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		3D0C404E28AF751F00406125 /* Roboto */ = {
+			isa = PBXGroup;
+			children = (
+				3D0C405528AF757900406125 /* LICENSE.txt */,
+				3D0C404F28AF757800406125 /* Roboto-Black.ttf */,
+				3D0C405328AF757800406125 /* Roboto-BlackItalic.ttf */,
+				3D0C405B28AF757900406125 /* Roboto-Bold.ttf */,
+				3D0C405028AF757800406125 /* Roboto-BoldItalic.ttf */,
+				3D0C405228AF757800406125 /* Roboto-Italic.ttf */,
+				3D0C405728AF757900406125 /* Roboto-Light.ttf */,
+				3D0C405428AF757800406125 /* Roboto-LightItalic.ttf */,
+				3D0C405828AF757900406125 /* Roboto-Medium.ttf */,
+				3D0C405128AF757800406125 /* Roboto-MediumItalic.ttf */,
+				3D0C405928AF757900406125 /* Roboto-Regular.ttf */,
+				3D0C405A28AF757900406125 /* Roboto-Thin.ttf */,
+				3D0C405628AF757900406125 /* Roboto-ThinItalic.ttf */,
+			);
+			path = Roboto;
+			sourceTree = "<group>";
+		};
+		3D0C407628AF758600406125 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3D0C407728AF759C00406125 /* Constants.swift */,
+				3D0C407828AF759C00406125 /* ModelUtility.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		3D0C407D28AF75A600406125 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				3D0C407E28AF75B100406125 /* GameModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		3D0C408128AF75B700406125 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3D0C408228AF75BF00406125 /* Player.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3D0C408528AF75C400406125 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3D0C409928AF75E600406125 /* Reusable Components */,
+				3D0C408F28AF75D900406125 /* Game View */,
+				3D0C408628AF75D200406125 /* GameView.swift */,
+				3D0C408828AF75D200406125 /* LeaderboardView.swift */,
+				3D0C408728AF75D200406125 /* MenuView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3D0C408F28AF75D900406125 /* Game View */ = {
+			isa = PBXGroup;
+			children = (
+				3D0C409128AF75E400406125 /* ModalView.swift */,
+				3D0C409028AF75E400406125 /* PlayerIconView.swift */,
+				3D0C409228AF75E400406125 /* PlayerNameView.swift */,
+			);
+			path = "Game View";
+			sourceTree = "<group>";
+		};
+		3D0C409928AF75E600406125 /* Reusable Components */ = {
+			isa = PBXGroup;
+			children = (
+				3D0C409A28AF75FA00406125 /* RectangleButtonView.swift */,
+			);
+			path = "Reusable Components";
+			sourceTree = "<group>";
+		};
+		3D0C409D28AF760700406125 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				3D0C409E28AF761000406125 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,7 +446,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D0C407428AF757900406125 /* Roboto-Bold.ttf in Resources */,
+				3D0C406028AF757900406125 /* Roboto-MediumItalic.ttf in Resources */,
+				3D0C406428AF757900406125 /* Roboto-BlackItalic.ttf in Resources */,
+				3D0C406C28AF757900406125 /* Roboto-Light.ttf in Resources */,
+				3D0C406628AF757900406125 /* Roboto-LightItalic.ttf in Resources */,
+				3D0C405E28AF757900406125 /* Roboto-BoldItalic.ttf in Resources */,
+				3D0C406828AF757900406125 /* LICENSE.txt in Resources */,
+				3D0C409F28AF761000406125 /* Preview Assets.xcassets in Resources */,
+				3D0C407028AF757900406125 /* Roboto-Regular.ttf in Resources */,
+				3D0C406228AF757900406125 /* Roboto-Italic.ttf in Resources */,
+				3D0C406A28AF757900406125 /* Roboto-ThinItalic.ttf in Resources */,
+				3D0C406E28AF757900406125 /* Roboto-Medium.ttf in Resources */,
 				3D0C401928AF707200406125 /* Assets.xcassets in Resources */,
+				3D0C407228AF757900406125 /* Roboto-Thin.ttf in Resources */,
+				3D0C405C28AF757900406125 /* Roboto-Black.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +468,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D0C407528AF757900406125 /* Roboto-Bold.ttf in Resources */,
+				3D0C406128AF757900406125 /* Roboto-MediumItalic.ttf in Resources */,
+				3D0C406528AF757900406125 /* Roboto-BlackItalic.ttf in Resources */,
+				3D0C406D28AF757900406125 /* Roboto-Light.ttf in Resources */,
+				3D0C406728AF757900406125 /* Roboto-LightItalic.ttf in Resources */,
+				3D0C405F28AF757900406125 /* Roboto-BoldItalic.ttf in Resources */,
+				3D0C406928AF757900406125 /* LICENSE.txt in Resources */,
+				3D0C40A028AF761000406125 /* Preview Assets.xcassets in Resources */,
+				3D0C407128AF757900406125 /* Roboto-Regular.ttf in Resources */,
+				3D0C406328AF757900406125 /* Roboto-Italic.ttf in Resources */,
+				3D0C406B28AF757900406125 /* Roboto-ThinItalic.ttf in Resources */,
+				3D0C406F28AF757900406125 /* Roboto-Medium.ttf in Resources */,
 				3D0C401A28AF707200406125 /* Assets.xcassets in Resources */,
+				3D0C407328AF757900406125 /* Roboto-Thin.ttf in Resources */,
+				3D0C405D28AF757900406125 /* Roboto-Black.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,8 +507,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D0C401728AF707200406125 /* ContentView.swift in Sources */,
+				3D0C409328AF75E400406125 /* PlayerIconView.swift in Sources */,
+				3D0C408D28AF75D200406125 /* LeaderboardView.swift in Sources */,
+				3D0C408B28AF75D200406125 /* MenuView.swift in Sources */,
+				3D0C409728AF75E400406125 /* PlayerNameView.swift in Sources */,
 				3D0C401528AF707200406125 /* PaperSoccerApp.swift in Sources */,
+				3D0C409528AF75E400406125 /* ModalView.swift in Sources */,
+				3D0C407F28AF75B100406125 /* GameModel.swift in Sources */,
+				3D0C40A228AF8F9500406125 /* GameContentView.swift in Sources */,
+				3D0C407B28AF759C00406125 /* ModelUtility.swift in Sources */,
+				3D0C409B28AF75FA00406125 /* RectangleButtonView.swift in Sources */,
+				3D0C408328AF75BF00406125 /* Player.swift in Sources */,
+				3D0C408928AF75D200406125 /* GameView.swift in Sources */,
+				3D0C407928AF759C00406125 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,8 +527,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D0C401828AF707200406125 /* ContentView.swift in Sources */,
+				3D0C409428AF75E400406125 /* PlayerIconView.swift in Sources */,
+				3D0C408E28AF75D200406125 /* LeaderboardView.swift in Sources */,
+				3D0C408C28AF75D200406125 /* MenuView.swift in Sources */,
+				3D0C409828AF75E400406125 /* PlayerNameView.swift in Sources */,
 				3D0C401628AF707200406125 /* PaperSoccerApp.swift in Sources */,
+				3D0C409628AF75E400406125 /* ModalView.swift in Sources */,
+				3D0C408028AF75B100406125 /* GameModel.swift in Sources */,
+				3D0C40A328AF8F9500406125 /* GameContentView.swift in Sources */,
+				3D0C407C28AF759C00406125 /* ModelUtility.swift in Sources */,
+				3D0C409C28AF75FA00406125 /* RectangleButtonView.swift in Sources */,
+				3D0C408428AF75BF00406125 /* Player.swift in Sources */,
+				3D0C408A28AF75D200406125 /* GameView.swift in Sources */,
+				3D0C407A28AF759C00406125 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +627,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -449,6 +680,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
