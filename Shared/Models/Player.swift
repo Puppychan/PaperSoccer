@@ -6,11 +6,7 @@
 //
 
 import Foundation
-enum WinningType: String {
-    case humanWin = "human win"
-    case computerWin = "computer win"
-    case draw = "draw"
-}
+
 struct Player: Identifiable {
     let id: UUID = UUID()
     var username: String

@@ -11,7 +11,7 @@ import SwiftUI
 struct GameView: View {
     @EnvironmentObject var model: GameModel
     @State private var isShowModal = false
-    @State private var humanWinStatus = "human win"
+    @State var humanWinStatus: WinningType = .humanWin
 //    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 //
 //    var backButton: some View {
@@ -42,23 +42,25 @@ struct GameView: View {
                     Spacer()
 
                     // MARK: game
-                    LazyVStack {
-                        HStack {
-                            Button(action: {
-                                model.currentBot.currentScore += 1
-                            }, label: { Text("Bot") })
-                            Button(action: {
-                                model.currentHuman.currentScore += 1
-                            }, label: { Text("Human") })
-                        }
-                        Button(action: {
-                            humanWinStatus = model.checkInMatchWin()
-                            isShowModal.toggle()
-                            
-                        }, label: {
-                            RectangleButtonView(bckColor: .black, txtColor: .white, txt: "Submit", height: geo.size.height / 8)
-                        })
-                    }
+//                    LazyVStack {
+//                        HStack {
+//                            Button(action: {
+//                                model.currentBot.currentScore += 1
+//                            }, label: { Text("Bot") })
+//                            Button(action: {
+//                                model.currentHuman.currentScore += 1
+//                            }, label: { Text("Human") })
+//                        }
+//                        Button(action: {
+//                            humanWinStatus = model.checkInMatchWin()
+//                            isShowModal.toggle()
+//
+//                        }, label: {
+//                            RectangleButtonView(bckColor: .black, txtColor: .white, txt: "Submit", height: geo.size.height / 8)
+//                        })
+//                    }
+                    GameContentView(winStatus: $humanWinStatus, showModal: $isShowModal)
+                        .environmentObject(GameContentModel())
 
                     Spacer()
 

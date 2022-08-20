@@ -22,12 +22,12 @@ struct ModalView: View {
     private var buttonTitle: String
 
     // MARK: init modal contents based on type modal
-    init(type: String, width: CGFloat, height: CGFloat, isShowModal: Binding<Bool>) {
+    init(type: WinningType, width: CGFloat, height: CGFloat, isShowModal: Binding<Bool>) {
         switch type {
-        case WinningType.humanWin.rawValue:
+        case .humanWin:
             // human win
             (self.title, self.message, self.buttonTitle) = ("Human Win", "You beat the AI", "Continue the game")
-        case WinningType.computerWin.rawValue:
+        case .computerWin:
             // human lost
             (self.title, self.message, self.buttonTitle) = ("You Lost", "Your AI is super smart", "Try Again")
         default:

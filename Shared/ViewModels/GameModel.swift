@@ -43,15 +43,15 @@ class GameModel: ObservableObject {
     func sortPlayerInScore() {
         self.players = self.players.sorted(by: { $0.totalScore > $1.totalScore })
     }
-    func checkInMatchWin() -> String {
+    func checkInMatchWin() -> WinningType {
         if self.currentBot.currentScore > self.currentHuman.currentScore {
-            return WinningType.computerWin.rawValue
+            return .computerWin
         }
         else if self.currentBot.currentScore < self.currentHuman.currentScore {
-            return WinningType.humanWin.rawValue
+            return .humanWin
         }
         else {
-            return WinningType.draw.rawValue
+            return .draw
         }
     }
     func updateWinNumber() {

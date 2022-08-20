@@ -67,6 +67,10 @@
 		3D0C40A028AF761000406125 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C409E28AF761000406125 /* Preview Assets.xcassets */; };
 		3D0C40A228AF8F9500406125 /* GameContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40A128AF8F9500406125 /* GameContentView.swift */; };
 		3D0C40A328AF8F9500406125 /* GameContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40A128AF8F9500406125 /* GameContentView.swift */; };
+		3D0C40A528B081B300406125 /* Ultilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40A428B081B300406125 /* Ultilities.swift */; };
+		3D0C40A628B081B300406125 /* Ultilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40A428B081B300406125 /* Ultilities.swift */; };
+		3D0C40A828B14AE200406125 /* GameContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40A728B14AE200406125 /* GameContentModel.swift */; };
+		3D0C40A928B14AE200406125 /* GameContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40A728B14AE200406125 /* GameContentModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +128,8 @@
 		3D0C409A28AF75FA00406125 /* RectangleButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleButtonView.swift; sourceTree = "<group>"; };
 		3D0C409E28AF761000406125 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3D0C40A128AF8F9500406125 /* GameContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameContentView.swift; sourceTree = "<group>"; };
+		3D0C40A428B081B300406125 /* Ultilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ultilities.swift; sourceTree = "<group>"; };
+		3D0C40A728B14AE200406125 /* GameContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameContentModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,7 +231,6 @@
 			isa = PBXGroup;
 			children = (
 				3D0C404D28AF751800406125 /* Fonts */,
-				3D0C40A128AF8F9500406125 /* GameContentView.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -263,6 +268,7 @@
 			children = (
 				3D0C407728AF759C00406125 /* Constants.swift */,
 				3D0C407828AF759C00406125 /* ModelUtility.swift */,
+				3D0C40A428B081B300406125 /* Ultilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -271,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				3D0C407E28AF75B100406125 /* GameModel.swift */,
+				3D0C40A728B14AE200406125 /* GameContentModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -301,6 +308,7 @@
 				3D0C409128AF75E400406125 /* ModalView.swift */,
 				3D0C409028AF75E400406125 /* PlayerIconView.swift */,
 				3D0C409228AF75E400406125 /* PlayerNameView.swift */,
+				3D0C40A128AF8F9500406125 /* GameContentView.swift */,
 			);
 			path = "Game View";
 			sourceTree = "<group>";
@@ -518,6 +526,8 @@
 				3D0C407B28AF759C00406125 /* ModelUtility.swift in Sources */,
 				3D0C409B28AF75FA00406125 /* RectangleButtonView.swift in Sources */,
 				3D0C408328AF75BF00406125 /* Player.swift in Sources */,
+				3D0C40A828B14AE200406125 /* GameContentModel.swift in Sources */,
+				3D0C40A528B081B300406125 /* Ultilities.swift in Sources */,
 				3D0C408928AF75D200406125 /* GameView.swift in Sources */,
 				3D0C407928AF759C00406125 /* Constants.swift in Sources */,
 			);
@@ -538,6 +548,8 @@
 				3D0C407C28AF759C00406125 /* ModelUtility.swift in Sources */,
 				3D0C409C28AF75FA00406125 /* RectangleButtonView.swift in Sources */,
 				3D0C408428AF75BF00406125 /* Player.swift in Sources */,
+				3D0C40A928B14AE200406125 /* GameContentModel.swift in Sources */,
+				3D0C40A628B081B300406125 /* Ultilities.swift in Sources */,
 				3D0C408A28AF75D200406125 /* GameView.swift in Sources */,
 				3D0C407A28AF759C00406125 /* Constants.swift in Sources */,
 			);

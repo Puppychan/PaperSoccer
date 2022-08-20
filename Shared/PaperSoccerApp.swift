@@ -11,9 +11,9 @@ import SwiftUI
 struct PaperSoccerApp: App {
     var body: some Scene {
         WindowGroup {
-//            MenuView()
-//                .environmentObject(GameModel())
-            GameContentView()
+            MenuView()
+                .environmentObject(GameModel())
+//            GameContentView()
         }
     }
 }
