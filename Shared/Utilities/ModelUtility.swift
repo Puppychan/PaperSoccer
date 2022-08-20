@@ -13,4 +13,7 @@ struct ModelUtility {
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         return String((0..<Int.random(in: 3...7)).map { _ in letters.randomElement()! })
     }
+    
+    // find direction
+    
 }
