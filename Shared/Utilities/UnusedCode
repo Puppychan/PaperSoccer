@@ -1,0 +1,27 @@
+
+
+    
+    // MARK: find direction based on index
+    func identifyDragIndex(current currentIndex: Int, for newIndex: Int) -> DragDirection {
+        switch newIndex {
+        case currentIndex - self.totalColumns:
+            return .north
+        case currentIndex + 1:
+            return .east
+        case currentIndex - 1:
+            return .west
+        case currentIndex + self.totalColumns:
+            return .south
+        case currentIndex - (self.totalColumns - 1):
+            return .northeast
+        case currentIndex - (self.totalColumns + 1):
+            return .northwest
+        case currentIndex + (self.totalColumns + 1):
+            return .southeast
+        case currentIndex + (self.totalColumns - 1):
+            return .southwest
+        default:
+            // == self.currentIndex
+            return .none
+        }
+    }

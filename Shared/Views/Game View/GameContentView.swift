@@ -83,7 +83,8 @@ struct GameContentView: View {
                                     .onEnded { value in
                                         if !checkIgnoreIndex {
                                             // add movement
-                                            contentModel.defineMovement(itemPositions: itemPositions, dragValue: value)
+                                            print("-------------------------------")
+                                            contentModel.defineHumanMovement(itemPositions: itemPositions, dragValue: value)
                                             if contentModel.humanMoveValid {
                                                 isDisableBoard = true
                                                 

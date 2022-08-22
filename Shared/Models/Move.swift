@@ -8,5 +8,6 @@
 import Foundation
 struct Move {
     let isOccupy: Bool
-    var occupyDirection: [DragDirection]
+    // store index of related direction
+    var occupyDirection: [Int]
 }
