@@ -71,6 +71,8 @@
 		3D0C40A628B081B300406125 /* Ultilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40A428B081B300406125 /* Ultilities.swift */; };
 		3D0C40A828B14AE200406125 /* GameContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40A728B14AE200406125 /* GameContentModel.swift */; };
 		3D0C40A928B14AE200406125 /* GameContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40A728B14AE200406125 /* GameContentModel.swift */; };
+		3D0C40AB28B3438B00406125 /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40AA28B3438B00406125 /* Move.swift */; };
+		3D0C40AC28B3438B00406125 /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40AA28B3438B00406125 /* Move.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +132,7 @@
 		3D0C40A128AF8F9500406125 /* GameContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameContentView.swift; sourceTree = "<group>"; };
 		3D0C40A428B081B300406125 /* Ultilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ultilities.swift; sourceTree = "<group>"; };
 		3D0C40A728B14AE200406125 /* GameContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameContentModel.swift; sourceTree = "<group>"; };
+		3D0C40AA28B3438B00406125 /* Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				3D0C408228AF75BF00406125 /* Player.swift */,
+				3D0C40AA28B3438B00406125 /* Move.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -527,6 +531,7 @@
 				3D0C409B28AF75FA00406125 /* RectangleButtonView.swift in Sources */,
 				3D0C408328AF75BF00406125 /* Player.swift in Sources */,
 				3D0C40A828B14AE200406125 /* GameContentModel.swift in Sources */,
+				3D0C40AB28B3438B00406125 /* Move.swift in Sources */,
 				3D0C40A528B081B300406125 /* Ultilities.swift in Sources */,
 				3D0C408928AF75D200406125 /* GameView.swift in Sources */,
 				3D0C407928AF759C00406125 /* Constants.swift in Sources */,
@@ -549,6 +554,7 @@
 				3D0C409C28AF75FA00406125 /* RectangleButtonView.swift in Sources */,
 				3D0C408428AF75BF00406125 /* Player.swift in Sources */,
 				3D0C40A928B14AE200406125 /* GameContentModel.swift in Sources */,
+				3D0C40AC28B3438B00406125 /* Move.swift in Sources */,
 				3D0C40A628B081B300406125 /* Ultilities.swift in Sources */,
 				3D0C408A28AF75D200406125 /* GameView.swift in Sources */,
 				3D0C407A28AF759C00406125 /* Constants.swift in Sources */,

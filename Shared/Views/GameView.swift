@@ -12,6 +12,7 @@ struct GameView: View {
     @EnvironmentObject var model: GameModel
     @State private var isShowModal = false
     @State var humanWinStatus: WinningType = .humanWin
+    
 //    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 //
 //    var backButton: some View {
@@ -25,6 +26,7 @@ struct GameView: View {
 //            }
 //        })
 //    }
+    
 
     var body: some View {
         GeometryReader { geo in
@@ -59,8 +61,9 @@ struct GameView: View {
 //                            RectangleButtonView(bckColor: .black, txtColor: .white, txt: "Submit", height: geo.size.height / 8)
 //                        })
 //                    }
-                    GameContentView(winStatus: $humanWinStatus, showModal: $isShowModal)
+                    GameContentView(winStatus: $humanWinStatus, showModal: $isShowModal, parentGeo: geo)
                         .environmentObject(GameContentModel())
+                        
 
                     Spacer()
 

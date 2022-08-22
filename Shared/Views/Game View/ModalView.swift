@@ -20,10 +20,13 @@ struct ModalView: View {
     private var title: String
     private var message: String
     private var buttonTitle: String
+    
+    private var type: WinningType
 
     // MARK: init modal contents based on type modal
     init(type: WinningType, width: CGFloat, height: CGFloat, isShowModal: Binding<Bool>) {
-        switch type {
+        self.type = type
+        switch self.type {
         case .humanWin:
             // human win
             (self.title, self.message, self.buttonTitle) = ("Human Win", "You beat the AI", "Continue the game")
@@ -64,6 +67,8 @@ struct ModalView: View {
 
                 // MARK: continue to play button
                 Button(action: {
+                    // update current scores
+                    model.updateScores(winStatus: self.type)
                     
                     // close the modal
                     isShowModal.toggle()
@@ -77,6 +82,8 @@ struct ModalView: View {
 
                 // MARK: exit game button
                 Button(action: {
+                    // update current scores
+                    model.updateScores(winStatus: self.type)
                     
                     // exit game and update total scores of players
                     model.updateWinNumber()

@@ -43,17 +43,30 @@ class GameModel: ObservableObject {
     func sortPlayerInScore() {
         self.players = self.players.sorted(by: { $0.totalScore > $1.totalScore })
     }
-    func checkInMatchWin() -> WinningType {
-        if self.currentBot.currentScore > self.currentHuman.currentScore {
-            return .computerWin
-        }
-        else if self.currentBot.currentScore < self.currentHuman.currentScore {
-            return .humanWin
-        }
-        else {
-            return .draw
+    
+    // update scores during match
+    func updateScores(winStatus: WinningType) {
+        switch winStatus {
+        case .humanWin:
+            self.currentHuman.currentScore += 1
+        case .computerWin:
+            self.currentBot.currentScore += 1
+        default:
+            print("Nothing")
         }
     }
+    
+//    func checkInMatchWin() -> WinningType {
+//        if self.currentBot.currentScore > self.currentHuman.currentScore {
+//            return .computerWin
+//        }
+//        else if self.currentBot.currentScore < self.currentHuman.currentScore {
+//            return .humanWin
+//        }
+//        else {
+//            return .draw
+//        }
+//    }
     func updateWinNumber() {
         // find final winner
         // update score of winner = current winner scores - current loser scores
