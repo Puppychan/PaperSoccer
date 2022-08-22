@@ -7,6 +7,6 @@
 
 import Foundation
 struct Move {
-    let player: Player
-    let boardIndex: Int
+    let isOccupy: Bool
+    var occupyDirection: [DragDirection]
 }

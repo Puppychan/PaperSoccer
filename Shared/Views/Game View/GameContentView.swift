@@ -82,7 +82,6 @@ struct GameContentView: View {
                                 DragGesture(minimumDistance: 0, coordinateSpace: .global)
                                     .onEnded { value in
                                         if !checkIgnoreIndex {
-                                            
                                             // add movement
                                             contentModel.defineMovement(itemPositions: itemPositions, dragValue: value)
                                             if contentModel.humanMoveValid {
@@ -95,7 +94,7 @@ struct GameContentView: View {
                                                     isDisableBoard = false
                                                     return
                                                 }
-
+                                                
                                                 // computer moves
                                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
                                                     contentModel.findComputerMove(itemPositions: itemPositions)

@@ -29,7 +29,7 @@ class GameContentModel: ObservableObject {
     var currentHumanIndex: Int = 0
     var currentBotIndex: Int = 0
 
-    @Published var moves: [Int]
+    @Published var moves: [Move?]
     @Published var dragDirection: DragDirection = .none
     @Published var humanPath = Path()
     @Published var botPath = Path()
@@ -37,7 +37,7 @@ class GameContentModel: ObservableObject {
     @Published var humanMoveValid = false
 
     init() {
-        self.moves = Array(repeating: -1, count: totalCountItems)
+        self.moves = Array(repeating: nil, count: totalCountItems)
 
         self.totalColumns = columns.count
         self.totalRowNum = self.totalCountItems / self.totalColumns
@@ -55,9 +55,9 @@ class GameContentModel: ObservableObject {
             self.startFinalRowIndex...(endLeftRange + self.startFinalRowIndex),
             self.startFinalRowIndex + startRightRange...self.totalColumns - 1 + self.startFinalRowIndex
         ]
-    
+
         // set center or starting point already occupy
-        self.moves[self.totalCountItems / 2] = 1
+        assignMove(for: self.totalCountItems / 2)
     }
 
     // MARK: - movement
@@ -98,14 +98,53 @@ class GameContentModel: ObservableObject {
         }
         return true
     }
+
     func checkValidIndex(for newIndex: Int) -> Bool {
         // for simple rule
-        return ((0..<self.totalCountItems ~= newIndex) &&
+        print(identifyDragIndex(current: self.currentIndex, for: newIndex))
+        return (0..<self.totalCountItems ~= newIndex) &&
                 !isIgnorePosition(for: newIndex) &&
                 isBouncingDragValid(for: self.currentIndex) &&
-                self.moves[newIndex] != 1)
+                (self.moves[newIndex] == nil ||
+                 !(self.moves[newIndex]?.occupyDirection.contains {$0 == identifyDragIndex(current: self.currentIndex, for: newIndex)
+                } ?? true))
     }
 
+    // MARK: assign move to array
+    func assignMove(for newIndex: Int) {
+        if self.moves[newIndex] != nil {
+//            self.moves[newIndex]?.isOccupy = true
+            self.moves[newIndex]?.occupyDirection.append(identifyDragIndex(current: self.currentIndex, for: newIndex))
+        }
+        else {
+            self.moves[newIndex] = Move(isOccupy: true, occupyDirection: [identifyDragIndex(current: self.currentIndex, for: newIndex)])
+        }
+    }
+
+    // MARK: find direction based on index
+    func identifyDragIndex(current currentIndex: Int, for newIndex: Int) -> DragDirection {
+        switch newIndex {
+        case currentIndex - self.totalColumns:
+            return .north
+        case currentIndex + 1:
+            return .east
+        case currentIndex - 1:
+            return .west
+        case currentIndex + self.totalColumns:
+            return .south
+        case currentIndex - (self.totalColumns - 1):
+            return .northeast
+        case currentIndex - (self.totalColumns + 1):
+            return .northwest
+        case currentIndex + (self.totalColumns + 1):
+            return .southeast
+        case currentIndex + (self.totalColumns - 1):
+            return .southwest
+        default:
+            // == self.currentIndex
+            return .none
+        }
+    }
     // MARK: Identify next position after user drag
     func identifyNextMovementDrag() -> Int {
         // identify simple steps (rule only)
@@ -147,14 +186,18 @@ class GameContentModel: ObservableObject {
 
         // if movement valid
         if checkValidIndex(for: newIndex) {
+            // add direction to the starting point
+            if self.currentIndex == self.totalCountItems / 2 {
+                self.moves[self.currentIndex]?.occupyDirection.append(identifyDragIndex(current: newIndex, for: self.currentIndex))
+            }
             print("Human valid: ", currentIndex, newIndex)
-            print("Human:", moves[newIndex])
+            
+            // assign movement to moves
+            assignMove(for: newIndex)
             self.currentIndex = newIndex
             self.humanPath.addLine(to: itemPositions[self.currentIndex])
-
             // mark point as moved
             self.humanMoveValid = true
-            moves[self.currentIndex] = 1
         }
     }
 
@@ -171,10 +214,15 @@ class GameContentModel: ObservableObject {
             self.dragDirection = DragDirection.allCases.randomElement() ?? .none
             newIndex = identifyNextMovementDrag()
             if checkValidIndex(for: newIndex) {
+                // add direction to the starting point
+                if self.currentIndex == self.totalCountItems / 2 {
+                    self.moves[self.currentIndex]?.occupyDirection.append(identifyDragIndex(current: newIndex, for: self.currentIndex))
+                }
+                
+                // assign movement to moves
+                assignMove(for: newIndex)
                 print("Comp valid: ", currentIndex, newIndex)
-                print("Comp:", moves[newIndex])
                 self.currentIndex = newIndex
-                moves[self.currentIndex] = 1
                 break
             }
             print("Comp: ", currentIndex, newIndex)
