@@ -11,7 +11,7 @@ import SwiftUI
 struct GameView: View {
     @EnvironmentObject var model: GameModel
     @State private var isShowModal = false
-    @State var humanWinStatus: WinningType = .humanWin
+    @State var humanWinStatus: WinningType = .none
     
 //    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 //
