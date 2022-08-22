@@ -59,18 +59,18 @@ class GameContentModel: ObservableObject {
         ]
         
         // set center or starting point already occupy
-        assignMove(for: self.totalCountItems / 2)
+        assignMove(currentIndex: self.currentIndex, for: self.totalCountItems / 2)
     }
     
     // MARK: - movement
     // MARK: assign move to array
-    func assignMove(for newIndex: Int) {
+    func assignMove(currentIndex: Int, for newIndex: Int) {
         if self.moves[newIndex] != nil {
             //            self.moves[newIndex]?.isOccupy = true
-            self.moves[newIndex]?.occupyDirection.append(self.currentIndex)
+            self.moves[newIndex]?.occupyDirection.append(currentIndex)
         }
         else {
-            self.moves[newIndex] = Move(isOccupy: true, occupyDirection: [self.currentIndex])
+            self.moves[newIndex] = Move(isOccupy: true, occupyDirection: [currentIndex])
         }
     }
     
@@ -155,15 +155,22 @@ class GameContentModel: ObservableObject {
     
     func isContinueMoving(for newIndex: Int) -> Bool {
         if self.moves[newIndex] != nil {
+            // already move
+            if (self.moves[self.currentIndex]?.occupyDirection.contains(newIndex) ?? true) {
+                return false
+            }
+            
+            // if not already move check other thing
             return !(self.moves[newIndex]?.occupyDirection.contains(self.currentIndex) ?? true)
         }
         return false
     }
     
     func checkValidIndex(for newIndex: Int) -> Bool {
-        print("********************", newIndex)
-        // check if can continue moving after first moving
-        self.canContinueMoving = isContinueMoving(for: newIndex)
+        if newIndex < self.totalCountItems {// check if can continue moving after first moving
+            self.canContinueMoving = isContinueMoving(for: newIndex)
+            
+        }
         // for simple rule
 //        print("Out of bound check:", 0..<self.totalCountItems ~= newIndex)
 //        print("Inside ignore region check:", !isIgnorePosition(for: newIndex))
@@ -222,17 +229,19 @@ class GameContentModel: ObservableObject {
         if checkValidIndex(for: newIndex) {
             
             // add direction to the starting point
-            if self.currentIndex == self.totalCountItems / 2 {
-                
-                self.moves[self.currentIndex]?.occupyDirection.append(newIndex)
-            }
+//            if self.currentIndex == self.totalCountItems / 2 {
+//
+//                self.moves[self.currentIndex]?.occupyDirection.append(newIndex)
+//            }
             
             print("Human valid: ", currentIndex, newIndex)
             
             
-            
             // assign movement to moves
-            assignMove(for: newIndex)
+            assignMove(currentIndex: self.currentIndex, for: newIndex)
+            assignMove(currentIndex: newIndex, for: self.currentIndex)
+            print(newIndex ,": ",self.moves[newIndex]?.occupyDirection ?? [])
+            print(self.currentIndex ,": ",self.moves[self.currentIndex]?.occupyDirection ?? [])
             
             // assign current index ot new index + add line
             self.currentIndex = newIndex
@@ -247,6 +256,7 @@ class GameContentModel: ObservableObject {
     
     // MARK: determine computer moving position
     func findComputerMove(itemPositions: [CGPoint]) {
+        print("----------------- Comp")
         // move to current position
         self.botPath.move(to: itemPositions[self.currentIndex])
         
@@ -269,12 +279,15 @@ class GameContentModel: ObservableObject {
             
             // if movement valid
             // add direction to the starting point
-            if self.currentIndex == self.totalCountItems / 2 {
-                self.moves[self.currentIndex]?.occupyDirection.append(newIndex)
-            }
+//            if self.currentIndex == self.totalCountItems / 2 {
+//                self.moves[self.currentIndex]?.occupyDirection.append(newIndex)
+//            }
             
             // assign movement to moves
-            assignMove(for: newIndex)
+            assignMove(currentIndex: self.currentIndex, for: newIndex)
+            assignMove(currentIndex: newIndex, for: self.currentIndex)
+            print(newIndex ,": ", self.moves[newIndex]?.occupyDirection ?? [])
+            print(self.currentIndex ,": ",self.moves[self.currentIndex]?.occupyDirection ?? [])
             print("Comp valid: ", currentIndex, newIndex)
             self.currentIndex = newIndex
             self.botPath.addLine(to: itemPositions[self.currentIndex])
