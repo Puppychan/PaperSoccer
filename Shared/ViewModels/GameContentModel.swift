@@ -89,72 +89,87 @@ class GameContentModel: ObservableObject {
     }
     
     // MARK: Bouncing index movement check
-    func isBouncingDragValid(for currentIndex: Int) -> Bool {
+    func isBouncingDragValid(for currentIndex: Int) -> Int {
+        // 1: index is not bouncing
+        // -1: index is bouncing but drag direction is invalid
+        // 0: index is bouncing and drag direction is valid
         // up
-        if (checkInRanges(for: currentIndex - self.totalColumns)) &&
-            (self.dragDirection == .north ||
-             self.dragDirection == .northwest ||
-             self.dragDirection == .northeast ||
-             self.dragDirection == .east ||
-             self.dragDirection == .west) {
-//            print("Bouncing Up")
-            return false
+        if (checkInRanges(for: currentIndex - self.totalColumns)) {
+            if (self.dragDirection == .north ||
+                self.dragDirection == .northwest ||
+                self.dragDirection == .northeast ||
+                self.dragDirection == .east ||
+                self.dragDirection == .west) {
+                            print("Bouncing Up", currentIndex)
+                return -1
+            }
+            return 0
         }
         
         // down
-        else if (checkInRanges(for: currentIndex + self.totalColumns)) &&
-                    (self.dragDirection == .south ||
-                     self.dragDirection == .southwest ||
-                     self.dragDirection == .southeast ||
-                     self.dragDirection == .east ||
-                     self.dragDirection == .west) {
-//            print("Bouncing Down")
-            return false
+        else if (checkInRanges(for: currentIndex + self.totalColumns)) {
+            if (self.dragDirection == .south ||
+             self.dragDirection == .southwest ||
+             self.dragDirection == .southeast ||
+             self.dragDirection == .east ||
+             self.dragDirection == .west) {
+                            print("Bouncing Down", currentIndex)
+                return -1
+            }
+            return 0
         }
         
         // left
-        else if (currentIndex % self.totalColumns == 0) &&
-                    (self.dragDirection == .west ||
-                     self.dragDirection == .northwest ||
-                     self.dragDirection == .southwest ||
-                     self.dragDirection == .north ||
-                     self.dragDirection == .south) {
-//            print("Bouncing Left")
-            return false
+        else if (currentIndex % self.totalColumns == 0) {
+            if (self.dragDirection == .west ||
+             self.dragDirection == .northwest ||
+             self.dragDirection == .southwest ||
+             self.dragDirection == .north ||
+             self.dragDirection == .south) {
+                            print("Bouncing Left", currentIndex)
+                return -1 }
+            return 0
         }
         
         // right
-        else if ((currentIndex + 1) % self.totalColumns == 0) &&
-                    (self.dragDirection == .east ||
-                     self.dragDirection == .northeast ||
-                     self.dragDirection == .southeast ||
-                     self.dragDirection == .north ||
-                     self.dragDirection == .south) {
-//            print("Bouncing Right")
-            return false
+        else if ((currentIndex + 1) % self.totalColumns == 0) {
+            if (self.dragDirection == .east ||
+             self.dragDirection == .northeast ||
+             self.dragDirection == .southeast ||
+             self.dragDirection == .north ||
+             self.dragDirection == .south) {
+                            print("Bouncing Right", currentIndex)
+                return -1
+            }
+            return 0
         }
         // special left: the goal
         else if (
-            currentIndex == self.endLeftIndex + self.totalColumns) &&
-                    (self.dragDirection == .west ||
-                     self.dragDirection == .northwest ||
-                     self.dragDirection == .north) {
-//            print("Bouncing Special Left")
-            return false
+            currentIndex == self.endLeftIndex + self.totalColumns) {
+            if (self.dragDirection == .west ||
+             self.dragDirection == .northwest ||
+             self.dragDirection == .north) {
+                            print("Bouncing Special Left", currentIndex)
+                return -1
+            }
+            return 0
         }
         // special right: the goal
-        else if (currentIndex == self.startRightIndex + self.totalColumns) &&
-                    (self.dragDirection == .east ||
-                     self.dragDirection == .northeast ||
-                     self.dragDirection == .north) {
-//            print("Bouncing Special Right")
-            return false
+        else if (currentIndex == self.startRightIndex + self.totalColumns) {
+            if (self.dragDirection == .east ||
+             self.dragDirection == .northeast ||
+             self.dragDirection == .north) {
+                            print("Bouncing Special Right", currentIndex)
+                return -1
+            }
+            return 0
         }
-        return true
+        return 1
     }
     
     func isContinueMoving(for newIndex: Int) -> Bool {
         if self.moves[newIndex] != nil {
+            print("moves: true")
             // already move
             if (self.moves[self.currentIndex]?.occupyDirection.contains(newIndex) ?? true) {
                 return false
@@ -172,14 +187,14 @@ class GameContentModel: ObservableObject {
             
         }
         // for simple rule
-//        print("Out of bound check:", 0..<self.totalCountItems ~= newIndex)
-//        print("Inside ignore region check:", !isIgnorePosition(for: newIndex))
-//        print("Is bouncing if inside wall: ", isBouncingDragValid(for: self.currentIndex))
-//        print("Is nil moves: ", self.moves[newIndex] == nil, "- continue moving:", self.canContinueMoving)
-//        print("None drag: ", newIndex != self.currentIndex)
+        //        print("Out of bound check:", 0..<self.totalCountItems ~= newIndex)
+        //        print("Inside ignore region check:", !isIgnorePosition(for: newIndex))
+        //        print("Is bouncing if inside wall: ", isBouncingDragValid(for: self.currentIndex))
+        //        print("Is nil moves: ", self.moves[newIndex] == nil, "- continue moving:", self.canContinueMoving)
+        //        print("None drag: ", newIndex != self.currentIndex)
         return (0..<self.totalCountItems ~= newIndex) &&
         !isIgnorePosition(for: newIndex) &&
-        isBouncingDragValid(for: self.currentIndex) &&
+        isBouncingDragValid(for: self.currentIndex) != -1 &&
         (self.moves[newIndex] == nil || self.canContinueMoving) &&
         newIndex != self.currentIndex
     }
@@ -228,14 +243,7 @@ class GameContentModel: ObservableObject {
         // if movement valid
         if checkValidIndex(for: newIndex) {
             
-            // add direction to the starting point
-//            if self.currentIndex == self.totalCountItems / 2 {
-//
-//                self.moves[self.currentIndex]?.occupyDirection.append(newIndex)
-//            }
-            
             print("Human valid: ", currentIndex, newIndex)
-            
             
             // assign movement to moves
             assignMove(currentIndex: self.currentIndex, for: newIndex)
@@ -246,6 +254,14 @@ class GameContentModel: ObservableObject {
             // assign current index ot new index + add line
             self.currentIndex = newIndex
             self.humanPath.addLine(to: itemPositions[self.currentIndex])
+            
+            // check if bouncing -> continue move
+            self.dragDirection = .none
+            if isBouncingDragValid(for: self.currentIndex) == 0 {
+                self.canContinueMoving = true
+            }
+            
+            // if cannnot continue -> stop
             if !self.canContinueMoving {
                 // mark point as moved
                 self.humanMoveValid = true
@@ -277,19 +293,22 @@ class GameContentModel: ObservableObject {
                 print("Comp: ", currentIndex, newIndex)
             } while self.dragDirection == .none
             
-            // if movement valid
-            // add direction to the starting point
-//            if self.currentIndex == self.totalCountItems / 2 {
-//                self.moves[self.currentIndex]?.occupyDirection.append(newIndex)
-//            }
-            
             // assign movement to moves
             assignMove(currentIndex: self.currentIndex, for: newIndex)
             assignMove(currentIndex: newIndex, for: self.currentIndex)
             print(newIndex ,": ", self.moves[newIndex]?.occupyDirection ?? [])
             print(self.currentIndex ,": ",self.moves[self.currentIndex]?.occupyDirection ?? [])
+            
             print("Comp valid: ", currentIndex, newIndex)
+            
             self.currentIndex = newIndex
+            
+            // check if bouncing -> continue move
+            self.dragDirection = .none
+            if isBouncingDragValid(for: self.currentIndex) == 0 {
+                self.canContinueMoving = true
+            }
+            
             self.botPath.addLine(to: itemPositions[self.currentIndex])
         }
         
