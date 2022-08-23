@@ -42,9 +42,14 @@ struct GameContentView: View {
         // check win status
         humanWinStatus = contentModel.checkWinning()
         if humanWinStatus != .none {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
                 // if win or lose or draw -> display modal
                 isShowModal.toggle()
+                
+                // reset game
+                contentModel.resetGame()
+                
+                
             }
         }
     }
