@@ -1,0 +1,188 @@
+    // Hard mode game: do with null first
+    func isHavingNil(map: [[TempPosition?]]) -> Bool {
+        for row in map {
+            for col in row {
+                if col == nil {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    func minimax(map: inout [[TempPosition?]], depth: Int, isMax: Bool, currentRow: Int, currentCol: Int) -> TempMove {
+        // isMax: bot move
+        checkWinning()
+        var score: Int
+        // before give move for opponent check the result first
+        if self.humanWinStatus == .computerWin {
+            score = 10
+            return TempMove(position: Position(currentRow, currentCol), scores: score)
+        }
+        else if self.humanWinStatus == .humanWin {
+            score = -10
+            return TempMove(position: Position(currentRow, currentCol), scores: score)
+        }
+        // draw
+        // check if have any nil
+        if (!isHavingNil(map: map)) {
+            score = 0
+            return TempMove(position: Position(currentRow, currentCol), scores: score)
+        }
+        
+        
+        // MARK: Start algorithm
+        // if maximizer move (bot)
+        if isMax {
+            var best = Int(UInt8.min)
+            
+            for i in (currentRow - 1)...(currentRow + 1) {
+                if i < 0 || i == self.totalRows {
+                    continue
+                }
+                for j in (currentCol - 1)...(currentCol + 1) {
+                    if j < 0 || j == self.totalColumns {
+                        continue
+                    }
+                    
+                    // if moveable
+                    if (map[i][j] == nil) {
+                        print("Bot: ", i, j)
+                        // make move
+                        map[i][j] = TempPosition(isBot: true, occupyDirection: [])
+                        
+                        // call minimax recursively and choose max val
+                        let move = minimax(map: &map, depth: depth + 1, isMax: !isMax, currentRow: i, currentCol: j)
+                        best = max(best, move.scores)
+                        
+                        // undo move
+                        map[i][j] = nil
+                    }
+                    
+                }
+            }
+            
+            // draw when no way move
+            if best == Int(UInt8.max) || best == Int(UInt8.min) {
+                best = 0
+            }
+            
+            return TempMove(position: Position(currentRow, currentCol), scores: best)
+        }
+        
+        // human move or minimize move
+        else {
+            var best = Int(UInt8.max)
+            
+            for i in (currentRow - 1)...(currentRow + 1) {
+                if i < 0 || i == self.totalRows {
+                    continue
+                }
+                for j in (currentCol - 1)...(currentCol + 1) {
+                    if j < 0 || j == self.totalColumns {
+                        continue
+                    }
+                    
+                    // if moveable
+                    if (map[i][j] == nil) {
+                        print("Human: ", i, j)
+                        // make move
+                        map[i][j] = TempPosition(isBot: false, occupyDirection: [])
+                        
+                        // call minimax recursively and choose max val
+                        let move = minimax(map: &map, depth: depth + 1, isMax: !isMax, currentRow: i, currentCol: j)
+                        best = min(best, move.scores)
+                        
+                        // undo move
+                        map[i][j] = nil
+                    }
+                    
+                }
+            }
+            
+            // draw when no way move
+            if best == Int(UInt8.max) || best == Int(UInt8.min) {
+                best = 0
+            }
+            
+            return TempMove(position: Position(currentRow, currentCol), scores: best)
+        }
+        
+        
+    }
+    func createTempMap() -> [[TempPosition?]] {
+        var tempMap: [[TempPosition?]] = [[TempPosition?]](repeating: [TempPosition?](repeating: nil, count: self.totalColumns), count: self.totalRows)
+        var currentMapPosition: Move
+        for i in 0..<self.map.count {
+            for j in 0..<self.map[0].count {
+                //                if self.map[i][j] == nil {
+                //                    tempMap[i].append(nil)
+                //                }
+                if self.map[i][j] != nil {
+                    currentMapPosition = self.map[i][j]!
+                    tempMap[i].append(TempPosition(isBot: currentMapPosition.currentIsBot, occupyDirection: currentMapPosition.occupyDirection))
+                }
+            }
+        }
+        return tempMap
+    }
+    func findBestMoves() -> Position {
+        var bestMove: TempMove = TempMove(position: Position(-1, -1), scores: Int(UInt8.min))
+        var blockMove: TempMove = TempMove(position: Position(-1, -1), scores: Int(UInt8.max))
+        
+        var tempMap = createTempMap()
+        var currentMove: TempMove
+        
+        for i in (self.currentIndex.row - 1)...(self.currentIndex.row + 1) {
+            // check out of range
+            if i < 0 || i == self.totalRows {
+                continue
+            }
+            for j in (self.currentIndex.col - 1)...(self.currentIndex.col + 1) {
+                // check out of range
+                if j < 0 || j == self.totalColumns {
+                    continue
+                }
+                
+                if tempMap[i][j] == nil {
+                    print("----------", i, j)
+                    // make the move
+                    tempMap[i][j] = TempPosition(isBot: true, occupyDirection: [])
+                    currentMove = minimax(map: &tempMap, depth: 0, isMax: false, currentRow: i, currentCol: j)
+                    
+                    // undo move
+                    tempMap[i][j] = nil
+                    
+                    // compare to find block or best move
+                    if (currentMove.scores > bestMove.scores) {
+                        bestMove = currentMove
+                    }
+                    else if(currentMove.scores < blockMove.scores) {
+                        blockMove = currentMove
+                    }
+                    
+                }
+                
+            }
+        }
+        // if all draw -> find way to block opponent
+        if (bestMove.scores == 0 && blockMove.scores < 0) {
+            return blockMove.position
+        }
+        return bestMove.position
+    }
+    
+    func findComputerMoveHard(itemPositions: [[CGPoint]]) {
+        // move path to current posiiton
+        ModelUtility.moveCurrentPath(on: &self.botPath, itemPositions[self.currentIndex.row][self.currentIndex.col])
+        var newPosition = findBestMoves()
+        if checkValidIndex(for: newPosition) {
+            print("Hard mode done")
+            
+            assignMovingMap(newPosition: newPosition)
+            self.currentIndex = newPosition
+            ModelUtility.drawMovingLine(on: &self.botPath, itemPositions[self.currentIndex.row][self.currentIndex.col])
+        }
+        else {
+            print("Run test again")
+        }
+    }

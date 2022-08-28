@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Player: Identifiable {
-    let id: UUID = UUID()
+struct Player: Identifiable, Codable {
+    var id: UUID = UUID()
     var username: String
     var isHuman: Bool
     var currentScore: Int

@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D0C400628AF707200406125 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C400528AF707200406125 /* Tests_iOS.swift */; };
-		3D0C400828AF707200406125 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C400728AF707200406125 /* Tests_iOSLaunchTests.swift */; };
-		3D0C401228AF707200406125 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C401128AF707200406125 /* Tests_macOS.swift */; };
-		3D0C401428AF707200406125 /* Tests_macOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C401328AF707200406125 /* Tests_macOSLaunchTests.swift */; };
 		3D0C401528AF707200406125 /* PaperSoccerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C3FED28AF707200406125 /* PaperSoccerApp.swift */; };
 		3D0C401628AF707200406125 /* PaperSoccerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C3FED28AF707200406125 /* PaperSoccerApp.swift */; };
 		3D0C401928AF707200406125 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C3FEF28AF707200406125 /* Assets.xcassets */; };
@@ -49,32 +45,135 @@
 		3D0C408028AF75B100406125 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C407E28AF75B100406125 /* GameModel.swift */; };
 		3D0C408328AF75BF00406125 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C408228AF75BF00406125 /* Player.swift */; };
 		3D0C408428AF75BF00406125 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C408228AF75BF00406125 /* Player.swift */; };
-		3D0C408928AF75D200406125 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C408628AF75D200406125 /* GameView.swift */; };
-		3D0C408A28AF75D200406125 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C408628AF75D200406125 /* GameView.swift */; };
+		3D0C408928AF75D200406125 /* PlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C408628AF75D200406125 /* PlayView.swift */; };
+		3D0C408A28AF75D200406125 /* PlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C408628AF75D200406125 /* PlayView.swift */; };
 		3D0C408B28AF75D200406125 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C408728AF75D200406125 /* MenuView.swift */; };
 		3D0C408C28AF75D200406125 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C408728AF75D200406125 /* MenuView.swift */; };
 		3D0C408D28AF75D200406125 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C408828AF75D200406125 /* LeaderboardView.swift */; };
 		3D0C408E28AF75D200406125 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C408828AF75D200406125 /* LeaderboardView.swift */; };
 		3D0C409328AF75E400406125 /* PlayerIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C409028AF75E400406125 /* PlayerIconView.swift */; };
 		3D0C409428AF75E400406125 /* PlayerIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C409028AF75E400406125 /* PlayerIconView.swift */; };
-		3D0C409528AF75E400406125 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C409128AF75E400406125 /* ModalView.swift */; };
-		3D0C409628AF75E400406125 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C409128AF75E400406125 /* ModalView.swift */; };
+		3D0C409528AF75E400406125 /* ResultModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C409128AF75E400406125 /* ResultModalView.swift */; };
+		3D0C409628AF75E400406125 /* ResultModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C409128AF75E400406125 /* ResultModalView.swift */; };
 		3D0C409728AF75E400406125 /* PlayerNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C409228AF75E400406125 /* PlayerNameView.swift */; };
 		3D0C409828AF75E400406125 /* PlayerNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C409228AF75E400406125 /* PlayerNameView.swift */; };
 		3D0C409B28AF75FA00406125 /* RectangleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C409A28AF75FA00406125 /* RectangleButtonView.swift */; };
 		3D0C409C28AF75FA00406125 /* RectangleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C409A28AF75FA00406125 /* RectangleButtonView.swift */; };
 		3D0C409F28AF761000406125 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C409E28AF761000406125 /* Preview Assets.xcassets */; };
 		3D0C40A028AF761000406125 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C409E28AF761000406125 /* Preview Assets.xcassets */; };
-		3D0C40A228AF8F9500406125 /* GameContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40A128AF8F9500406125 /* GameContentView.swift */; };
-		3D0C40A328AF8F9500406125 /* GameContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40A128AF8F9500406125 /* GameContentView.swift */; };
 		3D0C40A528B081B300406125 /* Ultilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40A428B081B300406125 /* Ultilities.swift */; };
 		3D0C40A628B081B300406125 /* Ultilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40A428B081B300406125 /* Ultilities.swift */; };
-		3D0C40A828B14AE200406125 /* GameContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40A728B14AE200406125 /* GameContentModel.swift */; };
-		3D0C40A928B14AE200406125 /* GameContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40A728B14AE200406125 /* GameContentModel.swift */; };
 		3D0C40AB28B3438B00406125 /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40AA28B3438B00406125 /* Move.swift */; };
 		3D0C40AC28B3438B00406125 /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40AA28B3438B00406125 /* Move.swift */; };
 		3D0C40AE28B3DF7400406125 /* UnusedCode in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C40AD28B3DF7400406125 /* UnusedCode */; };
 		3D0C40AF28B3DF7400406125 /* UnusedCode in Resources */ = {isa = PBXBuildFile; fileRef = 3D0C40AD28B3DF7400406125 /* UnusedCode */; };
+		3D0C40B528B6A04B00406125 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40B428B6A04B00406125 /* GameView.swift */; };
+		3D0C40B628B6A04B00406125 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40B428B6A04B00406125 /* GameView.swift */; };
+		3D2AD26E28B7074900C317A2 /* GameContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD26D28B7074900C317A2 /* GameContentModel.swift */; };
+		3D2AD26F28B7074900C317A2 /* GameContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD26D28B7074900C317A2 /* GameContentModel.swift */; };
+		3D2AD27128B7DC0D00C317A2 /* StackNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD27028B7DC0D00C317A2 /* StackNavigationView.swift */; };
+		3D2AD27228B7DC0D00C317A2 /* StackNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD27028B7DC0D00C317A2 /* StackNavigationView.swift */; };
+		3D2AD27428B7E80800C317A2 /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD27328B7E80800C317A2 /* ExtensionView.swift */; };
+		3D2AD27528B7E80800C317A2 /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD27328B7E80800C317A2 /* ExtensionView.swift */; };
+		3D2AD27828B7E85600C317A2 /* UtilityShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD27728B7E85600C317A2 /* UtilityShapes.swift */; };
+		3D2AD27928B7E85600C317A2 /* UtilityShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD27728B7E85600C317A2 /* UtilityShapes.swift */; };
+		3D2AD27C28B7EA2800C317A2 /* EASPORTS15.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD27B28B7EA2800C317A2 /* EASPORTS15.ttf */; };
+		3D2AD27D28B7EA2800C317A2 /* EASPORTS15.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD27B28B7EA2800C317A2 /* EASPORTS15.ttf */; };
+		3D2AD27E28B7EA2800C317A2 /* EASPORTS15.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD27B28B7EA2800C317A2 /* EASPORTS15.ttf */; };
+		3D2AD27F28B7EA2800C317A2 /* EASPORTS15.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD27B28B7EA2800C317A2 /* EASPORTS15.ttf */; };
+		3D2AD28228B8E64C00C317A2 /* ImageBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD28128B8E64C00C317A2 /* ImageBackground.swift */; };
+		3D2AD28328B8E64C00C317A2 /* ImageBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD28128B8E64C00C317A2 /* ImageBackground.swift */; };
+		3D2AD28428B8E64C00C317A2 /* ImageBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD28128B8E64C00C317A2 /* ImageBackground.swift */; };
+		3D2AD28528B8E64C00C317A2 /* ImageBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD28128B8E64C00C317A2 /* ImageBackground.swift */; };
+		3D2AD28C28B948A800C317A2 /* PathShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD28B28B948A800C317A2 /* PathShape.swift */; };
+		3D2AD28D28B948A800C317A2 /* PathShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD28B28B948A800C317A2 /* PathShape.swift */; };
+		3D2AD28E28B948A800C317A2 /* PathShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD28B28B948A800C317A2 /* PathShape.swift */; };
+		3D2AD28F28B948A800C317A2 /* PathShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD28B28B948A800C317A2 /* PathShape.swift */; };
+		3D2AD29128BA0DBB00C317A2 /* UnuseAlgorithm in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD29028BA0DBB00C317A2 /* UnuseAlgorithm */; };
+		3D2AD29228BA0DBB00C317A2 /* UnuseAlgorithm in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD29028BA0DBB00C317A2 /* UnuseAlgorithm */; };
+		3D2AD29328BA0DBB00C317A2 /* UnuseAlgorithm in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD29028BA0DBB00C317A2 /* UnuseAlgorithm */; };
+		3D2AD29428BA0DBB00C317A2 /* UnuseAlgorithm in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD29028BA0DBB00C317A2 /* UnuseAlgorithm */; };
+		3D2AD29628BA410300C317A2 /* StadiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD29528BA410300C317A2 /* StadiumView.swift */; };
+		3D2AD29728BA410300C317A2 /* StadiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD29528BA410300C317A2 /* StadiumView.swift */; };
+		3D2AD29828BA410300C317A2 /* StadiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD29528BA410300C317A2 /* StadiumView.swift */; };
+		3D2AD29928BA410300C317A2 /* StadiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD29528BA410300C317A2 /* StadiumView.swift */; };
+		3D2AD29B28BA550100C317A2 /* UnusedCodeGameView in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD29A28BA550100C317A2 /* UnusedCodeGameView */; };
+		3D2AD29C28BA550100C317A2 /* UnusedCodeGameView in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD29A28BA550100C317A2 /* UnusedCodeGameView */; };
+		3D2AD29D28BA550100C317A2 /* UnusedCodeGameView in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD29A28BA550100C317A2 /* UnusedCodeGameView */; };
+		3D2AD29E28BA550100C317A2 /* UnusedCodeGameView in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD29A28BA550100C317A2 /* UnusedCodeGameView */; };
+		3D312A7A28BAF7EF00AB6A61 /* UnuseGameModel in Resources */ = {isa = PBXBuildFile; fileRef = 3D312A7928BAF7EF00AB6A61 /* UnuseGameModel */; };
+		3D312A7C28BAF85F00AB6A61 /* GameShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312A7B28BAF85F00AB6A61 /* GameShape.swift */; };
+		3D312A7E28BAFA7400AB6A61 /* SoundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312A7D28BAFA7400AB6A61 /* SoundModel.swift */; };
+		3D312A8928BB007000AB6A61 /* football-human win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312A8828BB007000AB6A61 /* football-human win.mp3 */; };
+		3D312A8A28BB007000AB6A61 /* football-human win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312A8828BB007000AB6A61 /* football-human win.mp3 */; };
+		3D312A8B28BB007000AB6A61 /* football-human win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312A8828BB007000AB6A61 /* football-human win.mp3 */; };
+		3D312A8C28BB007000AB6A61 /* football-human win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312A8828BB007000AB6A61 /* football-human win.mp3 */; };
+		3D312A8E28BB1BC000AB6A61 /* bck-menu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312A8D28BB1BC000AB6A61 /* bck-menu.mp3 */; };
+		3D312A8F28BB1BC000AB6A61 /* bck-menu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312A8D28BB1BC000AB6A61 /* bck-menu.mp3 */; };
+		3D312A9028BB1BC000AB6A61 /* bck-menu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312A8D28BB1BC000AB6A61 /* bck-menu.mp3 */; };
+		3D312A9128BB1BC000AB6A61 /* bck-menu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312A8D28BB1BC000AB6A61 /* bck-menu.mp3 */; };
+		3D312A9828BB262600AB6A61 /* football-kick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312A9728BB262600AB6A61 /* football-kick.mp3 */; };
+		3D312A9928BB262600AB6A61 /* football-kick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312A9728BB262600AB6A61 /* football-kick.mp3 */; };
+		3D312A9A28BB262600AB6A61 /* football-kick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312A9728BB262600AB6A61 /* football-kick.mp3 */; };
+		3D312A9B28BB262600AB6A61 /* football-kick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312A9728BB262600AB6A61 /* football-kick.mp3 */; };
+		3D312A9D28BB293F00AB6A61 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312A9C28BB293F00AB6A61 /* Modifiers.swift */; };
+		3D312A9E28BB293F00AB6A61 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312A9C28BB293F00AB6A61 /* Modifiers.swift */; };
+		3D312A9F28BB293F00AB6A61 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312A9C28BB293F00AB6A61 /* Modifiers.swift */; };
+		3D312AA028BB293F00AB6A61 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312A9C28BB293F00AB6A61 /* Modifiers.swift */; };
+		3D312AA228BB2DEE00AB6A61 /* bck-game.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312AA128BB2DEE00AB6A61 /* bck-game.mp3 */; };
+		3D312AA328BB2DEE00AB6A61 /* bck-game.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312AA128BB2DEE00AB6A61 /* bck-game.mp3 */; };
+		3D312AA428BB2DEE00AB6A61 /* bck-game.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312AA128BB2DEE00AB6A61 /* bck-game.mp3 */; };
+		3D312AA528BB2DEE00AB6A61 /* bck-game.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312AA128BB2DEE00AB6A61 /* bck-game.mp3 */; };
+		3D312AA728BB3C2900AB6A61 /* bck-leaderboard.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312AA628BB3C2900AB6A61 /* bck-leaderboard.mp3 */; };
+		3D312AA828BB3C2900AB6A61 /* bck-leaderboard.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312AA628BB3C2900AB6A61 /* bck-leaderboard.mp3 */; };
+		3D312AA928BB3C2900AB6A61 /* bck-leaderboard.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312AA628BB3C2900AB6A61 /* bck-leaderboard.mp3 */; };
+		3D312AAA28BB3C2900AB6A61 /* bck-leaderboard.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312AA628BB3C2900AB6A61 /* bck-leaderboard.mp3 */; };
+		3D312AAB28BB3D2300AB6A61 /* PaperSoccer--iOS--Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD28028B7EA9D00C317A2 /* PaperSoccer--iOS--Info.plist */; };
+		3D312AAC28BB3D2400AB6A61 /* PaperSoccer--iOS--Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD28028B7EA9D00C317A2 /* PaperSoccer--iOS--Info.plist */; };
+		3D312AAD28BB3D2600AB6A61 /* PaperSoccer--iOS--Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD28028B7EA9D00C317A2 /* PaperSoccer--iOS--Info.plist */; };
+		3D312AAE28BB3D2700AB6A61 /* PaperSoccer--iOS--Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D2AD28028B7EA9D00C317A2 /* PaperSoccer--iOS--Info.plist */; };
+		3D312AAF28BB3D3200AB6A61 /* GameShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312A7B28BAF85F00AB6A61 /* GameShape.swift */; };
+		3D312AB028BB3D4D00AB6A61 /* SoundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312A7D28BAFA7400AB6A61 /* SoundModel.swift */; };
+		3D312ABC28BB460900AB6A61 /* result-computer win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312ABB28BB460900AB6A61 /* result-computer win.wav */; };
+		3D312ABD28BB460900AB6A61 /* result-computer win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312ABB28BB460900AB6A61 /* result-computer win.wav */; };
+		3D312ABE28BB460900AB6A61 /* result-computer win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312ABB28BB460900AB6A61 /* result-computer win.wav */; };
+		3D312ABF28BB460900AB6A61 /* result-computer win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312ABB28BB460900AB6A61 /* result-computer win.wav */; };
+		3D312AC128BB4BAF00AB6A61 /* football-draw.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312AC028BB4BAF00AB6A61 /* football-draw.wav */; };
+		3D312AC228BB4BAF00AB6A61 /* football-draw.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312AC028BB4BAF00AB6A61 /* football-draw.wav */; };
+		3D312AC328BB4BAF00AB6A61 /* football-draw.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312AC028BB4BAF00AB6A61 /* football-draw.wav */; };
+		3D312AC428BB4BAF00AB6A61 /* football-draw.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312AC028BB4BAF00AB6A61 /* football-draw.wav */; };
+		3D312AC628BB4BF400AB6A61 /* result-human win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312AC528BB4BF400AB6A61 /* result-human win.wav */; };
+		3D312AC728BB4BF400AB6A61 /* result-human win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312AC528BB4BF400AB6A61 /* result-human win.wav */; };
+		3D312AC828BB4BF400AB6A61 /* result-human win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312AC528BB4BF400AB6A61 /* result-human win.wav */; };
+		3D312AC928BB4BF400AB6A61 /* result-human win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312AC528BB4BF400AB6A61 /* result-human win.wav */; };
+		3D312ACB28BB4D3300AB6A61 /* result-draw.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312ACA28BB4D3300AB6A61 /* result-draw.wav */; };
+		3D312ACC28BB4D3300AB6A61 /* result-draw.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312ACA28BB4D3300AB6A61 /* result-draw.wav */; };
+		3D312ACD28BB4D3300AB6A61 /* result-draw.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312ACA28BB4D3300AB6A61 /* result-draw.wav */; };
+		3D312ACE28BB4D3300AB6A61 /* result-draw.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312ACA28BB4D3300AB6A61 /* result-draw.wav */; };
+		3D312AD028BB4F3500AB6A61 /* football-computer win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312ACF28BB4F3500AB6A61 /* football-computer win.wav */; };
+		3D312AD128BB4F3500AB6A61 /* football-computer win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312ACF28BB4F3500AB6A61 /* football-computer win.wav */; };
+		3D312AD228BB4F3500AB6A61 /* football-computer win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312ACF28BB4F3500AB6A61 /* football-computer win.wav */; };
+		3D312AD328BB4F3500AB6A61 /* football-computer win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D312ACF28BB4F3500AB6A61 /* football-computer win.wav */; };
+		3D312AD828BB6AE400AB6A61 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312AD728BB6AE400AB6A61 /* SettingsManager.swift */; };
+		3D312AD928BB6AE400AB6A61 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312AD728BB6AE400AB6A61 /* SettingsManager.swift */; };
+		3D312ADA28BB6AE400AB6A61 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312AD728BB6AE400AB6A61 /* SettingsManager.swift */; };
+		3D312ADB28BB6AE400AB6A61 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312AD728BB6AE400AB6A61 /* SettingsManager.swift */; };
+		3D312ADD28BB760E00AB6A61 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312ADC28BB760E00AB6A61 /* BackButton.swift */; };
+		3D312ADE28BB760E00AB6A61 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312ADC28BB760E00AB6A61 /* BackButton.swift */; };
+		3D312ADF28BB760E00AB6A61 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312ADC28BB760E00AB6A61 /* BackButton.swift */; };
+		3D312AE028BB760E00AB6A61 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312ADC28BB760E00AB6A61 /* BackButton.swift */; };
+		3D312AE228BB906300AB6A61 /* UsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312AE128BB906300AB6A61 /* UsernameView.swift */; };
+		3D312AE328BB906300AB6A61 /* UsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312AE128BB906300AB6A61 /* UsernameView.swift */; };
+		3D312AE428BB906300AB6A61 /* UsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312AE128BB906300AB6A61 /* UsernameView.swift */; };
+		3D312AE528BB906300AB6A61 /* UsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312AE128BB906300AB6A61 /* UsernameView.swift */; };
+		3D312AE728BB935100AB6A61 /* UsernameListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312AE628BB935100AB6A61 /* UsernameListView.swift */; };
+		3D312AE828BB935100AB6A61 /* UsernameListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312AE628BB935100AB6A61 /* UsernameListView.swift */; };
+		3D312AE928BB935100AB6A61 /* UsernameListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312AE628BB935100AB6A61 /* UsernameListView.swift */; };
+		3D312AEA28BB935100AB6A61 /* UsernameListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312AE628BB935100AB6A61 /* UsernameListView.swift */; };
+		3D312AEC28BB99D200AB6A61 /* UsernameChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312AEB28BB99D200AB6A61 /* UsernameChangeView.swift */; };
+		3D312AED28BB99D200AB6A61 /* UsernameChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312AEB28BB99D200AB6A61 /* UsernameChangeView.swift */; };
+		3D312AEE28BB99D200AB6A61 /* UsernameChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312AEB28BB99D200AB6A61 /* UsernameChangeView.swift */; };
+		3D312AEF28BB99D200AB6A61 /* UsernameChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312AEB28BB99D200AB6A61 /* UsernameChangeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,11 +200,7 @@
 		3D0C3FFA28AF707200406125 /* PaperSoccer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperSoccer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D0C3FFC28AF707200406125 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		3D0C400128AF707200406125 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D0C400528AF707200406125 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
-		3D0C400728AF707200406125 /* Tests_iOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOSLaunchTests.swift; sourceTree = "<group>"; };
 		3D0C400D28AF707200406125 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D0C401128AF707200406125 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
-		3D0C401328AF707200406125 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
 		3D0C404F28AF757800406125 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		3D0C405028AF757800406125 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
 		3D0C405128AF757800406125 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
@@ -123,19 +218,48 @@
 		3D0C407828AF759C00406125 /* ModelUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelUtility.swift; sourceTree = "<group>"; };
 		3D0C407E28AF75B100406125 /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		3D0C408228AF75BF00406125 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		3D0C408628AF75D200406125 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		3D0C408628AF75D200406125 /* PlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayView.swift; sourceTree = "<group>"; };
 		3D0C408728AF75D200406125 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		3D0C408828AF75D200406125 /* LeaderboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		3D0C409028AF75E400406125 /* PlayerIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerIconView.swift; sourceTree = "<group>"; };
-		3D0C409128AF75E400406125 /* ModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
+		3D0C409128AF75E400406125 /* ResultModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultModalView.swift; sourceTree = "<group>"; };
 		3D0C409228AF75E400406125 /* PlayerNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerNameView.swift; sourceTree = "<group>"; };
 		3D0C409A28AF75FA00406125 /* RectangleButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleButtonView.swift; sourceTree = "<group>"; };
 		3D0C409E28AF761000406125 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		3D0C40A128AF8F9500406125 /* GameContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameContentView.swift; sourceTree = "<group>"; };
 		3D0C40A428B081B300406125 /* Ultilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ultilities.swift; sourceTree = "<group>"; };
-		3D0C40A728B14AE200406125 /* GameContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameContentModel.swift; sourceTree = "<group>"; };
 		3D0C40AA28B3438B00406125 /* Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
 		3D0C40AD28B3DF7400406125 /* UnusedCode */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnusedCode; sourceTree = "<group>"; };
+		3D0C40B428B6A04B00406125 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		3D2AD26D28B7074900C317A2 /* GameContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameContentModel.swift; sourceTree = "<group>"; };
+		3D2AD27028B7DC0D00C317A2 /* StackNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackNavigationView.swift; sourceTree = "<group>"; };
+		3D2AD27328B7E80800C317A2 /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
+		3D2AD27728B7E85600C317A2 /* UtilityShapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityShapes.swift; sourceTree = "<group>"; };
+		3D2AD27B28B7EA2800C317A2 /* EASPORTS15.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EASPORTS15.ttf; sourceTree = "<group>"; };
+		3D2AD28028B7EA9D00C317A2 /* PaperSoccer--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PaperSoccer--iOS--Info.plist"; sourceTree = "<group>"; };
+		3D2AD28128B8E64C00C317A2 /* ImageBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBackground.swift; sourceTree = "<group>"; };
+		3D2AD28B28B948A800C317A2 /* PathShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathShape.swift; sourceTree = "<group>"; };
+		3D2AD29028BA0DBB00C317A2 /* UnuseAlgorithm */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnuseAlgorithm; sourceTree = "<group>"; };
+		3D2AD29528BA410300C317A2 /* StadiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadiumView.swift; sourceTree = "<group>"; };
+		3D2AD29A28BA550100C317A2 /* UnusedCodeGameView */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnusedCodeGameView; sourceTree = "<group>"; };
+		3D312A7928BAF7EF00AB6A61 /* UnuseGameModel */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnuseGameModel; sourceTree = "<group>"; };
+		3D312A7B28BAF85F00AB6A61 /* GameShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameShape.swift; sourceTree = "<group>"; };
+		3D312A7D28BAFA7400AB6A61 /* SoundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundModel.swift; sourceTree = "<group>"; };
+		3D312A8828BB007000AB6A61 /* football-human win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "football-human win.mp3"; sourceTree = "<group>"; };
+		3D312A8D28BB1BC000AB6A61 /* bck-menu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bck-menu.mp3"; sourceTree = "<group>"; };
+		3D312A9728BB262600AB6A61 /* football-kick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "football-kick.mp3"; sourceTree = "<group>"; };
+		3D312A9C28BB293F00AB6A61 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		3D312AA128BB2DEE00AB6A61 /* bck-game.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bck-game.mp3"; sourceTree = "<group>"; };
+		3D312AA628BB3C2900AB6A61 /* bck-leaderboard.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bck-leaderboard.mp3"; sourceTree = "<group>"; };
+		3D312ABB28BB460900AB6A61 /* result-computer win.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "result-computer win.wav"; sourceTree = "<group>"; };
+		3D312AC028BB4BAF00AB6A61 /* football-draw.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "football-draw.wav"; sourceTree = "<group>"; };
+		3D312AC528BB4BF400AB6A61 /* result-human win.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "result-human win.wav"; sourceTree = "<group>"; };
+		3D312ACA28BB4D3300AB6A61 /* result-draw.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "result-draw.wav"; sourceTree = "<group>"; };
+		3D312ACF28BB4F3500AB6A61 /* football-computer win.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "football-computer win.wav"; sourceTree = "<group>"; };
+		3D312AD728BB6AE400AB6A61 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		3D312ADC28BB760E00AB6A61 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		3D312AE128BB906300AB6A61 /* UsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameView.swift; sourceTree = "<group>"; };
+		3D312AE628BB935100AB6A61 /* UsernameListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameListView.swift; sourceTree = "<group>"; };
+		3D312AEB28BB99D200AB6A61 /* UsernameChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameChangeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,10 +297,9 @@
 		3D0C3FE728AF707100406125 = {
 			isa = PBXGroup;
 			children = (
+				3D2AD28028B7EA9D00C317A2 /* PaperSoccer--iOS--Info.plist */,
 				3D0C3FEC28AF707200406125 /* Shared */,
 				3D0C3FFB28AF707200406125 /* macOS */,
-				3D0C400428AF707200406125 /* Tests iOS */,
-				3D0C401028AF707200406125 /* Tests macOS */,
 				3D0C3FF528AF707200406125 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -215,27 +338,10 @@
 			path = macOS;
 			sourceTree = "<group>";
 		};
-		3D0C400428AF707200406125 /* Tests iOS */ = {
-			isa = PBXGroup;
-			children = (
-				3D0C400528AF707200406125 /* Tests_iOS.swift */,
-				3D0C400728AF707200406125 /* Tests_iOSLaunchTests.swift */,
-			);
-			path = "Tests iOS";
-			sourceTree = "<group>";
-		};
-		3D0C401028AF707200406125 /* Tests macOS */ = {
-			isa = PBXGroup;
-			children = (
-				3D0C401128AF707200406125 /* Tests_macOS.swift */,
-				3D0C401328AF707200406125 /* Tests_macOSLaunchTests.swift */,
-			);
-			path = "Tests macOS";
-			sourceTree = "<group>";
-		};
 		3D0C404C28AF751200406125 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3D312A7F28BAFF1900AB6A61 /* Sounds */,
 				3D0C404D28AF751800406125 /* Fonts */,
 			);
 			path = Resources;
@@ -244,6 +350,7 @@
 		3D0C404D28AF751800406125 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				3D2AD27A28B7EA0F00C317A2 /* EA */,
 				3D0C404E28AF751F00406125 /* Roboto */,
 			);
 			path = Fonts;
@@ -272,6 +379,7 @@
 		3D0C407628AF758600406125 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				3D312A9C28BB293F00AB6A61 /* Modifiers.swift */,
 				3D0C407728AF759C00406125 /* Constants.swift */,
 				3D0C407828AF759C00406125 /* ModelUtility.swift */,
 				3D0C40A428B081B300406125 /* Ultilities.swift */,
@@ -284,7 +392,11 @@
 			isa = PBXGroup;
 			children = (
 				3D0C407E28AF75B100406125 /* GameModel.swift */,
-				3D0C40A728B14AE200406125 /* GameContentModel.swift */,
+				3D312AD728BB6AE400AB6A61 /* SettingsManager.swift */,
+				3D2AD26D28B7074900C317A2 /* GameContentModel.swift */,
+				3D2AD29028BA0DBB00C317A2 /* UnuseAlgorithm */,
+				3D312A7928BAF7EF00AB6A61 /* UnuseGameModel */,
+				3D312A7D28BAFA7400AB6A61 /* SoundModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -301,30 +413,37 @@
 		3D0C408528AF75C400406125 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3D312AD428BB510100AB6A61 /* Username View */,
+				3D2AD27628B7E84600C317A2 /* Utilities */,
 				3D0C409928AF75E600406125 /* Reusable Components */,
-				3D0C408F28AF75D900406125 /* Game View */,
-				3D0C408628AF75D200406125 /* GameView.swift */,
+				3D0C408F28AF75D900406125 /* Play View */,
+				3D0C408628AF75D200406125 /* PlayView.swift */,
 				3D0C408828AF75D200406125 /* LeaderboardView.swift */,
 				3D0C408728AF75D200406125 /* MenuView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		3D0C408F28AF75D900406125 /* Game View */ = {
+		3D0C408F28AF75D900406125 /* Play View */ = {
 			isa = PBXGroup;
 			children = (
-				3D0C409128AF75E400406125 /* ModalView.swift */,
-				3D0C409028AF75E400406125 /* PlayerIconView.swift */,
-				3D0C409228AF75E400406125 /* PlayerNameView.swift */,
-				3D0C40A128AF8F9500406125 /* GameContentView.swift */,
+				3D312A7828BAF7BC00AB6A61 /* Reuseable Components */,
+				3D0C409128AF75E400406125 /* ResultModalView.swift */,
+				3D0C40B428B6A04B00406125 /* GameView.swift */,
+				3D2AD28B28B948A800C317A2 /* PathShape.swift */,
+				3D2AD29528BA410300C317A2 /* StadiumView.swift */,
+				3D2AD29A28BA550100C317A2 /* UnusedCodeGameView */,
 			);
-			path = "Game View";
+			path = "Play View";
 			sourceTree = "<group>";
 		};
 		3D0C409928AF75E600406125 /* Reusable Components */ = {
 			isa = PBXGroup;
 			children = (
 				3D0C409A28AF75FA00406125 /* RectangleButtonView.swift */,
+				3D2AD27028B7DC0D00C317A2 /* StackNavigationView.swift */,
+				3D2AD28128B8E64C00C317A2 /* ImageBackground.swift */,
+				3D312ADC28BB760E00AB6A61 /* BackButton.swift */,
 			);
 			path = "Reusable Components";
 			sourceTree = "<group>";
@@ -335,6 +454,60 @@
 				3D0C409E28AF761000406125 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3D2AD27628B7E84600C317A2 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3D2AD27328B7E80800C317A2 /* ExtensionView.swift */,
+				3D2AD27728B7E85600C317A2 /* UtilityShapes.swift */,
+				3D312A7B28BAF85F00AB6A61 /* GameShape.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		3D2AD27A28B7EA0F00C317A2 /* EA */ = {
+			isa = PBXGroup;
+			children = (
+				3D2AD27B28B7EA2800C317A2 /* EASPORTS15.ttf */,
+			);
+			path = EA;
+			sourceTree = "<group>";
+		};
+		3D312A7828BAF7BC00AB6A61 /* Reuseable Components */ = {
+			isa = PBXGroup;
+			children = (
+				3D0C409028AF75E400406125 /* PlayerIconView.swift */,
+				3D0C409228AF75E400406125 /* PlayerNameView.swift */,
+			);
+			path = "Reuseable Components";
+			sourceTree = "<group>";
+		};
+		3D312A7F28BAFF1900AB6A61 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				3D312ACA28BB4D3300AB6A61 /* result-draw.wav */,
+				3D312ABB28BB460900AB6A61 /* result-computer win.wav */,
+				3D312AC528BB4BF400AB6A61 /* result-human win.wav */,
+				3D312AA128BB2DEE00AB6A61 /* bck-game.mp3 */,
+				3D312A9728BB262600AB6A61 /* football-kick.mp3 */,
+				3D312AA628BB3C2900AB6A61 /* bck-leaderboard.mp3 */,
+				3D312A8D28BB1BC000AB6A61 /* bck-menu.mp3 */,
+				3D312A8828BB007000AB6A61 /* football-human win.mp3 */,
+				3D312ACF28BB4F3500AB6A61 /* football-computer win.wav */,
+				3D312AC028BB4BAF00AB6A61 /* football-draw.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		3D312AD428BB510100AB6A61 /* Username View */ = {
+			isa = PBXGroup;
+			children = (
+				3D312AE128BB906300AB6A61 /* UsernameView.swift */,
+				3D312AE628BB935100AB6A61 /* UsernameListView.swift */,
+				3D312AEB28BB99D200AB6A61 /* UsernameChangeView.swift */,
+			);
+			path = "Username View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -463,21 +636,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D0C407428AF757900406125 /* Roboto-Bold.ttf in Resources */,
+				3D312A7A28BAF7EF00AB6A61 /* UnuseGameModel in Resources */,
+				3D312AA728BB3C2900AB6A61 /* bck-leaderboard.mp3 in Resources */,
 				3D0C406028AF757900406125 /* Roboto-MediumItalic.ttf in Resources */,
 				3D0C406428AF757900406125 /* Roboto-BlackItalic.ttf in Resources */,
+				3D2AD29B28BA550100C317A2 /* UnusedCodeGameView in Resources */,
 				3D0C406C28AF757900406125 /* Roboto-Light.ttf in Resources */,
+				3D312ABC28BB460900AB6A61 /* result-computer win.wav in Resources */,
+				3D312ACB28BB4D3300AB6A61 /* result-draw.wav in Resources */,
 				3D0C406628AF757900406125 /* Roboto-LightItalic.ttf in Resources */,
 				3D0C405E28AF757900406125 /* Roboto-BoldItalic.ttf in Resources */,
 				3D0C406828AF757900406125 /* LICENSE.txt in Resources */,
+				3D312A9828BB262600AB6A61 /* football-kick.mp3 in Resources */,
 				3D0C409F28AF761000406125 /* Preview Assets.xcassets in Resources */,
+				3D312AC628BB4BF400AB6A61 /* result-human win.wav in Resources */,
 				3D0C407028AF757900406125 /* Roboto-Regular.ttf in Resources */,
+				3D2AD29128BA0DBB00C317A2 /* UnuseAlgorithm in Resources */,
+				3D312AC128BB4BAF00AB6A61 /* football-draw.wav in Resources */,
+				3D312A8928BB007000AB6A61 /* football-human win.mp3 in Resources */,
 				3D0C40AE28B3DF7400406125 /* UnusedCode in Resources */,
+				3D312AAB28BB3D2300AB6A61 /* PaperSoccer--iOS--Info.plist in Resources */,
 				3D0C406228AF757900406125 /* Roboto-Italic.ttf in Resources */,
 				3D0C406A28AF757900406125 /* Roboto-ThinItalic.ttf in Resources */,
+				3D312AD028BB4F3500AB6A61 /* football-computer win.wav in Resources */,
+				3D312AA228BB2DEE00AB6A61 /* bck-game.mp3 in Resources */,
 				3D0C406E28AF757900406125 /* Roboto-Medium.ttf in Resources */,
 				3D0C401928AF707200406125 /* Assets.xcassets in Resources */,
 				3D0C407228AF757900406125 /* Roboto-Thin.ttf in Resources */,
 				3D0C405C28AF757900406125 /* Roboto-Black.ttf in Resources */,
+				3D312A8E28BB1BC000AB6A61 /* bck-menu.mp3 in Resources */,
+				3D2AD27C28B7EA2800C317A2 /* EASPORTS15.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,19 +676,33 @@
 				3D0C407528AF757900406125 /* Roboto-Bold.ttf in Resources */,
 				3D0C406128AF757900406125 /* Roboto-MediumItalic.ttf in Resources */,
 				3D0C406528AF757900406125 /* Roboto-BlackItalic.ttf in Resources */,
+				3D312A8F28BB1BC000AB6A61 /* bck-menu.mp3 in Resources */,
+				3D2AD29C28BA550100C317A2 /* UnusedCodeGameView in Resources */,
 				3D0C406D28AF757900406125 /* Roboto-Light.ttf in Resources */,
+				3D312AD128BB4F3500AB6A61 /* football-computer win.wav in Resources */,
 				3D0C406728AF757900406125 /* Roboto-LightItalic.ttf in Resources */,
 				3D0C405F28AF757900406125 /* Roboto-BoldItalic.ttf in Resources */,
 				3D0C406928AF757900406125 /* LICENSE.txt in Resources */,
+				3D312ABD28BB460900AB6A61 /* result-computer win.wav in Resources */,
 				3D0C40A028AF761000406125 /* Preview Assets.xcassets in Resources */,
 				3D0C407128AF757900406125 /* Roboto-Regular.ttf in Resources */,
+				3D312AA328BB2DEE00AB6A61 /* bck-game.mp3 in Resources */,
+				3D2AD29228BA0DBB00C317A2 /* UnuseAlgorithm in Resources */,
 				3D0C40AF28B3DF7400406125 /* UnusedCode in Resources */,
 				3D0C406328AF757900406125 /* Roboto-Italic.ttf in Resources */,
 				3D0C406B28AF757900406125 /* Roboto-ThinItalic.ttf in Resources */,
+				3D312AC228BB4BAF00AB6A61 /* football-draw.wav in Resources */,
+				3D312A9928BB262600AB6A61 /* football-kick.mp3 in Resources */,
+				3D312A8A28BB007000AB6A61 /* football-human win.mp3 in Resources */,
 				3D0C406F28AF757900406125 /* Roboto-Medium.ttf in Resources */,
+				3D312ACC28BB4D3300AB6A61 /* result-draw.wav in Resources */,
+				3D312AA828BB3C2900AB6A61 /* bck-leaderboard.mp3 in Resources */,
 				3D0C401A28AF707200406125 /* Assets.xcassets in Resources */,
+				3D312AAC28BB3D2400AB6A61 /* PaperSoccer--iOS--Info.plist in Resources */,
 				3D0C407328AF757900406125 /* Roboto-Thin.ttf in Resources */,
+				3D312AC728BB4BF400AB6A61 /* result-human win.wav in Resources */,
 				3D0C405D28AF757900406125 /* Roboto-Black.ttf in Resources */,
+				3D2AD27D28B7EA2800C317A2 /* EASPORTS15.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,6 +710,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D312AAD28BB3D2600AB6A61 /* PaperSoccer--iOS--Info.plist in Resources */,
+				3D2AD27E28B7EA2800C317A2 /* EASPORTS15.ttf in Resources */,
+				3D312ACD28BB4D3300AB6A61 /* result-draw.wav in Resources */,
+				3D2AD29328BA0DBB00C317A2 /* UnuseAlgorithm in Resources */,
+				3D312A8B28BB007000AB6A61 /* football-human win.mp3 in Resources */,
+				3D312AA928BB3C2900AB6A61 /* bck-leaderboard.mp3 in Resources */,
+				3D312A9028BB1BC000AB6A61 /* bck-menu.mp3 in Resources */,
+				3D2AD29D28BA550100C317A2 /* UnusedCodeGameView in Resources */,
+				3D312AD228BB4F3500AB6A61 /* football-computer win.wav in Resources */,
+				3D312AA428BB2DEE00AB6A61 /* bck-game.mp3 in Resources */,
+				3D312A9A28BB262600AB6A61 /* football-kick.mp3 in Resources */,
+				3D312AC828BB4BF400AB6A61 /* result-human win.wav in Resources */,
+				3D312AC328BB4BAF00AB6A61 /* football-draw.wav in Resources */,
+				3D312ABE28BB460900AB6A61 /* result-computer win.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +731,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D312AAE28BB3D2700AB6A61 /* PaperSoccer--iOS--Info.plist in Resources */,
+				3D2AD27F28B7EA2800C317A2 /* EASPORTS15.ttf in Resources */,
+				3D312ACE28BB4D3300AB6A61 /* result-draw.wav in Resources */,
+				3D2AD29428BA0DBB00C317A2 /* UnuseAlgorithm in Resources */,
+				3D312A8C28BB007000AB6A61 /* football-human win.mp3 in Resources */,
+				3D312AAA28BB3C2900AB6A61 /* bck-leaderboard.mp3 in Resources */,
+				3D312A9128BB1BC000AB6A61 /* bck-menu.mp3 in Resources */,
+				3D2AD29E28BA550100C317A2 /* UnusedCodeGameView in Resources */,
+				3D312AD328BB4F3500AB6A61 /* football-computer win.wav in Resources */,
+				3D312AA528BB2DEE00AB6A61 /* bck-game.mp3 in Resources */,
+				3D312A9B28BB262600AB6A61 /* football-kick.mp3 in Resources */,
+				3D312AC928BB4BF400AB6A61 /* result-human win.wav in Resources */,
+				3D312AC428BB4BAF00AB6A61 /* football-draw.wav in Resources */,
+				3D312ABF28BB460900AB6A61 /* result-computer win.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,22 +755,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D2AD28C28B948A800C317A2 /* PathShape.swift in Sources */,
 				3D0C409328AF75E400406125 /* PlayerIconView.swift in Sources */,
 				3D0C408D28AF75D200406125 /* LeaderboardView.swift in Sources */,
 				3D0C408B28AF75D200406125 /* MenuView.swift in Sources */,
+				3D312AE728BB935100AB6A61 /* UsernameListView.swift in Sources */,
+				3D2AD26E28B7074900C317A2 /* GameContentModel.swift in Sources */,
 				3D0C409728AF75E400406125 /* PlayerNameView.swift in Sources */,
+				3D2AD27828B7E85600C317A2 /* UtilityShapes.swift in Sources */,
 				3D0C401528AF707200406125 /* PaperSoccerApp.swift in Sources */,
-				3D0C409528AF75E400406125 /* ModalView.swift in Sources */,
+				3D312AE228BB906300AB6A61 /* UsernameView.swift in Sources */,
+				3D2AD27428B7E80800C317A2 /* ExtensionView.swift in Sources */,
+				3D0C40B528B6A04B00406125 /* GameView.swift in Sources */,
+				3D0C409528AF75E400406125 /* ResultModalView.swift in Sources */,
 				3D0C407F28AF75B100406125 /* GameModel.swift in Sources */,
-				3D0C40A228AF8F9500406125 /* GameContentView.swift in Sources */,
 				3D0C407B28AF759C00406125 /* ModelUtility.swift in Sources */,
+				3D312A7C28BAF85F00AB6A61 /* GameShape.swift in Sources */,
+				3D312AD828BB6AE400AB6A61 /* SettingsManager.swift in Sources */,
+				3D2AD29628BA410300C317A2 /* StadiumView.swift in Sources */,
+				3D2AD28228B8E64C00C317A2 /* ImageBackground.swift in Sources */,
 				3D0C409B28AF75FA00406125 /* RectangleButtonView.swift in Sources */,
+				3D312AEC28BB99D200AB6A61 /* UsernameChangeView.swift in Sources */,
 				3D0C408328AF75BF00406125 /* Player.swift in Sources */,
-				3D0C40A828B14AE200406125 /* GameContentModel.swift in Sources */,
 				3D0C40AB28B3438B00406125 /* Move.swift in Sources */,
 				3D0C40A528B081B300406125 /* Ultilities.swift in Sources */,
-				3D0C408928AF75D200406125 /* GameView.swift in Sources */,
+				3D2AD27128B7DC0D00C317A2 /* StackNavigationView.swift in Sources */,
+				3D312A7E28BAFA7400AB6A61 /* SoundModel.swift in Sources */,
+				3D312ADD28BB760E00AB6A61 /* BackButton.swift in Sources */,
+				3D0C408928AF75D200406125 /* PlayView.swift in Sources */,
 				3D0C407928AF759C00406125 /* Constants.swift in Sources */,
+				3D312A9D28BB293F00AB6A61 /* Modifiers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,21 +792,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D2AD28D28B948A800C317A2 /* PathShape.swift in Sources */,
 				3D0C409428AF75E400406125 /* PlayerIconView.swift in Sources */,
 				3D0C408E28AF75D200406125 /* LeaderboardView.swift in Sources */,
 				3D0C408C28AF75D200406125 /* MenuView.swift in Sources */,
+				3D312AE828BB935100AB6A61 /* UsernameListView.swift in Sources */,
+				3D2AD26F28B7074900C317A2 /* GameContentModel.swift in Sources */,
 				3D0C409828AF75E400406125 /* PlayerNameView.swift in Sources */,
+				3D2AD27928B7E85600C317A2 /* UtilityShapes.swift in Sources */,
 				3D0C401628AF707200406125 /* PaperSoccerApp.swift in Sources */,
-				3D0C409628AF75E400406125 /* ModalView.swift in Sources */,
+				3D312AE328BB906300AB6A61 /* UsernameView.swift in Sources */,
+				3D2AD27528B7E80800C317A2 /* ExtensionView.swift in Sources */,
+				3D0C40B628B6A04B00406125 /* GameView.swift in Sources */,
+				3D0C409628AF75E400406125 /* ResultModalView.swift in Sources */,
 				3D0C408028AF75B100406125 /* GameModel.swift in Sources */,
-				3D0C40A328AF8F9500406125 /* GameContentView.swift in Sources */,
 				3D0C407C28AF759C00406125 /* ModelUtility.swift in Sources */,
+				3D312AAF28BB3D3200AB6A61 /* GameShape.swift in Sources */,
+				3D312AD928BB6AE400AB6A61 /* SettingsManager.swift in Sources */,
+				3D2AD29728BA410300C317A2 /* StadiumView.swift in Sources */,
+				3D312A9E28BB293F00AB6A61 /* Modifiers.swift in Sources */,
+				3D2AD28328B8E64C00C317A2 /* ImageBackground.swift in Sources */,
+				3D312AED28BB99D200AB6A61 /* UsernameChangeView.swift in Sources */,
+				3D312AB028BB3D4D00AB6A61 /* SoundModel.swift in Sources */,
 				3D0C409C28AF75FA00406125 /* RectangleButtonView.swift in Sources */,
 				3D0C408428AF75BF00406125 /* Player.swift in Sources */,
-				3D0C40A928B14AE200406125 /* GameContentModel.swift in Sources */,
 				3D0C40AC28B3438B00406125 /* Move.swift in Sources */,
 				3D0C40A628B081B300406125 /* Ultilities.swift in Sources */,
-				3D0C408A28AF75D200406125 /* GameView.swift in Sources */,
+				3D312ADE28BB760E00AB6A61 /* BackButton.swift in Sources */,
+				3D2AD27228B7DC0D00C317A2 /* StackNavigationView.swift in Sources */,
+				3D0C408A28AF75D200406125 /* PlayView.swift in Sources */,
 				3D0C407A28AF759C00406125 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -571,8 +829,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D0C400828AF707200406125 /* Tests_iOSLaunchTests.swift in Sources */,
-				3D0C400628AF707200406125 /* Tests_iOS.swift in Sources */,
+				3D312AE928BB935100AB6A61 /* UsernameListView.swift in Sources */,
+				3D2AD28428B8E64C00C317A2 /* ImageBackground.swift in Sources */,
+				3D312AEE28BB99D200AB6A61 /* UsernameChangeView.swift in Sources */,
+				3D312AE428BB906300AB6A61 /* UsernameView.swift in Sources */,
+				3D312ADA28BB6AE400AB6A61 /* SettingsManager.swift in Sources */,
+				3D312ADF28BB760E00AB6A61 /* BackButton.swift in Sources */,
+				3D2AD28E28B948A800C317A2 /* PathShape.swift in Sources */,
+				3D312A9F28BB293F00AB6A61 /* Modifiers.swift in Sources */,
+				3D2AD29828BA410300C317A2 /* StadiumView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,8 +845,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D0C401428AF707200406125 /* Tests_macOSLaunchTests.swift in Sources */,
-				3D0C401228AF707200406125 /* Tests_macOS.swift in Sources */,
+				3D312AEA28BB935100AB6A61 /* UsernameListView.swift in Sources */,
+				3D2AD28528B8E64C00C317A2 /* ImageBackground.swift in Sources */,
+				3D312AEF28BB99D200AB6A61 /* UsernameChangeView.swift in Sources */,
+				3D312AE528BB906300AB6A61 /* UsernameView.swift in Sources */,
+				3D312ADB28BB6AE400AB6A61 /* SettingsManager.swift in Sources */,
+				3D312AE028BB760E00AB6A61 /* BackButton.swift in Sources */,
+				3D2AD28F28B948A800C317A2 /* PathShape.swift in Sources */,
+				3D312AA028BB293F00AB6A61 /* Modifiers.swift in Sources */,
+				3D2AD29928BA410300C317A2 /* StadiumView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,6 +994,7 @@
 				DEVELOPMENT_TEAM = XFNA3XP78Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PaperSoccer--iOS--Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -752,6 +1025,7 @@
 				DEVELOPMENT_TEAM = XFNA3XP78Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PaperSoccer--iOS--Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

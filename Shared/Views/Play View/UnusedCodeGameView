@@ -1,0 +1,163 @@
+////
+////  GameContentView.swift
+////  PaperSoccer
+////
+////  Created by Nhung Tran on 19/08/2022.
+//// https://talk.objc.io/episodes/S01E244-detecting-taps
+//// https://stackoverflow.com/questions/59109138/how-to-implement-a-left-or-right-draggesture-that-trigger-a-switch-case-in-swi
+//// https://stackoverflow.com/questions/27517632/how-to-create-a-delay-in-swift
+//
+//import SwiftUI
+//
+//struct GameContentView: View {
+//
+//    // pass from other classes
+//    @Binding var humanWinStatus: WinningType
+//    @Binding var isShowModal: Bool
+//
+//    @EnvironmentObject var model: GameModel
+//    @EnvironmentObject var contentModel: GameContentModel
+//
+//    // init when appear
+//    @State var offsetX: CGFloat = 0
+//    @State var offsetY: CGFloat = 0
+//    @State var spacingGrid: CGFloat = 0
+//    @State var circleSize: CGFloat = 0
+//
+//    @State var isDisableBoard = false
+//    @State var isConfirmMove = false
+//
+//    @State var itemPositions = [CGPoint]()
+//    let parentGeo: GeometryProxy
+//    @State var screenWidth: CGFloat = 0
+//    @State var screenHeight: CGFloat = 0
+//
+//    init(winStatus humanWinStatus: Binding<WinningType>, showModal isShowModal: Binding<Bool>, parentGeo: GeometryProxy) {
+//        self.parentGeo = parentGeo
+//        self._humanWinStatus = humanWinStatus
+//        self._isShowModal = isShowModal
+//
+//    }
+//
+//    // check if user win after every steps
+//    private func checkInMatchWin() async {
+//        // check win status
+//        humanWinStatus = contentModel.checkWinning()
+//        if humanWinStatus != .none {
+//            try? await Task.sleep(nanoseconds: UInt64(1 * Double(NSEC_PER_SEC)))
+//            // if win or lose or draw -> display modal
+//            isShowModal.toggle()
+//
+//            // reset game
+//            contentModel.resetGame()
+//        }
+//    }
+//    private func computerMoveTurn() async {
+//        try? await Task.sleep(nanoseconds: UInt64(1 * Double(NSEC_PER_SEC)))
+//        contentModel.findComputerMove(itemPositions: itemPositions)
+//
+//        self.contentModel.humanMoveValid = false
+//        isDisableBoard = false
+//    }
+//    var body: some View {
+//        GeometryReader { geo in
+//            ZStack {
+//                LazyVGrid(columns: contentModel.columns, spacing: spacingGrid) {
+//                    var currentColumnIndex = 0, currentRowIndex = 0
+//                    ForEach(0..<contentModel.totalCountItems, id: \.self) { index in
+//                        let checkIgnoreIndex = contentModel.isIgnorePosition(for: index)
+//                        Circle()
+//                            .frame(width: circleSize, height: circleSize)
+//                            .opacity(checkIgnoreIndex ? 0 : 0.3)
+//                            .onAppear(perform: {
+//
+//                            if (itemPositions.count != contentModel.totalCountItems) {
+//                                itemPositions.append(CGPoint(
+//                                    x: offsetX + CGFloat(currentColumnIndex) * (screenWidth / CGFloat(contentModel.totalColumns)),
+//                                    //                                    x: offsetX,
+//                                    y: offsetY + CGFloat(currentRowIndex) * (spacingGrid + circleSize)
+//                                    //                                    y: offsetY
+//                                    ))
+//                            }
+//                            currentColumnIndex += 1
+//                            if currentColumnIndex == contentModel.totalColumns {
+//                                currentColumnIndex = 0
+//                                currentRowIndex += 1
+//                            }
+//                        })
+//                            .onTapGesture(perform: {
+//                            print(index)
+//                        })
+//                            .gesture(
+//                            DragGesture(minimumDistance: 0, coordinateSpace: .global)
+//                                .onEnded { value in
+//                                if !checkIgnoreIndex {
+//                                    // add movement
+//                                    print("-------------------------------")
+//                                    contentModel.defineHumanMovement(itemPositions: itemPositions, dragValue: value)
+//                                    if contentModel.humanMoveValid {
+//                                        isDisableBoard = true
+//
+//                                        Task {
+//                                            // check winning
+//                                            await checkInMatchWin()
+//                                            // prevent display draw after display winning
+//                                            if humanWinStatus != .none {
+//                                                isDisableBoard = false
+//                                                return
+//                                            }
+//                                            await computerMoveTurn()
+//
+//                                            // check winning
+//                                            await checkInMatchWin()
+//                                        }
+//
+//
+//                                    }
+//                                }
+//                            }
+//                        )
+//
+//
+//                    }
+//                }
+//                    .onAppear() {
+//                    //                    screenWidth = parentGeo.size.width * 0.9
+//                    //                    screenHeight = parentGeo.size.height -  (parentGeo.size.height / 4.5) * 2
+//                    screenWidth = 350
+//                    screenHeight = 400
+//                }
+//                    .disabled(isDisableBoard)
+//                contentModel.humanPath.stroke(Color.blue, style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round))
+//                contentModel.botPath.stroke(Color.red, style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round))
+//                //                HStack {
+//                //                    Spacer()
+//                //                    Button(action: {
+//                //                        isConfirmMove = true
+//                //                    }, label: {
+//                //                            Text("Confirm")
+//                //
+//                //                        })
+//                //                }
+//                //                    .position(CGPoint(x: geo.frame(in: .local).minX, y: geo.frame(in: .local).maxY))
+//
+//            }
+//                .onAppear {
+//                print(parentGeo.size.width / 1.1, screenWidth, geo.size.width)
+//                spacingGrid = screenHeight / 13.2 // 30
+//                circleSize = screenWidth / 20 // 20
+//                let midUpperY = (spacingGrid + circleSize) * CGFloat((contentModel.totalRowNum / 2))
+//                offsetX = geo.frame(in: .local).minX + screenWidth / CGFloat((contentModel.totalColumns * 2))
+//                //                    offsetX = geo.frame(in: .local).minX + (screenWidth / CGFloat(contentModel.totalColumns * 2)) - (circleSize / 3.5)
+//                //                    offsetX = geo.frame(in: .local).minX
+//
+//                offsetY = geo.frame(in: .local).minY + (screenHeight / 2) - midUpperY
+//                //                    offsetY = geo.frame(in: .local).minY
+//            }
+//        }
+//        //        .frame(width: parentGeo.size.width * 0.9, height: parentGeo.size.height -  (parentGeo.size.height / 4.5) * 2)
+//        .frame(width: 350, height: 400)
+//    }
+//
+//}
+//

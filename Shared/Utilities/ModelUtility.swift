@@ -4,6 +4,7 @@
 //
 //  Created by Nhung Tran on 18/08/2022.
 // https://stackoverflow.com/questions/57467353/conditional-property-in-swiftui
+// https://stackoverflow.com/questions/71095953/add-filled-circles-markers-at-swiftui-path-points
 
 import Foundation
 import SwiftUI
@@ -36,6 +37,22 @@ struct ModelUtility {
         let verticalDirection = findDragDirectionOnCoordinate(startCoordinate: startLocation.y, currentCoordinate: location.y, isHorizontal: false)
         let horizontalDirection = findDragDirectionOnCoordinate(startCoordinate: startLocation.x, currentCoordinate: location.x, isHorizontal: true)
         return DragDirection(rawValue: "\(verticalDirection) \(horizontalDirection)") ?? .none
+    }
+
+    // MARK: - drawing path
+    static func moveCurrentPath(on path: inout Path, _ destination: CGPoint) {
+        path.move(to: destination)
+        ModelUtility.drawCircle(point: destination, on: &path)
+    }
+    static func drawMovingLine(on path: inout Path, _ destination: CGPoint) {
+        path.addLine(to: destination)
+        ModelUtility.drawCircle(point: destination, on: &path)
+    }
+//    static func draw(point: CGPoint, on path: inout Path) {
+    static func drawCircle(point: CGPoint, on path: inout Path) {
+        let dotRadius: CGFloat = 5.0
+//        path.addLine(to: CGPoint(x: point.x, y: point.y))
+        path.addEllipse(in: CGRect(x: point.x - dotRadius * 0.5, y: point.y - dotRadius * 0.5, width: dotRadius, height: dotRadius))
     }
 
 }
