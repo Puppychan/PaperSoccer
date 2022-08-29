@@ -7,7 +7,15 @@
 // https://stackoverflow.com/questions/63298599/align-images-with-same-size-and-aspect-ratio-fill-in-swiftui
 
 import SwiftUI
-
+enum NavigationDestination: Int {
+    case playEasy
+    case playNormal
+    case playHard
+    case leader
+    case switchUser
+    case instruction
+    case badge
+}
 struct MenuView: View {
     
     @EnvironmentObject var model: GameModel
@@ -21,18 +29,39 @@ struct MenuView: View {
     
     @State private var currentSubviewIndex = 0
     @State private var showingSubview = false
+    
     @State private var isShowChangeUsername = false
     
-    enum NavigationDestination: Int {
-        case play
-        case leader
-        case switchUser
-    }
+    @State private var isShowDiffiModes = false
+    @State private var difficulty = ""
+    
+
     private func subView(forIndex index: Int) -> AnyView {
         switch index {
-        case NavigationDestination.play.rawValue: return AnyView(PlayView(showingSubview: $showingSubview).frame(maxWidth: .infinity, maxHeight: .infinity))
-        case NavigationDestination.leader.rawValue: return AnyView(LeaderboardView(showingSubview: $showingSubview).frame(maxWidth: .infinity, maxHeight: .infinity))
-        case NavigationDestination.switchUser.rawValue: return AnyView(UsernameListView().frame(maxWidth: .infinity, maxHeight: .infinity))
+            
+            // play
+//        case NavigationDestination.play.rawValue: return AnyView(PlayView(showingSubview: $showingSubview).frame(maxWidth: .infinity, maxHeight: .infinity))
+        case NavigationDestination.playEasy.rawValue:
+            return AnyView(PlayView(showingSubview: $showingSubview, difficulty: $difficulty).frame(maxWidth: .infinity, maxHeight: .infinity))
+            
+        case NavigationDestination.playNormal.rawValue:
+            return AnyView(PlayView(showingSubview: $showingSubview, difficulty: $difficulty).frame(maxWidth: .infinity, maxHeight: .infinity))
+            
+        case NavigationDestination.playHard.rawValue:
+            return AnyView(PlayView(showingSubview: $showingSubview, difficulty: $difficulty).frame(maxWidth: .infinity, maxHeight: .infinity))
+            
+            // leaderboard
+        case NavigationDestination.leader.rawValue: return AnyView(LeaderboardView(showingSubview: $showingSubview, showFunc: showSubview).frame(maxWidth: .infinity, maxHeight: .infinity))
+            
+            // badge
+        case NavigationDestination.badge.rawValue: return AnyView(BadgeView(showingSubview: $showingSubview)
+            .frame(maxWidth: .infinity, maxHeight: .infinity))
+            
+            // switch user
+        case NavigationDestination.switchUser.rawValue: return AnyView(UsernameListView(showingSubview: $showingSubview).frame(maxWidth: .infinity, maxHeight: .infinity))
+            
+            // instruction view
+        case NavigationDestination.instruction.rawValue: return AnyView(InstructionView(showingSubview: $showingSubview).frame(maxWidth: .infinity, maxHeight: .infinity))
         default: return AnyView(Text("Inavlid Selection").frame(maxWidth: .infinity, maxHeight: .infinity).background(Color.red))
         }
     }
@@ -59,22 +88,27 @@ struct MenuView: View {
                          // MARK: title game
                          ZStack {
                              Rectangle()
-                             VStack(alignment: .leading) {
+                             VStack(alignment: .center) {
                                  Text("Paper".uppercased())
-                                 Text("Footbal".uppercased())
+                                 Text("Football".uppercased())
                              }
-                             .font(.custom("EASPORTS", size: geometry.size.width / 15))
-                                 .foregroundColor(.white)
+                             .padding(.vertical)
+                             .font(.custom("EASPORTS", size: geometry.size.width / 8))
+                                 .foregroundColor(Color("Menu Title TxtClr"))
                          }
-                         .frame(width: geometry.size.width / 3, height: geometry.size.height / 7)
+                         .frame(width: geometry.size.width, height: geometry.size.height / 7)
+                         .foregroundColor(Color("Menu Title BckClr"))
+                         .padding(.top, geometry.size.width / 3.5)
                          
                          Spacer()
                          
                          // MARK: button region
                          ZStack(alignment: .center) {
                              Rectangle()
-                                 .opacity(0.5)
-                                 .cornerRadius(cornerRadius, corners: [.topLeft, .topRight])
+                                 .opacity(0.6)
+                                 .foregroundColor(Color("Menu BckClr"))
+                                 .cornerRadius(cornerRadius)
+//                                 .cornerRadius(cornerRadius, corners: [.topLeft, .topRight])
                              VStack(spacing: spacing) {
                                  
                                  Spacer()
@@ -85,11 +119,23 @@ struct MenuView: View {
                                  
                                  // Play view
                                  Button(action: {
-                                     self.showSubview(withIndex: NavigationDestination.play.rawValue)
-                                     SoundModel.stopBackgroundMusic()
-                                     SoundModel.startBackgroundMusic(bckName: "game", type: "mp3")
+//                                     self.showSubview(withIndex: NavigationDestination.play.rawValue)
+                                     
+                                     isShowDiffiModes = true
+                                     isShowChangeUsername = false
+//                                     SoundModel.stopBackgroundMusic()
+//                                     SoundModel.startBackgroundMusic(bckName: "game", type: "mp3")
                                  }) {
                                      RectangleButtonView(bckColor: Color("Menu Button BckClr"), txtColor: Color("Menu Button TxtClr"), txt: "Play  Game".uppercased(), height: buttonHeight)
+                                 }
+                                 
+                                 // Instruction view
+                                 Button(action: {
+                                     self.showSubview(withIndex: NavigationDestination.instruction.rawValue)
+//                                     SoundModel.stopBackgroundMusic()
+//                                     SoundModel.startBackgroundMusic(bckName: "game", type: "mp3")
+                                 }) {
+                                     RectangleButtonView(bckColor: Color("Menu Button BckClr"), txtColor: Color("Menu Button TxtClr"), txt: "Instruction".uppercased(), height: buttonHeight)
                                  }
                                  
                                  // Leaderboard view
@@ -105,21 +151,31 @@ struct MenuView: View {
                                  // change username view
                                  Button(action: {
                                      self.showSubview(withIndex: NavigationDestination.switchUser.rawValue)
-                                     SoundModel.stopBackgroundMusic()
                                  }) {
-                                     RectangleButtonView(bckColor: Color("Menu Button BckClr"), txtColor: Color("Menu Button TxtClr"), txt: "Switch  User".uppercased(), height: buttonHeight)
+                                     Text("Switch User".uppercased())
+                                         .font(.custom("Roboto-Medium", size: geometry.size.width / 18))
+                                         .foregroundColor(Color("Menu Button BckClr"))
+                                         .underline()
                                  }
+                                 .buttonStyle(.plain)
+                                 Spacer()
                              }
-                             .padding(.vertical, geometry.size.height / 20)
+                             .padding(.bottom, geometry.size.height / 25)
                              .padding(.horizontal, geometry.size.width / 15)
                          }
 //                         .padding(.vertical, geometry.size.height / 10)
 //                         .padding(.horizontal, geometry.size.width / 15)
-                         .frame(maxWidth: .infinity, maxHeight: geometry.size.height / 2.5)
+                         .frame(maxWidth: .infinity, maxHeight: geometry.size.height / 2.2)
                      }
+                     .opacity(isShowChangeUsername || isShowDiffiModes ? 0.6 : 1)
+                     .brightness(isShowChangeUsername || isShowDiffiModes ? -0.4 : 0)
+                     .ignoresSafeArea()
                      
                      if isShowChangeUsername {
-                         UsernameChangeView(isShowChangeUsername: $isShowChangeUsername, width: modalWidth, height: modalHeight, buttonHeight: modalHeight / 10)
+                         UsernameChangeView(isShowChangeUsername: $isShowChangeUsername, width: modalWidth, height: modalHeight, buttonHeight: modalHeight / 6)
+                     }
+                     if isShowDiffiModes {
+                         DifficultiesModal(difficulty: $difficulty, isShowDiffiModes: $isShowDiffiModes, width: modalWidth, height: modalHeight, showFunc: showSubview)
                      }
                  }
 
@@ -133,8 +189,8 @@ struct MenuView: View {
                 cornerRadius = geometry.size.width / 13.5
                  spacing = geometry.size.height / 35
                      // modal
-                 modalWidth = geometry.size.width / 1.5
-                 modalHeight = geometry.size.height / 1.7
+                 modalWidth = geometry.size.width / 1.1
+                 modalHeight = geometry.size.height / 2.5
                  
                  SoundModel.startBackgroundMusic(bckName: "menu", type: "mp3")
              }
@@ -142,6 +198,7 @@ struct MenuView: View {
         }
         
     }
+        
 }
 
 

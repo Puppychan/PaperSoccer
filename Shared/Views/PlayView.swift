@@ -15,21 +15,10 @@ struct PlayView: View {
     @State private var isShowModal = false
     @State var humanWinStatus: WinningType = .none
     @Binding var showingSubview: Bool
+    @Binding var difficulty: String
     
-//    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-//
-//    var backButton: some View {
-//
-//        Button(action: {
-//            self.presentationMode.wrappedValue.dismiss()
-//        }, label: {
-//            HStack {
-//                Image(systemName: "chevron.left")
-//                Text("Back") // 2
-//            }
-//        })
-//    }
-    
+    @State var usernameSize: CGFloat = 0.0
+    @State var scoreSize: CGFloat = 0.0
 
     var body: some View {
         GeometryReader { geo in
@@ -45,7 +34,7 @@ struct PlayView: View {
                         // MARK: bot score
                         Spacer()
                         HStack {
-                            PlayerNameView(username: model.currentBot.username, score: model.currentBot.currentScore)
+                            PlayerNameView(username: model.currentBot.username, score: model.currentBot.currentScore, usernameSize: usernameSize, scoreSize: scoreSize)
                             PlayerIconView(nameImage: "bot", geo: geo)
                         }
                     }
@@ -53,7 +42,7 @@ struct PlayView: View {
                     Spacer()
 
                     // MARK: game
-                    GameView(winStatus: $humanWinStatus, showModal: $isShowModal, screenWidth: geo.size.width / 1.1, screenHeight: geo.size.height / 1.1)
+                    GameView(winStatus: $humanWinStatus, showModal: $isShowModal, playMode: $difficulty, screenWidth: geo.size.width / 1.1, screenHeight: geo.size.height / 1.1)
                         .frame(width: geo.size.width / 1.1, height: geo.size.height / 2, alignment: .center)
                         .environmentObject(GameContentModel())
                         
@@ -65,7 +54,7 @@ struct PlayView: View {
                         HStack {
                             PlayerIconView(nameImage: "human", geo: geo)
                             // if add username feature, modify here
-                            PlayerNameView(username: model.currentHuman.username, score: model.currentHuman.currentScore)
+                            PlayerNameView(username: model.currentHuman.username, score: model.currentHuman.currentScore, usernameSize: usernameSize, scoreSize: scoreSize)
                         }
                         Spacer()
                     }
@@ -82,16 +71,20 @@ struct PlayView: View {
                     
                 }
             }
+            .onAppear() {
+                usernameSize = geo.size.width / 16
+                scoreSize = geo.size.width / 14
+            }
 
         }
 
 
     }
 }
-struct PlayView_Previews: PreviewProvider {
-    @State var showingSubview = false
-    static var previews: some View {
-        PlayView(showingSubview: .constant(true))
-            .environmentObject(GameModel())
-    }
-}
+//struct PlayView_Previews: PreviewProvider {
+//    @State var showingSubview = false
+//    static var previews: some View {
+//        PlayView(showingSubview: .constant(true))
+//            .environmentObject(GameModel())
+//    }
+//}

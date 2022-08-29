@@ -20,10 +20,12 @@ struct BackButton: View {
         }, label: {
             ZStack {
                 Circle()
-                  .stroke(Color.red, lineWidth: 4)
-                  .background(Circle().fill(Color.green))
+                  .stroke(Color("Back Button StrokeClr"), lineWidth: 4)
+                  .background(Circle().fill(Color("Back Button BckClr")))
                     
-                Text("Back")
+                Text("<<")
+                    .foregroundColor(Color("Back Button TxtClr"))
+                    .font(.title)
             }
             .frame(width: width, height: height)
         })

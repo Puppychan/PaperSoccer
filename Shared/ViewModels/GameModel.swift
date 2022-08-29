@@ -22,12 +22,21 @@ class GameModel: ObservableObject {
 
     @Published var backToHome: Int?
 
-    
+    let badges = [
+        "Play a Game",
+        "Play 10 Games",
+        "Read Instruction",
+        "Win for the first time",
+        "Win 10 times",
+        "Win 100 times",
+        "Score 10 points",
+        "Score 100 points"
+    ]
 
     init() {
         
-        self.currentBot = Player(username: "Bot", isHuman: false, currentScore: 0, totalScore: 0)
-        self.currentHuman = Player(username: ModelUtility.randomUsername(), isHuman: true, currentScore: 0, totalScore: 0)
+        self.currentBot = Player(username: "Bot", isHuman: false, currentScore: 0, totalScore: 0, numGamePlay: 0, numWin: 0, isReadInstruction: false, badges: [])
+        self.currentHuman = Player(username: ModelUtility.randomUsername(), isHuman: true, currentScore: 0, totalScore: 0, numGamePlay: 0, numWin: 0, isReadInstruction: false, badges: [])
         
         // convert data to player to use
         convertDataToPlayer(from: self.settings.currentHuman, currentData: &(self.currentHuman))
@@ -44,6 +53,55 @@ class GameModel: ObservableObject {
             .store(in: &cancellables)
         
     }
+    
+    // MARK: -  badges
+    func addBadges() {
+        for i in 0..<badges.count {
+            switch badges[i] {
+            case "Play a Game":
+                if self.currentHuman.numGamePlay >= 1 {
+                    self.currentHuman.badges.insert(i)
+                }
+            case "Play 10 Games":
+                if self.currentHuman.numGamePlay >= 10 {
+                    self.currentHuman.badges.insert(i)
+                }
+            case "Read Instruction":
+                if self.currentHuman.isReadInstruction {
+                    self.currentHuman.badges.insert(i)
+                }
+                
+            case "Win for the first time":
+                if self.currentHuman.numWin >= 1 {
+                    self.currentHuman.badges.insert(i)
+                }
+            case "Win 10 times":
+                if self.currentHuman.numWin >= 10 {
+                    self.currentHuman.badges.insert(i)
+                }
+            case "Win 100 times":
+                if self.currentHuman.numWin >= 100 {
+                    self.currentHuman.badges.insert(i)
+                }
+            case "Score 10 points":
+                if self.currentHuman.totalScore >= 10 {
+                    self.currentHuman.badges.insert(i)
+                }
+            case "Score 100 points":
+                if self.currentHuman.totalScore >= 100 {
+                    self.currentHuman.badges.insert(i)
+                }
+            default:
+                print("Nothing Badges")
+            }
+            
+        }
+    }
+    func isHaveBadge(for index: Int) -> Bool {
+        return self.currentHuman.badges.contains(index) 
+        
+    }
+    
 
     // MARK: - data <-> object conversion
     // MARK: convert a player only
@@ -86,15 +144,22 @@ class GameModel: ObservableObject {
         self.players = self.players.sorted(by: { $0.totalScore > $1.totalScore })
     }
     
+    
     // MARK: update scores
+    // update 1 player score
+    func updatePlayerScores(player: inout Player) {
+        player.currentScore += 1
+        player.numGamePlay += 1
+        player.numWin += 1
+    }
     // update scores during match
     func updateScores(winStatus: WinningType) {
         switch winStatus {
         case .humanWin:
-            self.currentHuman.currentScore += 1
+            updatePlayerScores(player: &self.currentHuman)
             updateHumanData()
         case .computerWin:
-            self.currentBot.currentScore += 1
+            updatePlayerScores(player: &self.currentBot)
             updateBotData()
         default:
             print("Nothing")
@@ -143,13 +208,19 @@ class GameModel: ObservableObject {
     }
     // MARK: add user
     func addUser(newUsername: String) {
-        self.currentHuman = Player(username: newUsername, isHuman: true, currentScore: 0, totalScore: 0)
+        self.currentHuman = Player(username: newUsername, isHuman: true, currentScore: 0, totalScore: 0, numGamePlay: 0, numWin: 0, isReadInstruction: false, badges: [])
         updateHumanData()
         self.players.append(self.currentHuman)
         convertPlayersToData()
     }
     
+    // MARK: update read instruction
+    func updateReadInstruction() {
+        self.currentHuman.isReadInstruction = true
+        updateHumanData()
+    }
     
+
 
     // MARK: - exit
     func exitGame() {

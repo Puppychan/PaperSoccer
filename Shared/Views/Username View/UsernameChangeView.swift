@@ -23,9 +23,9 @@ struct UsernameChangeView: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .foregroundColor(.white)
+                .foregroundColor(Color("Username Modal BckClr"))
                 .modifier(modalStyle())
-            VStack {
+            VStack(alignment: .leading) {
                 // MARK: close button
                 HStack {
                     Spacer()
@@ -34,11 +34,26 @@ struct UsernameChangeView: View {
                         isShowChangeUsername.toggle()
                     }, label: {
                         Image(systemName: "x.circle")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: width / 12)
+                            .foregroundColor(Color("Text Field BckClr"))
                     })
+                    .buttonStyle(.plain)
                 }
+                
+                // MARK: name modal
+                Text("Change Username".uppercased())
+                    .font(.title)
+                    .foregroundColor(Color("Username Modal TxtClr"))
+                
+                Spacer()
+                
                 // MARK: input here
-                TextField("Enter username...", text: $username)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                TextField("Enter Username..", text: $username)
+                    .textFieldStyle(CustomTextFieldStyle(width: width / 1.2))
+                
+                Spacer()
                 
                 // MARK: submit button
                 Button(action: {
@@ -49,12 +64,11 @@ struct UsernameChangeView: View {
                     // close modal
                     isShowChangeUsername.toggle()
                 }, label: {
-                    RectangleButtonView(bckColor: .black, txtColor: .white, fontName: "Roboto-Black", cornerRadius: Constants.cornerRadius, txt: "Submit".uppercased(), height: buttonHeight)
+                    RectangleButtonView(bckColor: .white, txtColor: Color("Username Modal BckClr"), fontName: "Roboto-Black", cornerRadius: Constants.cornerRadius, txt: "Submit".uppercased(), height: buttonHeight)
                 })
                 .disabled(username.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) // validate
             }
-            .padding(.horizontal, Constants.horizontalPadding)
-            .padding(.vertical, Constants.verticalPadding + 10)
+            .modifier(modalPadding())
         }
         
         .frame(width: width, height: height)

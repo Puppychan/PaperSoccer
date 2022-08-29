@@ -12,58 +12,94 @@ import SwiftUI
 class GameContentModel: ObservableObject {
     var totalColumns = 7
     var totalRows = 7
-    
+
     var totalCountItems: Int
     var endLeftIndex: Int
     var startRightIndex: Int
     var humanWinStatus: WinningType
-    
+
     //    var currentIndex: Int
     //    var currentHumanIndex: Int = 0
     //    var currentBotIndex: Int = 0
     var currentIndex: Position
-    var directionSet: Set<DragDirection>
 
     var map: [[Move?]]
-    
-    @Published var dragDirection: DragDirection = .none
-    @Published var humanPath = Path()
-    @Published var botPath = Path()
+
+    var botTempMoves: [Position]
+
+    @Published var dragDirection: DragDirection
+    @Published var humanPath: Path
+    @Published var botPath: Path
     @Published var isBotPlay: Bool
     // add can continue moving later
     @Published var canContinueMoving: Bool = false
-    @Published var isDraw: Bool = false
-    @Published var humanMoveValid = false
+    @Published var isDraw: Bool
+    @Published var humanMoveValid: Bool
     
+    @Published var humanStart: CGPoint
+    @Published var humanEnd: CGPoint
+
     init() {
-        self.map = [[Move?]](repeating: [Move?](repeating: nil, count: self.totalColumns), count: self.totalRows)
-        self.directionSet = []
-        
+        print("Init")
         self.totalCountItems = totalColumns * totalRows
         self.currentIndex = Position(self.totalRows / 2, self.totalColumns / 2)
-        
+
         // for ignore positions
         self.endLeftIndex = (self.totalColumns / 2) - 1
         self.startRightIndex = (self.totalColumns / 2) + 1
-        
+
+        self.currentIndex = Position(self.totalRows / 2, self.totalColumns / 2)
+
+        self.humanPath = Path()
+        self.botPath = Path()
+
+        self.map = [[Move?]](repeating: [Move?](repeating: nil, count: self.totalColumns), count: self.totalRows)
+
         self.humanWinStatus = .none
-        
+
         // create move object for initial starting point
         self.isBotPlay = false
-        assignMove(currentPosition: self.currentIndex, for: self.currentIndex)
+        self.botTempMoves = []
+        self.humanMoveValid = false
+        self.isDraw = false
+
+        self.dragDirection = .none
         
+        humanStart = CGPoint(x: 0, y: 0)
+        humanEnd = CGPoint(x: 0, y: 0)
     }
-    
+
+    // MARK: - reset game
+    func resetGame() {
+//        print("Reset")
+        self.currentIndex = Position(self.totalRows / 2, self.totalColumns / 2)
+
+        self.humanPath = Path()
+        self.botPath = Path()
+
+        self.map = [[Move?]](repeating: [Move?](repeating: nil, count: self.totalColumns), count: self.totalRows)
+
+        self.humanWinStatus = .none
+
+        // create move object for initial starting point
+        self.isBotPlay = false
+        self.botTempMoves = []
+        self.humanMoveValid = false
+        self.isDraw = false
+
+        self.dragDirection = .none
+    }
+
+
     // MARK: - sound during game
     func playKickBallSound() {
         SoundModel.playSound(sound: "football-kick", type: "mp3")
     }
-    
+
     // MARK: - assign move
     func assignMove(currentPosition: Position, for newPosition: Position) {
-        
         let newRow = newPosition.row, newCol = newPosition.col
-        
+
         if self.map[newRow][newCol] != nil {
             self.map[newRow][newCol]?.occupyDirection.append(currentPosition)
         }
@@ -71,7 +107,7 @@ class GameContentModel: ObservableObject {
             self.map[newRow][newCol] = Move(currentIsBot: isBotPlay, isOccupy: true, occupyDirection: [currentPosition], scores: 0, position: Position(newRow, newCol))
         }
     }
-    
+
     // MARK: - validate index
     // MARK: check ignore shapes or ignore positions
     func isIgnorePosition(forRow currentRow: Int, forCol currentCol: Int) -> Bool {
@@ -83,145 +119,187 @@ class GameContentModel: ObservableObject {
         }
         return false
     }
-    
-    // MARK: Bouncing index movement check
-    func isBorderIndex(forX currentCol: Int, forY currentRow: Int) -> Bool {
-        if ((currentCol == 0 || currentCol == self.totalColumns - 1 || currentRow == 0 || currentRow == self.totalRows - 1) &&
-            !isIgnorePosition(forRow: currentRow, forCol: currentCol)) ||
-            (isIgnorePosition(forRow: currentRow - 1, forCol: currentCol)) ||
-            isIgnorePosition(forRow: currentRow + 1, forCol: currentCol) ||
-            ((currentRow == 1 || currentRow == self.totalRows - 2) &&
-             (currentCol == self.endLeftIndex || currentCol == self.startRightIndex)) {
+
+    func isNotOutOfBoundIndex(for position: Position) -> Bool {
+        if (0..<self.totalRows ~= position.row && 0..<self.totalColumns ~= position.col) {
             return true
         }
         return false
-        
     }
-    func isBouncingDragValid(for currentPosition: Position) -> Int {
+
+    // MARK: Bouncing index movement check
+    func isBorderIndex(forX currentCol: Int, forY currentRow: Int) -> Bool {
+        if ((currentCol == 0 || currentCol == self.totalColumns - 1 || currentRow == 0 || currentRow == self.totalRows - 1) &&
+                !isIgnorePosition(forRow: currentRow, forCol: currentCol)) ||
+            (isIgnorePosition(forRow: currentRow - 1, forCol: currentCol)) ||
+            isIgnorePosition(forRow: currentRow + 1, forCol: currentCol) ||
+            ((currentRow == 1 || currentRow == self.totalRows - 2) &&
+                    (currentCol == self.endLeftIndex || currentCol == self.startRightIndex)) {
+            return true
+        }
+        return false
+
+    }
+    func isBouncingDragValid(for currentPosition: Position, new newPosition: Position = Position(-1, -1)) -> Int {
         // 1: index is not bouncing
         // -1: index is bouncing but drag direction is invalid
         // 0: index is bouncing and drag direction is valid
-        
+
         let currentRow = currentPosition.row, currentCol = currentPosition.col
-        
+
         // Bouncing left
         if (currentCol == 0) {
             // dead point no way out (left)
             if (currentRow == 1 || currentRow == self.totalRows - 2) &&
-                self.dragDirection == .east {
+                (self.dragDirection == .east ||
+                        (isNotOutOfBoundIndex(for: newPosition) && currentPosition.isMovingEast(new: newPosition))) {
                 print("Bouncing Left Corner", currentRow, currentCol)
                 return -1
             }
-            
+
             // invalid direction when bouncing
-            if (self.dragDirection == .west ||
-                self.dragDirection == .northwest ||
-                self.dragDirection == .southwest ||
-                self.dragDirection == .north ||
-                self.dragDirection == .south) {
-                
+            if ((self.dragDirection == .west ||
+                    self.dragDirection == .northwest ||
+                    self.dragDirection == .southwest ||
+                    self.dragDirection == .north ||
+                    self.dragDirection == .south)) ||
+                (isNotOutOfBoundIndex(for: newPosition) && (currentPosition.isMovingWest(new: newPosition) ||
+                            currentPosition.isMovingNorthWest(new: newPosition) ||
+                            currentPosition.isMovingSouthWest(new: newPosition) ||
+                            currentPosition.isMovingSouth(new: newPosition) ||
+                            currentPosition.isMovingNorth(new: newPosition))) {
+
                 print("Bouncing Left", currentRow, currentCol)
                 return -1
-                
+
             }
             return 0
         }
-        
+
         // bouncing right
-        else if (currentCol == self.totalColumns - 1) {
+            else if (currentCol == self.totalColumns - 1) {
             // dead point no way out (right)
             if (currentRow == 1 || currentRow == self.totalRows - 2) &&
-                self.dragDirection == .west {
+                (self.dragDirection == .west ||
+                        (isNotOutOfBoundIndex(for: newPosition) && currentPosition.isMovingWest(new: newPosition))) {
                 print("Bouncing Right Corner", currentRow, currentCol)
                 return -1
             }
-            
+
             // invalid direction when bouncing
             if (self.dragDirection == .east ||
-                self.dragDirection == .northeast ||
-                self.dragDirection == .southeast ||
-                self.dragDirection == .north ||
-                self.dragDirection == .south) {
+                    self.dragDirection == .northeast ||
+                    self.dragDirection == .southeast ||
+                    self.dragDirection == .north ||
+                    self.dragDirection == .south) ||
+                (isNotOutOfBoundIndex(for: newPosition) && (currentPosition.isMovingEast(new: newPosition) ||
+                            currentPosition.isMovingNorthEast(new: newPosition) ||
+                            currentPosition.isMovingSouthEast(new: newPosition) ||
+                            currentPosition.isMovingSouth(new: newPosition) ||
+                            currentPosition.isMovingNorth(new: newPosition))) {
                 print("Bouncing Right No Move", currentRow, currentCol)
                 return -1
             }
             print("Bouncing Right", currentRow, currentCol)
             return 0
         }
-        
+
         // bouncing up (ignore middle)
-        else if (isIgnorePosition(forRow: currentRow - 1, forCol: currentCol)) {
+            else if (isIgnorePosition(forRow: currentRow - 1, forCol: currentCol)) {
             if (self.dragDirection == .north ||
-                self.dragDirection == .northwest ||
-                self.dragDirection == .northeast ||
-                self.dragDirection == .east ||
-                self.dragDirection == .west) {
+                    self.dragDirection == .northwest ||
+                    self.dragDirection == .northeast ||
+                    self.dragDirection == .east ||
+                    self.dragDirection == .west) ||
+                (isNotOutOfBoundIndex(for: newPosition) && (currentPosition.isMovingEast(new: newPosition) ||
+                            currentPosition.isMovingNorthEast(new: newPosition) ||
+                            currentPosition.isMovingNorthWest(new: newPosition) ||
+                            currentPosition.isMovingWest(new: newPosition) ||
+                            currentPosition.isMovingNorth(new: newPosition))) {
                 print("Bouncing Up No Move", currentRow, currentCol)
                 return -1
             }
             print("Bouncing Up", currentRow, currentCol)
             return 0
         }
-        
+
         // bouncing down (ignore middle)
-        else if (isIgnorePosition(forRow: currentRow + 1, forCol: currentCol)) {
+            else if (isIgnorePosition(forRow: currentRow + 1, forCol: currentCol)) {
             if (self.dragDirection == .south ||
-                self.dragDirection == .southwest ||
-                self.dragDirection == .southeast ||
-                self.dragDirection == .east ||
-                self.dragDirection == .west) {
+                    self.dragDirection == .southwest ||
+                    self.dragDirection == .southeast ||
+                    self.dragDirection == .east ||
+                    self.dragDirection == .west) ||
+                (isNotOutOfBoundIndex(for: newPosition) && (currentPosition.isMovingEast(new: newPosition) ||
+                            currentPosition.isMovingSouthEast(new: newPosition) ||
+                            currentPosition.isMovingSouthWest(new: newPosition) ||
+                            currentPosition.isMovingWest(new: newPosition) ||
+                            currentPosition.isMovingSouth(new: newPosition))) {
                 print("Bouncing Down", currentRow, currentCol)
                 return -1
             }
             print("Bouncing Dowqn", currentRow, currentCol)
             return 0
         }
-        
+
         // bouncing special left up: near the goal
-        else if (currentRow == 1) &&
-                    currentCol == self.endLeftIndex {
-            
+            else if (currentRow == 1) &&
+            currentCol == self.endLeftIndex {
+
             if (self.dragDirection == .west ||
-                self.dragDirection == .northwest ||
-                self.dragDirection == .north) {
+                    self.dragDirection == .northwest ||
+                    self.dragDirection == .north) ||
+                (isNotOutOfBoundIndex(for: newPosition) && (
+                        currentPosition.isMovingNorthWest(new: newPosition) ||
+                            currentPosition.isMovingWest(new: newPosition) ||
+                            currentPosition.isMovingNorth(new: newPosition))) {
                 print("Bouncing Special Left", currentRow, currentCol)
                 return -1
             }
-            
+
             print("Bouncing Special Up ", currentRow, currentCol)
             return 0
         }
         // bouncing special right up: near the goal
-        else if (currentRow == 1) &&
-                    currentCol == self.startRightIndex {
+            else if (currentRow == 1) &&
+            currentCol == self.startRightIndex {
             if (self.dragDirection == .east ||
-                self.dragDirection == .northeast ||
-                self.dragDirection == .north) {
+                    self.dragDirection == .northeast ||
+                    self.dragDirection == .north) ||
+                (isNotOutOfBoundIndex(for: newPosition) && (currentPosition.isMovingEast(new: newPosition) ||
+                            currentPosition.isMovingNorthEast(new: newPosition) ||
+                            currentPosition.isMovingNorth(new: newPosition))) {
                 print("Bouncing Special Right", currentRow, currentCol)
                 return -1
             }
             return 0
         }
-        
+
         // bouncing special left down: near the goal
-        else if (currentRow == self.totalRows - 2) &&
-                    currentCol == self.endLeftIndex {
-            
+            else if (currentRow == self.totalRows - 2) &&
+            currentCol == self.endLeftIndex {
+
             if (self.dragDirection == .west ||
-                self.dragDirection == .southwest ||
-                self.dragDirection == .south) {
+                    self.dragDirection == .southwest ||
+                    self.dragDirection == .south) ||
+                (isNotOutOfBoundIndex(for: newPosition) && (currentPosition.isMovingWest(new: newPosition) ||
+                            currentPosition.isMovingSouthWest(new: newPosition) ||
+                            currentPosition.isMovingSouth(new: newPosition))) {
                 print("Bouncing Special Down Left", currentRow, currentCol)
                 return -1
             }
-            
+
             return 0
         }
         // bouncing special right up: near the goal
-        else if (currentRow == self.totalRows - 2) &&
-                    currentCol == self.startRightIndex {
+            else if (currentRow == self.totalRows - 2) &&
+            currentCol == self.startRightIndex {
             if (self.dragDirection == .east ||
-                self.dragDirection == .southeast ||
-                self.dragDirection == .south) {
+                    self.dragDirection == .southeast ||
+                    self.dragDirection == .south) ||
+                (isNotOutOfBoundIndex(for: newPosition) && (currentPosition.isMovingEast(new: newPosition) ||
+                            currentPosition.isMovingSouthEast(new: newPosition) ||
+                            currentPosition.isMovingSouth(new: newPosition))) {
                 print("Bouncing Special Down Right", currentRow, currentCol)
                 return -1
             }
@@ -229,25 +307,25 @@ class GameContentModel: ObservableObject {
         }
         return 1
     }
-    
+
     // MARK: - validate movement
     // check again
     func isContinueMoving(for currentPosition: Position) -> Bool {
         // out of range fix
-        
+
         let row = currentPosition.row, col = currentPosition.col
         if self.map[row][col] != nil {
             // already move
             if (self.map[row][col]?.occupyDirection.contains(where: { $0.equals(currentPosition) }) ?? true) {
                 return false
             }
-            
+
             // if not already move check other thing
             return !(self.map[row][col]?.occupyDirection.contains(where: { $0 == self.currentIndex }) ?? true)
         }
         return false
     }
-    
+
     // MARK: - Movement
     // MARK: validate new index before movement
     func checkValidIndex(for newPosition: Position) -> Bool {
@@ -255,9 +333,9 @@ class GameContentModel: ObservableObject {
         if !(0..<self.totalRows ~= row && 0..<self.totalColumns ~= col) {
             return false
         }
-        
+
         self.canContinueMoving = isContinueMoving(for: newPosition)
-        
+
         // for simple rule
         // check 1 3 later
         // check starting point: center
@@ -266,20 +344,20 @@ class GameContentModel: ObservableObject {
 //                print("Is bouncing if inside wall: ",  isBouncingDragValid(for: self.currentIndex))
 //                print("Is nil moves: ", self.map[row][col] == nil, "- continue moving:", self.canContinueMoving)
 //                print("None drag: ",!newPosition.equals(self.currentIndex))
-        return (0..<self.totalRows ~= row && 0..<self.totalColumns ~= col) &&
-        !isIgnorePosition(forRow: row, forCol: col) &&
-        isBouncingDragValid(for: self.currentIndex) != -1 &&
-        (self.map[row][col] == nil || self.canContinueMoving) &&
-        !newPosition.equals(self.currentIndex)
+        return isNotOutOfBoundIndex(for: newPosition) &&
+            !isIgnorePosition(forRow: row, forCol: col) &&
+        (isBouncingDragValid(for: self.currentIndex, new: newPosition) != -1) &&
+            (self.map[row][col] == nil || self.canContinueMoving) &&
+            !newPosition.equals(self.currentIndex)
     }
-    
+
     // MARK: Identify next position after user drag
     func identifyNextMovementDrag(dragDirection: DragDirection) -> Position {
-        
+
         // identify simple steps (rule only)
         var newRow = self.currentIndex.row
         var newCol = self.currentIndex.col
-        
+
         switch dragDirection {
         case .north:
             newRow -= 1
@@ -305,147 +383,373 @@ class GameContentModel: ObservableObject {
             newRow = self.currentIndex.row
             newCol = self.currentIndex.col
         }
-        
+
         return Position(newRow, newCol)
     }
-    
+
     func assignMovingMap(newPosition: Position) {
         assignMove(currentPosition: self.currentIndex, for: newPosition)
         assignMove(currentPosition: newPosition, for: self.currentIndex)
     }
-    
-    
+
+
     // MARK: - display human movements
-    
+
     func defineHumanMovement(itemPositions: [[CGPoint]], dragValue: DragGesture.Value) {
         self.isBotPlay = false
         // move path to current posiiton
-        ModelUtility.moveCurrentPath(on: &self.humanPath, itemPositions[self.currentIndex.row][self.currentIndex.col])
-        
-        
+        ModelUtility.moveCurrentPath(on: &self.humanPath, itemPositions[self.currentIndex.row][self.currentIndex.col], currentPosition: &self.humanStart)
+
+
         self.dragDirection = ModelUtility.findDragDirection(startLocation: dragValue.startLocation, location: dragValue.location)
         let newPosition: Position = identifyNextMovementDrag(dragDirection: self.dragDirection)
-        
+
         // if new movement valid -> display
         if (checkValidIndex(for: newPosition)) {
             print("Human valid: \(self.currentIndex.row), \(self.currentIndex.col) - New: \(newPosition.row), \(newPosition.col)")
-            
+
             // assign movement to moves
             assignMovingMap(newPosition: newPosition)
-            
+
             // assign current index ot new index + add line
             self.currentIndex = newPosition
             playKickBallSound()
-            ModelUtility.drawMovingLine(on: &self.humanPath, itemPositions[self.currentIndex.row][self.currentIndex.col])
+            ModelUtility.drawMovingLine(on: &self.humanPath, itemPositions[self.currentIndex.row][self.currentIndex.col], currentPosition: &self.humanStart)
             
+
             // check winning
             checkWinning()
-            
-            // check if bouncing -> continue move
-            self.dragDirection = .none
-            if isBouncingDragValid(for: self.currentIndex) == 0 {
-                self.canContinueMoving = true
-            }
-            
-            // if cannnot continue -> stop
-            if !self.canContinueMoving {
-                // mark point as moved
+            if self.humanWinStatus != .none {
                 self.humanMoveValid = true
             }
-            
+
+            else {
+                // check if bouncing -> continue move
+                self.dragDirection = .none
+                if isBouncingDragValid(for: self.currentIndex) == 0 {
+                    self.canContinueMoving = true
+                }
+
+                // if cannnot continue -> stop
+                if !self.canContinueMoving {
+                    // mark point as moved
+                    self.humanMoveValid = true
+                }
+            }
+
         }
     }
-    
+
     // MARK: - display computer movements
-    func randomMove(itemPositions: [[CGPoint]]) -> [CGPoint] {
+    func computerActionAfterMove(itemPositions: [[CGPoint]], newPosition: Position?) {
+        print("Comp valid: \(self.currentIndex.row), \(self.currentIndex.col) - New: \(newPosition!.row), \(newPosition!.col)")
+
+        playKickBallSound()
+        // assign movement to moves
+        assignMovingMap(newPosition: newPosition!)
+
+        // start drawing
+        ModelUtility.drawMovingLine(on: &self.botPath, itemPositions[newPosition!.row][newPosition!.col], currentPosition: &self.humanStart)
+
+        
+        self.currentIndex = newPosition!
+        checkWinning()
+    }
+    func easyMove(itemPositions: [[CGPoint]]) -> [CGPoint] {
         print("----------------- Comp")
         var positions: [CGPoint] = []
         var newPosition: Position? = nil
         self.canContinueMoving = true
         self.isDraw = false
-        
+        var checkLayer = 0
+        var directionSet: Set<Position> = []
+
         // move path to current posiiton
-        ModelUtility.moveCurrentPath(on: &self.botPath, itemPositions[self.currentIndex.row][self.currentIndex.col])
-        
+        ModelUtility.moveCurrentPath(on: &self.botPath, itemPositions[self.currentIndex.row][self.currentIndex.col], currentPosition: &self.humanStart)
+
         while self.canContinueMoving {
-            // repeat until drag direction and index is valid
             repeat {
-                // find drag direction
-                self.dragDirection = DragDirection.allCases.randomElement() ?? .none
-                if self.dragDirection != .none {
-                    if self.directionSet.insert(self.dragDirection).inserted {
-                        // find new index based on drag direction
-                        newPosition =
-                        identifyNextMovementDrag(dragDirection: self.dragDirection)
-                        
-                        // check if valid -> exit loop
-                        if checkValidIndex(for: newPosition!) {
-                            // reset drag direction set
-                            self.directionSet = []
-                            print("Comp valid: \(self.currentIndex.row), \(self.currentIndex.col) - New: \(newPosition!.row), \(newPosition!.col)")
-                            break
-                        }
-                        else {
-                            self.dragDirection = .none
-                        }
-                        print("Comp: \(self.currentIndex.row), \(self.currentIndex.col) - New: \(newPosition!.row), \(newPosition!.col)")
+                switch checkLayer {
+                case 0:
+                    if self.currentIndex.col <= endLeftIndex {
+                        newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col + 1)
                     }
-                    
-                    // draw when computer cannot find any suitabl directions
-                    else if self.directionSet.count == 8 {
+                    else if self.currentIndex.col >= startRightIndex {
+                        newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col - 1)
+                    }
+                    else {
+                        newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col)
+                    }
+                case 1:
+                    if self.currentIndex.col <= endLeftIndex || self.currentIndex.col >= startRightIndex {
+                        newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col)
+                    }
+                    else {
+                        newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col + (Bool.random() ? 1 : (-1)))
+                    }
+                default:
+                    newPosition = Position(self.currentIndex.row + Int.random(in: -1...1), self.currentIndex.col + Int.random(in: -1...1))
+                }
+                directionSet.insert(newPosition!)
+                checkLayer += 1
+                if checkValidIndex(for: newPosition!) {
+                    checkLayer = 0
+                    directionSet = []
+                    break
+                }
+                // check draw or winning
+                else if directionSet.count == 8 {
+                    checkWinning()
+                    if self.humanWinStatus == .none {
+                        checkLayer = 0
+                        directionSet = []
+                        self.isDraw = true
                         checkWinning()
-                        if self.humanWinStatus == .none {
-                            self.isDraw = true
-                            checkWinning()
-                        }
                         break
                     }
-                    // invalid index -> drag direction none for continueing finding
-                    else {
-                        self.dragDirection = .none
-                    }
                 }
-                
-                
-            } while self.dragDirection == .none
-            
+            } while true
+
+            // validate index
             // Draw condition
             if self.isDraw {
                 self.canContinueMoving = false
                 break
             }
             
-            playKickBallSound()
-            // assign movement to moves
-            assignMovingMap(newPosition: newPosition!)
+            computerActionAfterMove(itemPositions: itemPositions, newPosition: newPosition)
+            positions.append(CGPoint(x: newPosition!.row, y: newPosition!.col))
             
-            // start drawing
-            self.currentIndex = newPosition!
-            positions.append(CGPoint(x: self.currentIndex.row, y: self.currentIndex.col))
-            
-            ModelUtility.drawMovingLine(on: &self.botPath, itemPositions[self.currentIndex.row][self.currentIndex.col])
-            
-            checkWinning()
-            
+            if self.humanWinStatus != .none {
+                return positions
+            }
+
             // check if bouncing -> continue move
             self.dragDirection = .none
-            if isBouncingDragValid(for: self.currentIndex) == 0 {
+            if isBouncingDragValid(for: newPosition!) == 0 {
                 self.canContinueMoving = true
             }
-            
         }
         return positions
     }
-
     
+    func normalMove(itemPositions: [[CGPoint]]) -> [CGPoint] {
+        print("----------------- Comp Normal")
+        var positions: [CGPoint] = []
+        var newPosition: Position? = nil
+        self.canContinueMoving = true
+        self.isDraw = false
+        var checkLayer = 0
+        var directionSet: Set<Position> = []
+
+        // move path to current posiiton
+        ModelUtility.moveCurrentPath(on: &self.botPath, itemPositions[self.currentIndex.row][self.currentIndex.col], currentPosition: &self.humanStart)
+
+        while self.canContinueMoving {
+            repeat {
+                switch checkLayer {
+                case 0:
+                    if isBorderIndex(forX: self.currentIndex.col, forY: self.currentIndex.row) {
+                        if self.currentIndex.col <= endLeftIndex {
+                            newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col + 1)
+                        }
+                        else {
+                            newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col - 1)
+                        }
+                    }
+                    else {
+                        if self.currentIndex.col.isMultiple(of: 2) ||
+                            self.currentIndex.col == self.totalColumns / 2 {
+                            newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col)
+                        }
+                        else if self.currentIndex.col <= endLeftIndex {
+                            newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col - 1)
+                        }
+                        else if self.currentIndex.col >= startRightIndex {
+                            newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col + 1)
+                        }
+                        else {
+                            newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col + (Bool.random() ? 1 : (-1)))
+                        }
+                    }
+//                case :
+//
+                    
+                case 1:
+                    if self.currentIndex.col <= endLeftIndex || self.currentIndex.col >= startRightIndex {
+                        newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col)
+                    }
+                    else {
+                        newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col + (Bool.random() ? 1 : (-1)))
+                    }
+                default:
+                    newPosition = Position(self.currentIndex.row + Int.random(in: -1...1), self.currentIndex.col + Int.random(in: -1...1))
+                }
+                directionSet.insert(newPosition!)
+                checkLayer += 1
+                if checkValidIndex(for: newPosition!) {
+                    checkLayer = 0
+                    directionSet = []
+                    break
+                }
+                // check draw or winning
+                else if directionSet.count == 8 {
+                    checkWinning()
+                    if self.humanWinStatus == .none {
+                        checkLayer = 0
+                        directionSet = []
+                        self.isDraw = true
+                        checkWinning()
+                        break
+                    }
+                }
+            } while true
+
+            // validate index
+            // Draw condition
+            if self.isDraw {
+                self.canContinueMoving = false
+                break
+            }
+            
+            computerActionAfterMove(itemPositions: itemPositions, newPosition: newPosition)
+            positions.append(CGPoint(x: newPosition!.row, y: newPosition!.col))
+            if self.humanWinStatus != .none {
+                return positions
+            }
+
+            // check if bouncing -> continue move
+            self.dragDirection = .none
+            if isBouncingDragValid(for: newPosition!) == 0 {
+                self.canContinueMoving = true
+            }
+        }
+        return positions
+    }
+    func hardMove(itemPositions: [[CGPoint]]) -> [CGPoint] {
+        print("----------------- Comp Hard")
+        var positions: [CGPoint] = []
+        var newPosition: Position? = nil
+        self.canContinueMoving = true
+        self.isDraw = false
+        var checkLayer = 0
+        var directionSet: Set<Position> = []
+
+        // move path to current posiiton
+        ModelUtility.moveCurrentPath(on: &self.botPath, itemPositions[self.currentIndex.row][self.currentIndex.col], currentPosition: &self.humanStart)
+
+        while self.canContinueMoving {
+            repeat {
+                switch checkLayer {
+                case 0:
+                    if isBorderIndex(forX: self.currentIndex.col, forY: self.currentIndex.row) {
+                        if self.currentIndex.row == self.totalRows - 2 {
+                            let newCol: Int
+                            let newRow: Int
+                            // check col
+                            if self.currentIndex.col <= endLeftIndex {
+                                newCol = self.currentIndex.col + 1
+                            }
+                            else {
+                                newCol = self.currentIndex.col - 1
+                            }
+                            
+                            if endLeftIndex...startRightIndex ~= self.currentIndex.col {
+                                newRow = self.currentIndex.row + 1
+                            }
+                            else {
+                                newRow = self.currentIndex.row - 1
+                            }
+                            
+                            newPosition = Position(newRow, newCol)
+                        }
+                        else if self.currentIndex.col == 0 {
+                            newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col + 1)
+                        }
+                        else {
+                            newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col - 1)
+                        }
+                    }
+                    else {
+                        if self.currentIndex.col.isMultiple(of: 2) ||
+                            self.currentIndex.col == self.totalColumns / 2 {
+                            newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col)
+                        }
+                        else if self.currentIndex.col <= endLeftIndex {
+                            newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col - 1)
+                        }
+                        else if self.currentIndex.col >= startRightIndex {
+                            newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col + 1)
+                        }
+                        else {
+                            newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col + (Bool.random() ? 1 : (-1)))
+                        }
+                    }
+                case 1:
+                    if self.currentIndex.col <= endLeftIndex || self.currentIndex.col >= startRightIndex {
+                        newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col)
+                    }
+                    else {
+                        newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col + (Bool.random() ? 1 : (-1)))
+                    }
+                default:
+                    newPosition = Position(self.currentIndex.row + Int.random(in: -1...1), self.currentIndex.col + Int.random(in: -1...1))
+                }
+                directionSet.insert(newPosition!)
+                checkLayer += 1
+                if checkValidIndex(for: newPosition!) {
+                    checkLayer = 0
+                    directionSet = []
+                    break
+                }
+                // check draw or winning
+                else if directionSet.count == 8 {
+                    checkWinning()
+                    if self.humanWinStatus == .none {
+                        checkLayer = 0
+                        directionSet = []
+                        self.isDraw = true
+                        checkWinning()
+                        break
+                    }
+                }
+            } while true
+
+            // validate index
+            // Draw condition
+            if self.isDraw {
+                self.canContinueMoving = false
+                return positions
+            }
+            
+            computerActionAfterMove(itemPositions: itemPositions, newPosition: newPosition)
+            positions.append(CGPoint(x: newPosition!.row, y: newPosition!.col))
+            
+            if self.humanWinStatus != .none {
+                return positions
+            }
+
+            // check if bouncing -> continue move
+            self.dragDirection = .none
+            if isBouncingDragValid(for: newPosition!) == 0 {
+                self.canContinueMoving = true
+            }
+        }
+        return positions
+    }
+    // even index if 2 sides no red -> move to center
+    // bouncing up -> move to center
+    // if center + next row is special bouncing -> move toward bouncing
+    // if odd index next row is corner -> move other direction
     func displayComputerMove(mode: String, itemPositions: [[CGPoint]]) -> [CGPoint] {
         self.isBotPlay = true
         switch mode {
         case "easy":
-            return randomMove(itemPositions: itemPositions)
+            return easyMove(itemPositions: itemPositions)
+        case "normal":
+            return normalMove(itemPositions: itemPositions)
         case "hard":
-            print("Hard")
-            return []
+            return hardMove(itemPositions: itemPositions)
         default:
             print("No mode")
             return []
@@ -465,21 +769,16 @@ class GameContentModel: ObservableObject {
             }
         }
         // logic tạm thời
-        else if self.isDraw {
+            else if self.isDraw {
             // draw
             self.humanWinStatus = .draw
         }
         // not win yet
-        else {
+            else {
             self.humanWinStatus = .none
         }
-        
+
     }
-    
-    // MARK: - reset game
-    func resetGame() {
-        SoundModel.playSound(sound: "game", type: "mp3")
-        self.map = [[Move?]](repeating: [Move?](repeating: nil, count: self.totalColumns), count: self.totalRows)
-    }
-    
+
+
 }

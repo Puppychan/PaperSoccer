@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+//#if !os(macOS)
 struct RoundedCorner: Shape {
 
     var radius: CGFloat = .infinity
@@ -18,4 +19,5 @@ struct RoundedCorner: Shape {
         return Path(path.cgPath)
     }
 }
+//#endif
 

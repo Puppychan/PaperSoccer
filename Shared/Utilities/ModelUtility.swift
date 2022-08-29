@@ -40,13 +40,15 @@ struct ModelUtility {
     }
 
     // MARK: - drawing path
-    static func moveCurrentPath(on path: inout Path, _ destination: CGPoint) {
+    static func moveCurrentPath(on path: inout Path, _ destination: CGPoint, currentPosition: inout CGPoint) {
         path.move(to: destination)
         ModelUtility.drawCircle(point: destination, on: &path)
+        currentPosition = destination
     }
-    static func drawMovingLine(on path: inout Path, _ destination: CGPoint) {
+    static func drawMovingLine(on path: inout Path, _ destination: CGPoint, currentPosition: inout CGPoint) {
         path.addLine(to: destination)
         ModelUtility.drawCircle(point: destination, on: &path)
+        currentPosition = destination
     }
 //    static func draw(point: CGPoint, on path: inout Path) {
     static func drawCircle(point: CGPoint, on path: inout Path) {

@@ -30,13 +30,13 @@ struct ResultModalView: View {
         switch self.type {
         case .humanWin:
             // human win
-            (self.title, self.message, self.buttonTitle) = ("Human Win", "You beat the AI", "Continue the game")
+            (self.title, self.message, self.buttonTitle) = ("You Win!", "Continue Game?", "Continue the game")
         case .computerWin:
             // human lost
-            (self.title, self.message, self.buttonTitle) = ("You Lost", "Your AI is super smart", "Try Again")
+            (self.title, self.message, self.buttonTitle) = ("You Lost", "Continue Game?", "Try Again")
         default:
             // draw
-            (self.title, self.message, self.buttonTitle) = ("Draw", "What a battle of wits we have here...", "Try Again")
+            (self.title, self.message, self.buttonTitle) = ("Draw", "Continue Game?", "Try Again")
             
         }
         self.width = width
@@ -53,7 +53,7 @@ struct ResultModalView: View {
         
         ZStack {
             Rectangle()
-                .foregroundColor(.white) // temporary
+                .foregroundColor(Color("Result BckClr"))
                 .modifier(modalStyle())
             VStack(spacing: 15) {
                 Spacer()
@@ -64,6 +64,7 @@ struct ResultModalView: View {
                     Text(self.message)
                         .font(.subheadline)
                 }
+                .foregroundColor(Color("Result TxtClr"))
                 Spacer()
                 
                 // MARK: continue to play button
@@ -79,7 +80,7 @@ struct ResultModalView: View {
                     print("Press Continue")
                     
                 }, label: {
-                    RectangleButtonView(bckColor: .green, txtColor: .white, txt: self.buttonTitle, height: buttonHeight)
+                    RectangleButtonView(bckColor: Color("Result TxtClr"), txtColor: Color("Result BckClr"), txt: self.buttonTitle, height: buttonHeight)
                 })
                 
                 // MARK: exit game button
@@ -92,12 +93,11 @@ struct ResultModalView: View {
                     // back to main menu here
                     showingSubview = false
                 }, label: {
-                    RectangleButtonView(bckColor: .black, txtColor: .white, txt: "Exit Game", height: buttonHeight)
+                    RectangleButtonView(bckColor: .white, txtColor: .black, txt: "Exit Game", height: buttonHeight)
                 })
                 
             }
-            .padding(.horizontal, Constants.horizontalPadding)
-            .padding(.vertical, Constants.verticalPadding + 10)
+            .modifier(modalPadding())
         }
         .frame(width: self.width, height: self.height)
     }

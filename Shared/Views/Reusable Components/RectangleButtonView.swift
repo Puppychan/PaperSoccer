@@ -24,7 +24,7 @@ struct RectangleButtonView: View {
             
             Text(txt)
                 .foregroundColor(txtColor)
-                .font(.custom(fontName, size: height / 2.1))
+                .font(.custom(fontName, size: height / 2.7))
                 .tracking(2)
         }
 

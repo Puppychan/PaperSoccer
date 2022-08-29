@@ -14,7 +14,10 @@ struct Player: Identifiable, Codable {
     var currentScore: Int
     var totalScore: Int
     
-    func testData() -> Player {
-        return Player(username: "Matsuri", isHuman: true, currentScore: 0, totalScore: 0)
-    }
+    var numGamePlay: Int
+    var numWin: Int
+    var isReadInstruction: Bool
+    
+    // store index of badges achieved
+    var badges: Set<Int>
 }
