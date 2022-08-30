@@ -1,9 +1,14 @@
-//
-//  PaperSoccerApp.swift
-//  Shared
-//
-//  Created by Nhung Tran on 19/08/2022.
-//
+/*
+  RMIT University Vietnam
+  Course: COSC2659 iOS Development
+  Semester: 2022B
+  Assessment: Assignment 2
+  Author: Tran Mai Nhung
+  ID: s3879954
+  Created  date: 15/08/2022
+  Last modified: 29/08/2022
+  Acknowledgement: Tom Huynh github, canvas
+*/
 
 import SwiftUI
 @main
@@ -12,18 +17,6 @@ struct PaperSoccerApp: App {
         WindowGroup {
             MenuView()
                 .environmentObject(GameModel())
-//                .ifOS(.macOS) {
-//                    $0.frame(width: 500, height: 820)
-//                }
-            #if os(macOS)
-                .frame(width: 500, height: 820)
-               #else
-            
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                .frame(width: 500, height: 820)
-               #endif
-            
-//            GameContentView()
         }
     }
 }

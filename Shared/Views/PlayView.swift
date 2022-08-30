@@ -1,10 +1,15 @@
-//
-//  GameView.swift
-//  PlayNow
-//
-//  Created by Nhung Tran on 17/08/2022.
-//
-//custom toolbar: https://stackoverflow.com/questions/58721384/big-unwanted-space-in-subview-navigation-bar
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2022B
+ Assessment: Assignment 2
+ Author: Tran Mai Nhung
+ ID: s3879954
+ Created  date: 15/08/2022
+ Last modified: 29/08/2022
+ Acknowledgement: Canvas, Tom Huynh github
+ https://stackoverflow.com/questions/58721384/big-unwanted-space-in-subview-navigation-bar
+ */
 
 import SwiftUI
 
@@ -19,7 +24,7 @@ struct PlayView: View {
     
     @State var usernameSize: CGFloat = 0.0
     @State var scoreSize: CGFloat = 0.0
-
+    
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -38,17 +43,16 @@ struct PlayView: View {
                             PlayerIconView(nameImage: "bot", geo: geo)
                         }
                     }
-
+                    
                     Spacer()
-
+                    
                     // MARK: game
                     GameView(winStatus: $humanWinStatus, showModal: $isShowModal, playMode: $difficulty, screenWidth: geo.size.width / 1.1, screenHeight: geo.size.height / 1.1)
                         .frame(width: geo.size.width / 1.1, height: geo.size.height / 2, alignment: .center)
-                        .environmentObject(GameContentModel())
-                        
-
+                    
+                    
                     Spacer()
-
+                    
                     // MARK: human score
                     HStack {
                         HStack {
@@ -58,7 +62,7 @@ struct PlayView: View {
                         }
                         Spacer()
                     }
-
+                    
                 }
                 .padding()
                 .modifier(opacityModalOpen(isShowModal: isShowModal))
@@ -72,19 +76,13 @@ struct PlayView: View {
                 }
             }
             .onAppear() {
+                // init username text display size and icon display size
                 usernameSize = geo.size.width / 16
                 scoreSize = geo.size.width / 14
             }
-
+            
         }
-
-
+        
+        
     }
 }
-//struct PlayView_Previews: PreviewProvider {
-//    @State var showingSubview = false
-//    static var previews: some View {
-//        PlayView(showingSubview: .constant(true))
-//            .environmentObject(GameModel())
-//    }
-//}

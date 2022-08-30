@@ -1,15 +1,21 @@
-//
-//  ModalView.swift
-//  PlayNow
-//
-//  Created by Nhung Tran on 18/08/2022.
-//
-// https://stackoverflow.com/questions/58983538/how-to-optionally-pass-in-a-binding-in-swiftui
-// https://stackoverflow.com/questions/61920405/programatic-navigation-for-navigationview-using-tag-selection-or-isactive
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2022B
+ Assessment: Assignment 2
+ Author: Tran Mai Nhung
+ ID: s3879954
+ Created  date: 15/08/2022
+ Last modified: 29/08/2022
+ Acknowledgement: Canvas, Tom Huynh github
+ // https://stackoverflow.com/questions/58983538/how-to-optionally-pass-in-a-binding-in-swiftui
+ // https://stackoverflow.com/questions/61920405/programatic-navigation-for-navigationview-using-tag-selection-or-isactive
+ */
+
 
 import SwiftUI
 
-
+// display final result modal after finishing game
 struct ResultModalView: View {
     @EnvironmentObject var model: GameModel
     @Binding var isShowModal: Bool
@@ -52,6 +58,8 @@ struct ResultModalView: View {
         let buttonHeight = height / 6.3
         
         ZStack {
+            
+            // MARK: background of the modal
             Rectangle()
                 .foregroundColor(Color("Result BckClr"))
                 .modifier(modalStyle())

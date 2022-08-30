@@ -1,15 +1,21 @@
-//
-//  GameContentModle.swift
-//  PaperSoccer
-//
-//  Created by Nhung Tran on 25/08/2022.
-// https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-3-tic-tac-toe-ai-finding-optimal-move/
+/*
+  RMIT University Vietnam
+  Course: COSC2659 iOS Development
+  Semester: 2022B
+  Assessment: Assignment 2
+  Author: Tran Mai Nhung
+  ID: s3879954
+  Created  date: 15/08/2022
+  Last modified: 29/08/2022
+  Acknowledgement: Tom Huynh github, canvas https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-3-tic-tac-toe-ai-finding-optimal-move/
+*/
 // Draw condition add later
 //
 
 import Foundation
 import SwiftUI
 class GameContentModel: ObservableObject {
+    // grid columns and rows
     var totalColumns = 7
     var totalRows = 7
 
@@ -18,11 +24,7 @@ class GameContentModel: ObservableObject {
     var startRightIndex: Int
     var humanWinStatus: WinningType
 
-    //    var currentIndex: Int
-    //    var currentHumanIndex: Int = 0
-    //    var currentBotIndex: Int = 0
     var currentIndex: Position
-
     var map: [[Move?]]
 
     var botTempMoves: [Position]
@@ -37,7 +39,6 @@ class GameContentModel: ObservableObject {
     @Published var humanMoveValid: Bool
     
     @Published var humanStart: CGPoint
-    @Published var humanEnd: CGPoint
 
     init() {
         print("Init")
@@ -66,16 +67,16 @@ class GameContentModel: ObservableObject {
         self.dragDirection = .none
         
         humanStart = CGPoint(x: 0, y: 0)
-        humanEnd = CGPoint(x: 0, y: 0)
     }
 
     // MARK: - reset game
-    func resetGame() {
+    func resetGame(itemsPosition: [[CGPoint]]) {
 //        print("Reset")
         self.currentIndex = Position(self.totalRows / 2, self.totalColumns / 2)
 
         self.humanPath = Path()
         self.botPath = Path()
+        ModelUtility.moveCurrentPath(on: &self.humanPath, itemsPosition[self.currentIndex.row][self.currentIndex.col], currentPosition: &self.humanStart)
 
         self.map = [[Move?]](repeating: [Move?](repeating: nil, count: self.totalColumns), count: self.totalRows)
 
@@ -120,6 +121,7 @@ class GameContentModel: ObservableObject {
         return false
     }
 
+    // MARK: check if index is out of bound
     func isNotOutOfBoundIndex(for position: Position) -> Bool {
         if (0..<self.totalRows ~= position.row && 0..<self.totalColumns ~= position.col) {
             return true
@@ -140,6 +142,8 @@ class GameContentModel: ObservableObject {
         return false
 
     }
+    
+    // MARK: check if bouncing drag valid based on current index, next move index or current drag direction
     func isBouncingDragValid(for currentPosition: Position, new newPosition: Position = Position(-1, -1)) -> Int {
         // 1: index is not bouncing
         // -1: index is bouncing but drag direction is invalid
@@ -455,6 +459,8 @@ class GameContentModel: ObservableObject {
         self.currentIndex = newPosition!
         checkWinning()
     }
+    
+    // MARK: easy mode
     func easyMove(itemPositions: [[CGPoint]]) -> [CGPoint] {
         print("----------------- Comp")
         var positions: [CGPoint] = []
@@ -469,6 +475,7 @@ class GameContentModel: ObservableObject {
 
         while self.canContinueMoving {
             repeat {
+                // find next move index
                 switch checkLayer {
                 case 0:
                     if self.currentIndex.col <= endLeftIndex {
@@ -490,8 +497,12 @@ class GameContentModel: ObservableObject {
                 default:
                     newPosition = Position(self.currentIndex.row + Int.random(in: -1...1), self.currentIndex.col + Int.random(in: -1...1))
                 }
+                
+                // add to set
                 directionSet.insert(newPosition!)
                 checkLayer += 1
+                
+                // if valid
                 if checkValidIndex(for: newPosition!) {
                     checkLayer = 0
                     directionSet = []
@@ -517,9 +528,11 @@ class GameContentModel: ObservableObject {
                 break
             }
             
+            // add action after moving
             computerActionAfterMove(itemPositions: itemPositions, newPosition: newPosition)
             positions.append(CGPoint(x: newPosition!.row, y: newPosition!.col))
             
+            // if having human win status
             if self.humanWinStatus != .none {
                 return positions
             }
@@ -533,6 +546,7 @@ class GameContentModel: ObservableObject {
         return positions
     }
     
+    // MARK: normal mode
     func normalMove(itemPositions: [[CGPoint]]) -> [CGPoint] {
         print("----------------- Comp Normal")
         var positions: [CGPoint] = []
@@ -547,6 +561,7 @@ class GameContentModel: ObservableObject {
 
         while self.canContinueMoving {
             repeat {
+                // define next computer movement
                 switch checkLayer {
                 case 0:
                     if isBorderIndex(forX: self.currentIndex.col, forY: self.currentIndex.row) {
@@ -572,9 +587,6 @@ class GameContentModel: ObservableObject {
                             newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col + (Bool.random() ? 1 : (-1)))
                         }
                     }
-//                case :
-//
-                    
                 case 1:
                     if self.currentIndex.col <= endLeftIndex || self.currentIndex.col >= startRightIndex {
                         newPosition = Position(self.currentIndex.row + 1, self.currentIndex.col)
@@ -612,8 +624,10 @@ class GameContentModel: ObservableObject {
                 break
             }
             
+            // display action after moving
             computerActionAfterMove(itemPositions: itemPositions, newPosition: newPosition)
             positions.append(CGPoint(x: newPosition!.row, y: newPosition!.col))
+            // if final result detection
             if self.humanWinStatus != .none {
                 return positions
             }
@@ -626,6 +640,8 @@ class GameContentModel: ObservableObject {
         }
         return positions
     }
+    
+    // MARK: hard mode
     func hardMove(itemPositions: [[CGPoint]]) -> [CGPoint] {
         print("----------------- Comp Hard")
         var positions: [CGPoint] = []
@@ -639,6 +655,7 @@ class GameContentModel: ObservableObject {
         ModelUtility.moveCurrentPath(on: &self.botPath, itemPositions[self.currentIndex.row][self.currentIndex.col], currentPosition: &self.humanStart)
 
         while self.canContinueMoving {
+            // detect next moving index
             repeat {
                 switch checkLayer {
                 case 0:
@@ -757,7 +774,6 @@ class GameContentModel: ObservableObject {
     }
     // MARK: - Winning status
     func checkWinning() {
-        let a = 10
         if self.endLeftIndex...self.startRightIndex ~= self.currentIndex.col {
             if self.currentIndex.row == 0 {
                 // human win

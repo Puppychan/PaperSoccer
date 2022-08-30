@@ -1,9 +1,14 @@
-//
-//  LeaderboardView.swift
-//  PlayNow
-//
-//  Created by Nhung Tran on 18/08/2022.
-//
+/*
+  RMIT University Vietnam
+  Course: COSC2659 iOS Development
+  Semester: 2022B
+  Assessment: Assignment 2
+  Author: Tran Mai Nhung
+  ID: s3879954
+  Created  date: 15/08/2022
+  Last modified: 29/08/2022
+  Acknowledgement: Tom Huynh github, canvas
+*/
 
 import SwiftUI
 
@@ -15,17 +20,11 @@ struct LeaderboardView: View {
         GeometryReader { geo in
             ZStack {
                 // MARK: background image
-//                Image("leaderboard-bck")
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fill)
-//                    .brightness(-0.3)
-//                    .opacity(0.6)
-//                    .background(Color("Leader BckClr"))
-//                    .ignoresSafeArea()
                 ImageBackground(name: "leaderboard-bck")
                     .brightness(-0.3)
                     .opacity(0.6)
                     .background(Color("Leader BckClr"))
+                
                 VStack(alignment: .center) {
                     // MARK: back home button
                     HStack {
@@ -56,10 +55,12 @@ struct LeaderboardView: View {
                     // MARK: leaderboard display
                     ScrollView {
                         LazyVStack(alignment: .leading) {
-//                            let currentUserIndex = model.findPlayerId(for: model.currentHuman.id)
+                            
                             ForEach(0..<model.players.count, id: \.self) { index in
                                 HStack(spacing: geo.size.width / 15) {
+                                    
                                     // MARK: Leaderboard position
+                                    // if first 3 leaderboard -> display different icon
                                     if index == 0 {
                                         Image("leaderboard-first")
                                             .resizable()
@@ -117,14 +118,8 @@ struct LeaderboardView: View {
             }
         }
         .onAppear() {
+            // sort orders before displaying
             model.sortPlayerInScore()
         }
     }
 }
-
-//struct LeaderboardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LeaderboardView(showingSubview: .constant(false))
-//            .environmentObject(GameModel())
-//    }
-//}

@@ -1,13 +1,22 @@
-//
-//  StackNavigationView.swift
-//  PaperSoccer
-//
-//  Created by Nhung Tran on 25/08/2022.
-// https://stackoverflow.com/questions/61424225/macos-swiftui-navigation-for-a-single-view
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2022B
+ Assessment: Assignment 2
+ Author: Tran Mai Nhung
+ ID: s3879954
+ Created  date: 15/08/2022
+ Last modified: 29/08/2022
+ Acknowledgement: Canvas, Tom Huynh github
+ // https://stackoverflow.com/questions/61424225/macos-swiftui-navigation-for-a-single-view
+ */
+
+
 
 
 import SwiftUI
 
+// This file for custom navigation in menu view
 struct StackNavigationView<RootContent, SubviewContent>: View where RootContent: View, SubviewContent: View {
     
     @Binding var currentSubviewIndex: Int
@@ -48,16 +57,6 @@ struct StackNavigationView<RootContent, SubviewContent>: View where RootContent:
         
         var body: some View {
             VStack {
-//                HStack { // Back button
-//                    Button(action: {
-//                        self.isVisible = false
-//                    }) {
-//                        Text("< Back")
-//                    }.buttonStyle(BorderlessButtonStyle())
-//                    Spacer()
-//                }
-//                .padding(.horizontal).padding(.vertical, 4)
-                
                 // MARK: content view
                 contentView() // Main view content
             }

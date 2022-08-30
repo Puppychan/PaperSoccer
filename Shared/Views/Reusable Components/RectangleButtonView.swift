@@ -1,12 +1,19 @@
-//
-//  RectangleButtonView.swift
-//  PlayNow
-//
-//  Created by Nhung Tran on 18/08/2022.
-//
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2022B
+ Assessment: Assignment 2
+ Author: Tran Mai Nhung
+ ID: s3879954
+ Created  date: 15/08/2022
+ Last modified: 29/08/2022
+ Acknowledgement: Canvas, Tom Huynh github
+ */
+
 
 import SwiftUI
 
+// For custom default button
 struct RectangleButtonView: View {
     var bckColor: Color = Color(.white)
     var txtColor: Color = Color(.black)
@@ -27,6 +34,6 @@ struct RectangleButtonView: View {
                 .font(.custom(fontName, size: height / 2.7))
                 .tracking(2)
         }
-
+        
     }
 }

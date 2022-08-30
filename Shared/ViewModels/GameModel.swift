@@ -1,10 +1,18 @@
-//
-//  GameModel.swift
-//  PlayNow
-//
-//  Created by Nhung Tran on 17/08/2022.
-// https://stackoverflow.com/questions/26845307/generate-random-alphanumeric-string-in-swift
-// https://stackoverflow.com/questions/62602279/using-appstorage-for-string-map/62602643#62602643
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2022B
+ Assessment: Assignment 2
+ Author: Tran Mai Nhung
+ ID: s3879954
+ Created  date: 15/08/2022
+ Last modified: 29/08/2022
+ Acknowledgement: Tom Huynh github, canvas
+ // https://stackoverflow.com/questions/62602279/using-appstorage-for-string-map/62602643#62602643
+ https://www.anycodings.com/1questions/552647/how-can-i-get-appstorage-to-work-in-an-mvvm-swiftui-framework
+ */
+
+
 
 import Foundation
 import SwiftUI
@@ -15,13 +23,14 @@ class GameModel: ObservableObject {
     @Published var settings = SettingsManager.shared
     var cancellables = Set<AnyCancellable>()
 
+    // list of player
     @Published var players = [Player]()
 
+    // current players
     @Published var currentBot: Player
     @Published var currentHuman: Player
 
-    @Published var backToHome: Int?
-
+    // list of badges
     let badges = [
         "Play a Game",
         "Play 10 Games",
@@ -34,7 +43,7 @@ class GameModel: ObservableObject {
     ]
 
     init() {
-        
+        // init current players
         self.currentBot = Player(username: "Bot", isHuman: false, currentScore: 0, totalScore: 0, numGamePlay: 0, numWin: 0, isReadInstruction: false, badges: [])
         self.currentHuman = Player(username: ModelUtility.randomUsername(), isHuman: true, currentScore: 0, totalScore: 0, numGamePlay: 0, numWin: 0, isReadInstruction: false, badges: [])
         
@@ -42,6 +51,7 @@ class GameModel: ObservableObject {
         convertDataToPlayer(from: self.settings.currentHuman, currentData: &(self.currentHuman))
         convertDataToPlayer(from: self.settings.currentBot, currentData: &(self.currentBot))
         
+        // list players
         players.append(contentsOf: [self.currentBot, self.currentHuman])
         convertDataToPlayers()
         
@@ -97,6 +107,8 @@ class GameModel: ObservableObject {
             
         }
     }
+    
+    // MARK: check if the current player has badge that has index
     func isHaveBadge(for index: Int) -> Bool {
         return self.currentHuman.badges.contains(index) 
         
@@ -105,10 +117,12 @@ class GameModel: ObservableObject {
 
     // MARK: - data <-> object conversion
     // MARK: convert a player only
+    // player -> data -> appstorage
     func convertPlayerToData(currentData: Player, storeData: inout Data) {
         guard let currentHumanData = try? JSONEncoder().encode(currentData) else { return }
         storeData = currentHumanData
     }
+    // appstorage -> data -> player
     func convertDataToPlayer(from: Data, currentData: inout Player) {
         guard let decodedCurrentHuman = try? JSONDecoder().decode(Player.self, from: from) else { return }
         currentData = decodedCurrentHuman
@@ -116,23 +130,31 @@ class GameModel: ObservableObject {
     
     
     // MARK: convert player list
+    // list players -> data -> appstorage
     func convertPlayersToData() {
         guard let currentHumanData = try? JSONEncoder().encode(self.players) else { return }
         self.settings.players = currentHumanData
     }
-    func updateHumanData() {
-        convertPlayerToData(currentData: self.currentHuman, storeData: &self.settings.currentHuman)
-    }
-    func updateBotData() {
-        convertPlayerToData(currentData: self.currentBot, storeData: &self.settings.currentBot)
-    }
-    
+    // appstorage -> data -> list players
     func convertDataToPlayers() {
         guard let decodedCurrentHuman = try? JSONDecoder().decode([Player].self, from: self.settings.players) else { return }
         self.players = decodedCurrentHuman
     }
+    
+    // MARK: short update
+    // update human -> data
+    func updateHumanData() {
+        convertPlayerToData(currentData: self.currentHuman, storeData: &self.settings.currentHuman)
+    }
+    // update bot -> data
+    func updateBotData() {
+        convertPlayerToData(currentData: self.currentBot, storeData: &self.settings.currentBot)
+    }
+    
+
 
     // MARK: - Update Player Info
+    // MARK: find current player id in player list using id
     func findPlayerId(for id: UUID) -> Int {
         let currentPlayerIndex = players.firstIndex(where: {
             $0.id == id
@@ -166,6 +188,7 @@ class GameModel: ObservableObject {
         }
     }
     
+    // MARK: update general win number
     func updateWinNumber() {
         // find final winner
         // update score of winner = current winner scores - current loser scores

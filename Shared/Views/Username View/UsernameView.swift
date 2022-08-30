@@ -1,9 +1,14 @@
-//
-//  UsernameView.swift
-//  PaperSoccer
-//
-//  Created by Nhung Tran on 28/08/2022.
-//
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2022B
+ Assessment: Assignment 2
+ Author: Tran Mai Nhung
+ ID: s3879954
+ Created  date: 15/08/2022
+ Last modified: 29/08/2022
+ Acknowledgement: Canvas, Tom Huynh github
+ */
 
 import SwiftUI
 
@@ -16,10 +21,11 @@ struct UsernameView: View {
             HStack {
                 Text("Hello".uppercased())
                 
+                // MARK: click to change default username
                 Button(action: {
                     // open the modal
                     isShowChangeUsername.toggle()
-
+                    
                 }, label: {
                     Text(model.currentHuman.username)
                         .font(.title)
@@ -30,7 +36,7 @@ struct UsernameView: View {
             }
             .foregroundColor(Color("Username TxtClr"))
             .font(.title2)
-
+            
         }
     }
 }

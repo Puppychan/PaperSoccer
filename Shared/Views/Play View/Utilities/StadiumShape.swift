@@ -1,11 +1,17 @@
-//
-//  GameShape.swift
-//  PaperSoccer (iOS)
-//
-//  Created by Nhung Tran on 28/08/2022.
-//
-// https://www.hackingwithswift.com/books/ios-swiftui/creating-custom-paths-with-swiftui
-// https://www.youtube.com/watch?v=YSBXJvANWSo&t=304s
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2022B
+ Assessment: Assignment 2
+ Author: Tran Mai Nhung
+ ID: s3879954
+ Created  date: 15/08/2022
+ Last modified: 29/08/2022
+ Acknowledgement: Canvas, Tom Huynh github
+ // https://www.hackingwithswift.com/books/ios-swiftui/creating-custom-paths-with-swiftui
+ // https://www.youtube.com/watch?v=YSBXJvANWSo&t=304s
+ */
+
 
 import SwiftUI
 
@@ -20,7 +26,7 @@ struct StadiumSquares: Shape {
     var circleSize: CGFloat
     var isHumanPlace: Bool
     
-
+    
     
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -41,10 +47,13 @@ struct StadiumSquares: Shape {
         
         for row in startRow..<endRow - 1 {
             for col in 0..<model.totalColumns - 1 {
+                // check is draw rectangle or not (in hidden position -> not draw)
                 if !model.isIgnorePosition(forRow: row, forCol: col) &&
                     !model.isIgnorePosition(forRow: row + 1, forCol: col + 1) &&
                     !model.isIgnorePosition(forRow: row, forCol: col + 1) &&
                     !model.isIgnorePosition(forRow: row + 1, forCol: col) {
+                    
+                    // if even square draw different color
                     if (isEvenSquare && (row + col).isMultiple(of: 2)) ||
                         (!isEvenSquare && !(row + col).isMultiple(of: 2)) {
                         let startX = offsetX + Double(col) * width
@@ -62,7 +71,7 @@ struct StadiumSquares: Shape {
     }
 }
 
-// - MARK: drawing border shape
+// - MARK: drawing border stadium
 struct StadiumBorder: Shape {
     var offsetY: CGFloat
     var offsetX: CGFloat
@@ -70,13 +79,13 @@ struct StadiumBorder: Shape {
     var spacingGrid: CGFloat
     var columns: Int
     var rows: Int
-
+    
     
     func path(in rect: CGRect) -> Path {
         var path = Path()
         let smallDistance = circleSize + spacingGrid
         path.move(to: CGPoint(x: offsetX, y: offsetY + smallDistance))
-
+        
         path.addLine(to: CGPoint(x: offsetX, y: offsetY + smallDistance * CGFloat((rows - 2))))
         path.addLine(to: CGPoint(x: offsetX + smallDistance * CGFloat(((columns / 2) - 1)), y: offsetY + smallDistance * CGFloat((rows - 2))))
         // horizontal
