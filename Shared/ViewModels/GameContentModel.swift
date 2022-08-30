@@ -201,7 +201,7 @@ class GameContentModel: ObservableObject {
                             currentPosition.isMovingSouthEast(new: newPosition) ||
                             currentPosition.isMovingSouth(new: newPosition) ||
                             currentPosition.isMovingNorth(new: newPosition))) {
-                print("Bouncing Right No Move", currentRow, currentCol)
+                print("Bouncing Right No Move", currentRow, currentCol, newPosition.row, newPosition.col)
                 return -1
             }
             print("Bouncing Right", currentRow, currentCol)
@@ -390,7 +390,52 @@ class GameContentModel: ObservableObject {
 
         return Position(newRow, newCol)
     }
-
+    
+//    // MARK: check if dead corners
+//    func isDeadCorners(pos: Position) -> Bool {
+//        let col = pos.col, row = pos.row
+//        if (pos.col == 0 || pos.row)
+//    }
+    
+    // MARK: check draw movement
+    func checkDrawMovement(currentPosition: Position) {
+        var countCannotMove = 0
+        let currentRow = currentPosition.row, currentCol = currentPosition.col
+        for i in (currentRow - 1)...(currentRow + 1) {
+            for j in (currentCol - 1)...(currentCol + 1) {
+                // if is current index -> skip
+                if i == currentRow && j == currentCol {
+                    continue
+                }
+                
+                let newPosition = Position(i, j)
+                
+                print("Out of bound check:", 0..<self.totalRows ~= i && 0..<self.totalColumns ~= j)
+                print("Inside ignore region check:", !isIgnorePosition(forRow: i, forCol: j))
+                print("Is bouncing if inside wall: ",  isBouncingDragValid(for: currentPosition, new: newPosition))
+                if i < self.totalRows && j < self.totalColumns {
+                    print("Is nil moves: ", self.map[i][j] == nil, "- continue moving:", isContinueMoving(for: newPosition))
+                }
+                print("None drag: ",!newPosition.equals(currentPosition))
+                
+                // check draw condition
+                if !(isNotOutOfBoundIndex(for: newPosition) &&
+                     !isIgnorePosition(forRow: i, forCol: j) &&
+                     (self.map[i][j] == nil || isContinueMoving(for: newPosition))
+                     && (isBouncingDragValid(for: currentPosition, new: newPosition) != -1) ) {
+                    print(i, j)
+                    countCannotMove += 1
+                }
+            }
+        }
+        
+        // if all moves not valid -> draw
+        if countCannotMove == 8 {
+            self.isDraw = true
+        }
+    }
+    
+    // MARK: assign move to map
     func assignMovingMap(newPosition: Position) {
         assignMove(currentPosition: self.currentIndex, for: newPosition)
         assignMove(currentPosition: newPosition, for: self.currentIndex)
@@ -422,6 +467,8 @@ class GameContentModel: ObservableObject {
             
 
             // check winning
+            self.dragDirection = .none
+            checkDrawMovement(currentPosition: self.currentIndex)
             checkWinning()
             if self.humanWinStatus != .none {
                 self.humanMoveValid = true
@@ -429,7 +476,6 @@ class GameContentModel: ObservableObject {
 
             else {
                 // check if bouncing -> continue move
-                self.dragDirection = .none
                 if isBouncingDragValid(for: self.currentIndex) == 0 {
                     self.canContinueMoving = true
                 }

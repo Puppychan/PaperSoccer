@@ -8,7 +8,7 @@
  Created  date: 15/08/2022
  Last modified: 29/08/2022
  Acknowledgement: Tom Huynh github, canvas
-
+ 
  */
 
 import SwiftUI
@@ -77,7 +77,7 @@ struct InstructionView: View {
                             Spacer()
                         }
                         Spacer()
-
+                        
                         // MARK: app name
                         VStack(spacing: geo.size.width / 20) {
                             Text("Paper Football".uppercased())
@@ -85,20 +85,20 @@ struct InstructionView: View {
                             Text("Instruction".uppercased())
                                 .tracking(1)
                         }
-                            .font(.custom("EASPORTS", size: geo.size.width / 13))
-                            .foregroundColor(Color("Instruction Head TxtClr"))
+                        .font(.custom("EASPORTS", size: geo.size.width / 13))
+                        .foregroundColor(Color("Instruction Head TxtClr"))
                         Spacer()
                     }
                     .frame(width: geo.size.width, height: geo.size.height / 5, alignment: .center)
-
+                    
                     ScrollView {
                         // MARK: content
                         ZStack {
                             Rectangle()
                                 .foregroundColor(Color("Instruction Contain BckClr"))
-                                .opacity(0.5)
+                                .opacity(0.9)
                             VStack(spacing: geo.size.height / 9) {
-
+                                
                                 // MARK: section content
                                 VStack {
                                     ImageInstruction(name: "football stadium", width: contentWidth)
@@ -141,13 +141,13 @@ struct InstructionView: View {
                             .padding(.vertical, geo.size.height / 15)
                         }
                     }
-
+                    
                 }
             }
-                .onAppear(perform: {
+            .onAppear(perform: {
                 model.updateReadInstruction()
             })
-
+            
         }
     }
 }

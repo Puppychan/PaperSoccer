@@ -18,6 +18,7 @@ import SwiftUI
 // display final result modal after finishing game
 struct ResultModalView: View {
     @EnvironmentObject var model: GameModel
+//    @StateObject var model: GameModel
     @Binding var isShowModal: Bool
     @Binding var showingSubview: Bool
     
@@ -93,9 +94,6 @@ struct ResultModalView: View {
                 
                 // MARK: exit game button
                 Button(action: {
-                    // update current scores
-                    model.updateScores(winStatus: self.type)
-                    
                     model.exitGame()
                     
                     // back to main menu here

@@ -250,7 +250,7 @@ class GameModel: ObservableObject {
         
         // exit game and update total scores of players
         updateWinNumber()
-        
+        print(self.currentHuman.username, self.currentHuman.totalScore)
         // sound
         SoundModel.startBackgroundMusic(bckName: "menu", type: "mp3")
         SoundModel.stopSoundEffect()

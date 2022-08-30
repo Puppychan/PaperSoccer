@@ -54,7 +54,7 @@ struct LeaderboardView: View {
                     
                     // MARK: leaderboard display
                     ScrollView {
-                        LazyVStack(alignment: .leading) {
+                        VStack(alignment: .leading) {
                             
                             ForEach(0..<model.players.count, id: \.self) { index in
                                 HStack(spacing: geo.size.width / 15) {
