@@ -56,7 +56,10 @@ struct DifficultiesModal: View {
                             difficulty = button
                             showFunc(findIndexMode(mode: button))
                             isShowDiffiModes = false
-
+                            
+                            // play background music
+                            SoundModel.stopBackgroundMusic()
+                            SoundModel.startBackgroundMusic(bckName: "game", type: "mp3")
                         }, label: {
                                 RectangleButtonView(bckColor: Color("Playmode Button BckClr"), txtColor: Color("Playmode Button TxtClr"), fontName: "Roboto-Black", cornerRadius: Constants.cornerRadius, txt: button.uppercased(), height: buttonHeight)
                             })

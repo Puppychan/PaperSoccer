@@ -123,8 +123,7 @@ struct MenuView: View {
                                      
                                      isShowDiffiModes = true
                                      isShowChangeUsername = false
-//                                     SoundModel.stopBackgroundMusic()
-//                                     SoundModel.startBackgroundMusic(bckName: "game", type: "mp3")
+
                                  }) {
                                      RectangleButtonView(bckColor: Color("Menu Button BckClr"), txtColor: Color("Menu Button TxtClr"), txt: "Play  Game".uppercased(), height: buttonHeight)
                                  }
@@ -151,6 +150,8 @@ struct MenuView: View {
                                  // change username view
                                  Button(action: {
                                      self.showSubview(withIndex: NavigationDestination.switchUser.rawValue)
+                                     SoundModel.stopBackgroundMusic()
+                                     SoundModel.startBackgroundMusic(bckName: "switch", type: "mp3")
                                  }) {
                                      Text("Switch User".uppercased())
                                          .font(.custom("Roboto-Medium", size: geometry.size.width / 18))

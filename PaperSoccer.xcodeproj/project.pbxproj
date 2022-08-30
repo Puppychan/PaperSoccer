@@ -182,6 +182,10 @@
 		3D312AFD28BD1A7700AB6A61 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312AFB28BD1A7700AB6A61 /* BadgeView.swift */; };
 		3D312AFE28BD1A7700AB6A61 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312AFB28BD1A7700AB6A61 /* BadgeView.swift */; };
 		3D312AFF28BD1A7700AB6A61 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312AFB28BD1A7700AB6A61 /* BadgeView.swift */; };
+		3D312B0128BD421600AB6A61 /* bck-switch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312B0028BD421600AB6A61 /* bck-switch.mp3 */; };
+		3D312B0228BD421600AB6A61 /* bck-switch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312B0028BD421600AB6A61 /* bck-switch.mp3 */; };
+		3D312B0328BD421600AB6A61 /* bck-switch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312B0028BD421600AB6A61 /* bck-switch.mp3 */; };
+		3D312B0428BD421600AB6A61 /* bck-switch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D312B0028BD421600AB6A61 /* bck-switch.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -270,6 +274,7 @@
 		3D312AF028BCE04300AB6A61 /* InstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
 		3D312AF528BD017200AB6A61 /* DifficultiesModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultiesModal.swift; sourceTree = "<group>"; };
 		3D312AFB28BD1A7700AB6A61 /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
+		3D312B0028BD421600AB6A61 /* bck-switch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bck-switch.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -498,6 +503,7 @@
 		3D312A7F28BAFF1900AB6A61 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				3D312B0028BD421600AB6A61 /* bck-switch.mp3 */,
 				3D312ACA28BB4D3300AB6A61 /* result-draw.wav */,
 				3D312ABB28BB460900AB6A61 /* result-computer win.wav */,
 				3D312AC528BB4BF400AB6A61 /* result-human win.wav */,
@@ -682,6 +688,7 @@
 				3D312AA228BB2DEE00AB6A61 /* bck-game.mp3 in Resources */,
 				3D0C406E28AF757900406125 /* Roboto-Medium.ttf in Resources */,
 				3D0C401928AF707200406125 /* Assets.xcassets in Resources */,
+				3D312B0128BD421600AB6A61 /* bck-switch.mp3 in Resources */,
 				3D0C407228AF757900406125 /* Roboto-Thin.ttf in Resources */,
 				3D0C405C28AF757900406125 /* Roboto-Black.ttf in Resources */,
 				3D312A8E28BB1BC000AB6A61 /* bck-menu.mp3 in Resources */,
@@ -716,6 +723,7 @@
 				3D312A8A28BB007000AB6A61 /* football-human win.mp3 in Resources */,
 				3D0C406F28AF757900406125 /* Roboto-Medium.ttf in Resources */,
 				3D312ACC28BB4D3300AB6A61 /* result-draw.wav in Resources */,
+				3D312B0228BD421600AB6A61 /* bck-switch.mp3 in Resources */,
 				3D312AA828BB3C2900AB6A61 /* bck-leaderboard.mp3 in Resources */,
 				3D0C401A28AF707200406125 /* Assets.xcassets in Resources */,
 				3D312AAC28BB3D2400AB6A61 /* PaperSoccer--iOS--Info.plist in Resources */,
@@ -744,6 +752,7 @@
 				3D312AC828BB4BF400AB6A61 /* result-human win.wav in Resources */,
 				3D312AC328BB4BAF00AB6A61 /* football-draw.wav in Resources */,
 				3D312ABE28BB460900AB6A61 /* result-computer win.wav in Resources */,
+				3D312B0328BD421600AB6A61 /* bck-switch.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,6 +774,7 @@
 				3D312AC928BB4BF400AB6A61 /* result-human win.wav in Resources */,
 				3D312AC428BB4BAF00AB6A61 /* football-draw.wav in Resources */,
 				3D312ABF28BB460900AB6A61 /* result-computer win.wav in Resources */,
+				3D312B0428BD421600AB6A61 /* bck-switch.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1017,6 +1027,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XFNA3XP78Q;
@@ -1048,6 +1059,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XFNA3XP78Q;
