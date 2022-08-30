@@ -228,7 +228,7 @@ struct GameView: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [self] in
                     appearYet.toggle()
                     circleSize = screenWidth / 18 // 20
-                    circleSizeAnnotation = circleSize / 1.15
+                    circleSizeAnnotation = circleSize / 1.25
                 }
                 
                 // init spacing grid and circle
